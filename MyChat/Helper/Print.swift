@@ -6,9 +6,5 @@
 //
 
 func printApplicationMovedFrom(_ state: String, to: String, method: String) {
-    //print("Application moved from '\(state)' to '\(to)': " + method)
-}
-
-func printApplicationMovedFrom_(_ state: String, to: String, method: String) {
     print("Application moved from '\(state)' to '\(to)': " + method)
 }
