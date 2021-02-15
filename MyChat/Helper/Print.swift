@@ -5,8 +5,10 @@
 //  Created by Administrator on 14.02.2021.
 //
 
-import Foundation
+func printApplicationMovedFrom(_ state: String, to: String, method: String) {
+    //print("Application moved from '\(state)' to '\(to)': " + method)
+}
 
-func printFunctionLiteral(literal: String = #function) {
-    print(literal)
+func printApplicationMovedFrom_(_ state: String, to: String, method: String) {
+    print("Application moved from '\(state)' to '\(to)': " + method)
 }
