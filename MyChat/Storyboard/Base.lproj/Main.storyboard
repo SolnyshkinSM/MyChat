@@ -48,6 +48,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="EUJ-rk-O4X" secondAttribute="height" multiplier="1:1" id="7iz-l4-ARK"/>
                                 </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="profileImageEdit:" destination="ek2-V1-FUd" eventType="touchUpInside" id="Sau-6h-xak"/>
                                 </connections>
@@ -79,15 +83,9 @@
                                     <constraint firstAttribute="trailing" secondItem="ZTE-x3-c4t" secondAttribute="trailing" constant="20" symbolic="YES" id="tl3-Ky-qTL"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKb-d9-fxR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKb-d9-fxR">
                                 <rect key="frame" x="20" y="293" width="335" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="A" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8eM-po-27P">
-                                <rect key="frame" x="98.5" y="84.5" width="89" height="178.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -109,49 +107,33 @@
                                     <action selector="editButoonPressing:" destination="ek2-V1-FUd" eventType="touchUpInside" id="tnN-iJ-3VH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AJ4-Np-mDw">
-                                <rect key="frame" x="187.5" y="84.5" width="89" height="178.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="J6P-Uj-YEA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8eM-po-27P" firstAttribute="leading" secondItem="EUJ-rk-O4X" secondAttribute="leading" id="1Cf-wN-fEk"/>
                             <constraint firstItem="iKb-d9-fxR" firstAttribute="top" secondItem="EUJ-rk-O4X" secondAttribute="bottom" constant="30" id="2A0-V8-ZzU"/>
                             <constraint firstItem="DL3-Gl-SXp" firstAttribute="leading" secondItem="J6P-Uj-YEA" secondAttribute="leading" constant="20" id="8d4-dv-pvo"/>
                             <constraint firstItem="J6P-Uj-YEA" firstAttribute="trailing" secondItem="iKb-d9-fxR" secondAttribute="trailing" constant="20" id="LGS-ME-fat"/>
                             <constraint firstItem="wFx-rq-awf" firstAttribute="centerX" secondItem="ros-pY-spV" secondAttribute="centerX" id="Lgf-yZ-lwT"/>
                             <constraint firstItem="iKb-d9-fxR" firstAttribute="leading" secondItem="J6P-Uj-YEA" secondAttribute="leading" constant="20" id="MlY-Kr-fBE"/>
                             <constraint firstItem="wFx-rq-awf" firstAttribute="width" secondItem="ros-pY-spV" secondAttribute="height" multiplier="263:872" id="OjZ-bd-ouE"/>
-                            <constraint firstItem="AJ4-Np-mDw" firstAttribute="top" secondItem="EUJ-rk-O4X" secondAttribute="top" id="TMv-EZ-ELb"/>
                             <constraint firstItem="wFx-rq-awf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DL3-Gl-SXp" secondAttribute="bottom" constant="10" id="W9n-s4-DzT"/>
                             <constraint firstItem="DL3-Gl-SXp" firstAttribute="top" secondItem="iKb-d9-fxR" secondAttribute="bottom" constant="20" id="XOd-hA-CWL"/>
-                            <constraint firstItem="AJ4-Np-mDw" firstAttribute="trailing" secondItem="EUJ-rk-O4X" secondAttribute="trailing" id="YVK-6P-JwB"/>
                             <constraint firstItem="Qno-94-7JD" firstAttribute="top" secondItem="J6P-Uj-YEA" secondAttribute="top" id="ZBz-Fr-kER"/>
                             <constraint firstItem="EUJ-rk-O4X" firstAttribute="width" secondItem="ros-pY-spV" secondAttribute="height" multiplier="30:109" id="adW-Mi-oh9"/>
                             <constraint firstItem="J6P-Uj-YEA" firstAttribute="trailing" secondItem="DL3-Gl-SXp" secondAttribute="trailing" constant="20" id="drs-ih-aOb"/>
-                            <constraint firstItem="8eM-po-27P" firstAttribute="top" secondItem="EUJ-rk-O4X" secondAttribute="top" id="eIj-vm-lIy"/>
-                            <constraint firstItem="AJ4-Np-mDw" firstAttribute="leading" secondItem="EUJ-rk-O4X" secondAttribute="centerX" id="fQl-Cr-uM0"/>
                             <constraint firstItem="Qno-94-7JD" firstAttribute="height" secondItem="ros-pY-spV" secondAttribute="height" multiplier="0.1" id="itI-pR-AcI"/>
                             <constraint firstItem="EUJ-rk-O4X" firstAttribute="top" secondItem="Qno-94-7JD" secondAttribute="bottom" constant="20" id="oTd-Oi-OF7"/>
                             <constraint firstItem="Qno-94-7JD" firstAttribute="trailing" secondItem="J6P-Uj-YEA" secondAttribute="trailing" id="q5c-oZ-pOc"/>
                             <constraint firstItem="EUJ-rk-O4X" firstAttribute="centerX" secondItem="ros-pY-spV" secondAttribute="centerX" id="r9n-KD-LOH"/>
                             <constraint firstItem="J6P-Uj-YEA" firstAttribute="bottom" secondItem="wFx-rq-awf" secondAttribute="bottom" constant="20" id="uHW-Rc-BJU"/>
-                            <constraint firstItem="AJ4-Np-mDw" firstAttribute="bottom" secondItem="EUJ-rk-O4X" secondAttribute="bottom" id="vuC-g0-MCD"/>
-                            <constraint firstItem="8eM-po-27P" firstAttribute="bottom" secondItem="EUJ-rk-O4X" secondAttribute="bottom" id="xzw-1j-zzt"/>
                             <constraint firstItem="Qno-94-7JD" firstAttribute="leading" secondItem="J6P-Uj-YEA" secondAttribute="leading" id="yId-X2-Qzl"/>
-                            <constraint firstItem="8eM-po-27P" firstAttribute="trailing" secondItem="EUJ-rk-O4X" secondAttribute="centerX" id="zq2-Sf-vj2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MA1-qd-w4s"/>
                     <connections>
                         <outlet property="detailsLabel" destination="DL3-Gl-SXp" id="YKU-lp-MnZ"/>
                         <outlet property="editButoon" destination="wFx-rq-awf" id="vUX-jV-R4f"/>
-                        <outlet property="firstCharacterLastname" destination="AJ4-Np-mDw" id="mAY-4k-O96"/>
-                        <outlet property="firstCharacterName" destination="8eM-po-27P" id="muO-wB-LA3"/>
                         <outlet property="nameLabel" destination="iKb-d9-fxR" id="fTr-dg-sgI"/>
                         <outlet property="profileImageButton" destination="EUJ-rk-O4X" id="ifX-kQ-lDT"/>
                     </connections>

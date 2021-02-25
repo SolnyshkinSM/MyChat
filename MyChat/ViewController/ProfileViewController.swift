@@ -12,10 +12,6 @@ class ProfileViewController: UIViewController {
     // MARK: - Public properties
 
     @IBOutlet weak var profileImageButton: UIButton!
-    
-    @IBOutlet weak var firstCharacterName: UILabel!
-    
-    @IBOutlet weak var firstCharacterLastname: UILabel!    
         
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -48,8 +44,30 @@ class ProfileViewController: UIViewController {
         
         nameLabel.text = profile.fullname
         detailsLabel.text = profile.details
-        firstCharacterName.text = String(profile.name.prefix(1))
-        firstCharacterLastname.text = String(profile.lastname.prefix(1))
+        
+        
+        let renderer = UIGraphicsImageRenderer(size: profileImageButton.bounds.size)
+        let image = renderer.image { context in
+
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+
+            let font = UIFont.systemFont(ofSize: profileImageButton.bounds.height * 0.6)
+            let offset = font.capHeight - font.ascender
+
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: font,
+                .paragraphStyle: paragraphStyle,
+                .baselineOffset: offset,
+                .kern: 0
+            ]
+
+            let initialsString = String(profile.name.prefix(1)) + String(profile.lastname.prefix(1))
+            initialsString.draw(with: profileImageButton.bounds, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+        }
+        
+        profileImageButton.setBackgroundImage(image, for: .normal)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,6 +79,7 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
         profileImageButton.layer.cornerRadius = profileImageButton.bounds.height / 2
         editButoon.layer.cornerRadius = editButoon.bounds.height / 2
     }
@@ -136,9 +155,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageButton.setBackgroundImage(image, for: .normal)
             profileImageButton.backgroundColor = .clear
-            
-            firstCharacterName.isHidden = true
-            firstCharacterLastname.isHidden = true
         }
         
         dismiss(animated: true)
