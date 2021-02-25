@@ -9,19 +9,20 @@ import UIKit
 
 var state = ""
 
-@available(iOS 13.0, *)
 func printLifecycleEvent(_ method: String = #function) {
     
     if ProcessInfo.processInfo.environment["log_lifecycle_events"] == "true" {
         
         var scurrentState = ""
         
-        switch UIApplication.shared.connectedScenes.first?.activationState.rawValue {
-        case -1: scurrentState = "Unattached"
-        case 1: scurrentState = "ForegroundInactive"
-        case 0: scurrentState = "ForegroundActive"
-        case 2: scurrentState = "Background"
-        default: break
+        if #available(iOS 13.0, *) {
+            switch UIApplication.shared.connectedScenes.first?.activationState.rawValue {
+            case -1: scurrentState = "Unattached"
+            case 1: scurrentState = "ForegroundInactive"
+            case 0: scurrentState = "ForegroundActive"
+            case 2: scurrentState = "Background"
+            default: break
+            }
         }
         
         print("Application moved from '\(state)' to '\(scurrentState)': " + method)
