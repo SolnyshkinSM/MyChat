@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        printLifecycleEvent()
+        printLifecycleEvent("Not running", to: "Inactive", method: #function)
         return true
     }
 
@@ -35,23 +35,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        printLifecycleEvent()
+        printLifecycleEvent("Active", to: "Inactive", method: #function)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        printLifecycleEvent()
+        printLifecycleEvent("Inactive", to: "Active", method: #function)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        printLifecycleEvent()
+        printLifecycleEvent("Inactive", to: "Background", method: #function)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        printLifecycleEvent()
+        printLifecycleEvent("Background", to: "Foreground", method: #function)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        printLifecycleEvent()
+        printLifecycleEvent("", to: "Not running", method: #function)
     }
 
 }

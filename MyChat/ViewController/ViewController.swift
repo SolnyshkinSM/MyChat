@@ -11,47 +11,47 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        printLifecycleEvent()
+        printLifecycleEvent("WillLoad", to: "DidLoad", method: #function)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        printLifecycleEvent()
+        printLifecycleEvent("Disappeared", to: "Appearing", method: #function)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        printLifecycleEvent()
+        printLifecycleEvent("Appearing", to: "Appeared", method: #function)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        printLifecycleEvent()
+        printLifecycleEvent("Appeared", to: "WillLayoutSubviews", method: #function)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        printLifecycleEvent()
+        printLifecycleEvent("DidLayoutSubviews", to: "Appeared", method: #function)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        printLifecycleEvent()
+        printLifecycleEvent("Appeared", to: "Disappearing", method: #function)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        printLifecycleEvent()
+        printLifecycleEvent("Disappearing", to: "Disappeared", method: #function)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        printLifecycleEvent()
+        printLifecycleEvent("Appeared", to: "Transition", method: #function)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        printLifecycleEvent()
+        printLifecycleEvent("Appeared", to: "MemoryWarning", method: #function)
     }
 }
 

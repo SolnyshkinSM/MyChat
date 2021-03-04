@@ -5,23 +5,10 @@
 //  Created by Administrator on 14.02.2021.
 //
 
-import UIKit
+import Foundation
 
-var state = ""
-
-func printLifecycleEvent(_ method: String = #function) {
-    
+func printLifecycleEvent(_ state: String, to: String, method: String) {
     if ProcessInfo.processInfo.environment["log_lifecycle_events"] == "true" {
-        
-        var scurrentState = ""
-        switch UIApplication.shared.applicationState.rawValue {
-        case 0: scurrentState = "Active"
-        case 1: scurrentState = "Inctive"
-        case 2: scurrentState = "Background"
-        default: break
-        }
-        
-        print("Application moved from '\(state)' to '\(scurrentState)': " + method)
-        state = scurrentState
+        print("Application moved from '\(state)' to '\(to)': " + method)
     }
 }
