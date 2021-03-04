@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+<<<<<<< HEAD
         printLifecycleEvent("Not running", to: "Inactive", method: #function)
+=======
+>>>>>>> e316bb15ff922efda2e347ca0515e2adc31aec1b
         return true
     }
 
@@ -33,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+<<<<<<< HEAD
     
     func applicationWillResignActive(_ application: UIApplication) {
         printLifecycleEvent("Active", to: "Inactive", method: #function)
@@ -54,5 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         printLifecycleEvent("", to: "Not running", method: #function)
     }
 
+=======
+>>>>>>> e316bb15ff922efda2e347ca0515e2adc31aec1b
 }
 
