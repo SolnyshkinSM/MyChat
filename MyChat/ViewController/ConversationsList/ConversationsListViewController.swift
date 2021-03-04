@@ -1,0 +1,148 @@
+//
+//  ConversationsListViewController.swift
+//  MyChat
+//
+//  Created by Administrator on 27.02.2021.
+//
+
+import UIKit
+
+// MARK: - ConversationsListViewController
+
+class ConversationsListViewController: UIViewController {
+        
+    // MARK: - Model
+    
+    struct Section {
+        let name: String
+        var online: Bool
+    }
+    
+    struct User {
+        var name: String?
+        var unreadMessage: String?
+        var date: Date?
+        var online: Bool
+        var hasUnreadMessage: Bool
+        var messages: [Message]?
+    }
+    
+    struct Message {
+        let text: String?
+        let inbox: Bool        
+    }
+    
+    // MARK: - Public properties
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Private properties
+    
+    private let names = [
+        "Sergey", "Kirill", "Isabella", "Sophie", "Bob",
+        "Alex", "Olga", "Heather", "Alla", "Max",
+        "Anna", "Kate", "Nicole", "Jon", "Harry",
+        "Oliver", "Olivia", "Emily", "Ava", "Mia"
+    ]
+    
+    private let messages = [
+        "Hello my friend!", "Hello", "Let's go", "What do you do?", "Howdy!", nil
+    ]
+        
+    private lazy var users = names.map { name -> User in
+        let message = messages[Int(arc4random_uniform(UInt32(messages.count)))]
+        var user = User(name: name,
+             unreadMessage: message,
+             date: Calendar.current.date(
+                byAdding: arc4random_uniform(2) != 0 ? .day : .hour,
+                value: Int(arc4random_uniform(5)) * -1,
+                to: Date()),
+             online: (arc4random_uniform(2) != 0),
+             hasUnreadMessage: message != nil,
+             messages: [
+                Message(text: message,
+                        inbox: true)
+             ])
+        if names.firstIndex(of: name) == 0 {
+            user.messages = [
+                Message(text: "Hello!", inbox: true),
+                Message(text: "Hello my friend!", inbox: false),
+                Message(text: "How are you?", inbox: true),
+                Message(text: "Things are good. Was recently on vacation.", inbox: false),
+                Message(text: "Let's go for a walk? The weather is fine today.", inbox: true),
+                
+            ]
+        }
+        return user
+    }
+    
+    private let sections = [
+        Section(name: "Online", online: true),
+        Section(name: "History", online: false)
+    ]
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+    }
+    
+    // MARK: - Public methods
+    
+    @IBAction func profileButoonPressing(_ sender: UIBarButtonItem) {
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") {
+            present(controller, animated: true)
+        }
+    }
+    
+    @IBAction func settingsButoonPressing(_ sender: UIBarButtonItem) {
+    }
+    
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
+extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].name
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return users.filter { $0.online == sections[section].online }.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsListCell", for: indexPath) as? ConversationsListCell else {
+            return UITableViewCell()
+        }
+        
+        let usersByType = users.filter { $0.online == sections[indexPath.section].online }
+        
+        let user = usersByType[indexPath.row]
+        
+        cell.configure(with: user)
+                
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "ConversationViewController") as? ConversationViewController {
+            let usersByType = users.filter { $0.online == sections[indexPath.section].online }
+            controller.configure(with: usersByType[indexPath.row])
+            navigationController?.pushViewController(controller, animated: true)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - ProfileViewController
+
 class ProfileViewController: UIViewController {
     
     // MARK: - Public properties
@@ -38,7 +40,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(#function + " Edit butoon frame: \(editButoon.frame)")
+        //print(#function + " Edit butoon frame: \(editButoon.frame)")
         
         profileImageButton.layer.masksToBounds = true
         
@@ -72,13 +74,14 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(#function + " Edit butoon frame: \(editButoon.frame)")
+        //print(#function + " Edit butoon frame: \(editButoon.frame)")
         /*viewDidLoad вызывается когда View загружено но еще не помещено в иерархию представлений, поэтому отображаются размеры из раскадровки (Storyboard).
          После добавления View в иерархию представлений, отображается реалиный размер элемента.
          */
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         profileImageButton.layer.cornerRadius = profileImageButton.bounds.height / 2
         editButoon.layer.cornerRadius = editButoon.bounds.height / 2
@@ -128,9 +131,7 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-        
     }
-    
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
