@@ -13,6 +13,7 @@
 		C366505E25D93FB600335208 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C366505C25D93FB600335208 /* Main.storyboard */; };
 		C366506025D93FB700335208 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C366505F25D93FB700335208 /* Assets.xcassets */; };
 		C366506325D93FB700335208 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C366506125D93FB700335208 /* LaunchScreen.storyboard */; };
+		C366507A25D9496C00335208 /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366507925D9496C00335208 /* Print.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C366505F25D93FB700335208 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C366506225D93FB700335208 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C366506425D93FB700335208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C366507925D9496C00335208 /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,46 @@
 			children = (
 				C366505625D93FB600335208 /* AppDelegate.swift */,
 				C366505825D93FB600335208 /* SceneDelegate.swift */,
-				C366505A25D93FB600335208 /* ViewController.swift */,
-				C366505C25D93FB600335208 /* Main.storyboard */,
-				C366505F25D93FB700335208 /* Assets.xcassets */,
-				C366506125D93FB700335208 /* LaunchScreen.storyboard */,
-				C366506425D93FB700335208 /* Info.plist */,
+				C366507825D948F400335208 /* ViewController */,
+				C366507425D9488500335208 /* Storyboard */,
+				C366507525D948A200335208 /* Support */,
+				C366507325D9483000335208 /* Helper */,
 			);
 			path = MyChat;
+			sourceTree = "<group>";
+		};
+		C366507325D9483000335208 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C366507925D9496C00335208 /* Print.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		C366507425D9488500335208 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C366506125D93FB700335208 /* LaunchScreen.storyboard */,
+				C366505C25D93FB600335208 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		C366507525D948A200335208 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				C366505F25D93FB700335208 /* Assets.xcassets */,
+				C366506425D93FB700335208 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		C366507825D948F400335208 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C366505A25D93FB600335208 /* ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +175,7 @@
 				C366505B25D93FB600335208 /* ViewController.swift in Sources */,
 				C366505725D93FB600335208 /* AppDelegate.swift in Sources */,
 				C366505925D93FB600335208 /* SceneDelegate.swift in Sources */,
+				C366507A25D9496C00335208 /* Print.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -288,7 +324,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KH833X29S;
-				INFOPLIST_FILE = MyChat/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MyChat/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KH833X29S;
-				INFOPLIST_FILE = MyChat/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MyChat/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
