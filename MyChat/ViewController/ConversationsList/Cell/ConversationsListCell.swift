@@ -42,11 +42,13 @@ class ConversationsListCell: UITableViewCell {
         
         if user.hasUnreadMessage {
             messageLabel.font = .boldSystemFont(ofSize: 13)
-            messageLabel.textColor = .black
+            //messageLabel.textColor = .black
         } else {
             messageLabel.font = .systemFont(ofSize: 13)
-            messageLabel.textColor = .lightGray
+            //messageLabel.textColor = .lightGray
         }
+        
+        onlineImageView.isHidden = true
        
         if let date = user.date {
             let dateFormatter = DateFormatter()

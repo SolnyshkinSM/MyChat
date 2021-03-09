@@ -23,7 +23,13 @@ class ConversationCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        bubbleView.layer.cornerRadius = bubbleView.bounds.height / 2
+        messageLabel.backgroundColor = .none
+        
+        self.removeBottomSeparator()
+        
+        //backgroundColor = .clear
+        //bubbleView.layer.cornerRadius = bubbleView.bounds.height / 2
+        
     }
     
     func configure (withMessage message: String, inbox: Bool) {

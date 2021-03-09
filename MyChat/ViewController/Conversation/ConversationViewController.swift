@@ -31,7 +31,30 @@ class ConversationViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
+        
+        //tableView.separatorStyle = .none
+        //tableView.separatorColor = .clear
+        
+        //tableView.tableFooterView = UIView(frame: .zero)
+        //tableView.separatorInset = .zero
+        
+        //tableView.layoutMargins = UIEdgeInsets.zero
+        //tableView.separatorInset = UIEdgeInsets.zero
+        
+        
+        /*if let placeholder = messageField.placeholder {
+            messageField.attributedPlaceholder = NSAttributedString(
+                string: placeholder,
+                attributes: [NSAttributedString.Key.foregroundColor: Theme.current.mainColor])
+        }
+        
+                
+        for view in messageField.subviews {
+            view.backgroundColor = .clear
+        }*/
+        
+        messageField.setPlaceholder("Your message here...")
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,6 +146,15 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
                 
         cell.configure(withMessage: text, inbox: message.inbox)
         
+        //cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.size.width, bottom: 0, right: 0);
+        //cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        //cell.layoutMargins = .zero
+        
+        //cell.layoutMargins = UIEdgeInsets.zero
+        
+        //cell.backgroundColor = .clear
+                
         return cell
     }
     
@@ -135,6 +167,11 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
             }, completion: nil)
         }
         
+    }
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

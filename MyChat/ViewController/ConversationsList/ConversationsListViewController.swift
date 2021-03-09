@@ -100,6 +100,13 @@ class ConversationsListViewController: UIViewController {
     }
     
     @IBAction func settingsButoonPressing(_ sender: UIBarButtonItem) {
+        
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: "ThemesViewController") as? ThemesViewController else { return }
+        controller.delegate = self
+        controller.closure = { color in
+            self.view.backgroundColor = color
+        }
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
@@ -114,6 +121,13 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.backgroundColor = .clear
+        header.contentView.backgroundColor = .lightGray
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -144,5 +158,14 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - ThemesPickerDelegate
+
+extension ConversationsListViewController: ThemesPickerDelegate {
+    
+    func setBackgroundColor(_ color: UIColor) {
+        view.backgroundColor = color
     }
 }
