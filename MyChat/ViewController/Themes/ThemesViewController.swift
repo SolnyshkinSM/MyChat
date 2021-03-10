@@ -33,7 +33,7 @@ class ThemesViewController: UIViewController {
         
     private var themeManager = ThemeManager()
     
-    private lazy var currentTheme = themeManager.currentTheme
+    private var currentTheme: Theme?
     
     private lazy var closure = themeManager.closureApplyTheme
         
@@ -41,6 +41,8 @@ class ThemesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        currentTheme = themeManager.currentTheme
         
         configureView()
         updateButtons()
@@ -70,8 +72,14 @@ class ThemesViewController: UIViewController {
             //themeManager.applyTheme(selectedTheme)
             closure(selectedTheme)
             
-            //retain cycle может возникнуть если установить текущий ViewController в качестве свойства
+            
+            //retain cycle может возникнуть:
+            
+            //1. Если установить текущий ViewController в качестве свойства themeManager
             //themeManager.currentViewController = self
+            
+            //2. Если в closure использовать strong захват
+            //themeManager.closureApplyThemeRetainCycle(selectedTheme)
         }
         
         updateButtons()
@@ -112,8 +120,8 @@ class ThemesViewController: UIViewController {
     @objc
     func cancelButoonPressing(_ sender: UIBarItem) {
         
-        if currentTheme != ThemeManager.shared.currentTheme {
-            themeManager.applyTheme(currentTheme)
+        if currentTheme != themeManager.currentTheme {
+            themeManager.applyTheme(currentTheme ?? .default)
             reloadView()
         }
         navigationController?.popViewController(animated: true)

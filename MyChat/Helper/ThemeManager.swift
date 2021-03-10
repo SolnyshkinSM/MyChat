@@ -98,6 +98,10 @@ enum Theme: Int {
 
 class ThemeManager {
     
+    init() {
+        print("ThemeManager init")
+    }
+    
     deinit {
         print("ThemeManager deinit")
     }
@@ -114,7 +118,7 @@ class ThemeManager {
     }
     
     let closureApplyTheme = { (theme: Theme) in
-        
+                
         UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
         UserDefaults.standard.synchronize()
         
@@ -143,6 +147,10 @@ class ThemeManager {
                             [ProfileViewController.self]).backgroundColor = theme.backgroundColor
         UILabel.appearance(whenContainedInInstancesOf:
                             [ProfileViewController.self]).textColor = theme.textColor
+    }
+    
+    lazy var closureApplyThemeRetainCycle = { [self] (theme: Theme) in
+        self.closureApplyTheme(theme)
     }
     
     func applyTheme(_ theme: Theme = shared.currentTheme) {
