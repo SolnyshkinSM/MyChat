@@ -291,7 +291,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="283" height="69.5"/>
                                                 <state key="normal" backgroundImage="classic"/>
                                                 <connections>
-                                                    <action selector="classicButoonPressing:" destination="VYX-dm-ufD" eventType="touchUpInside" id="CMZ-Gx-V3Z"/>
+                                                    <action selector="themeButoonPressing:" destination="VYX-dm-ufD" eventType="touchUpInside" id="8kj-vD-wUz"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UN-Vq-ysq">
@@ -305,14 +305,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3ww-Hq-Dtv">
                                         <rect key="frame" x="0.0" y="121" width="286" height="101"/>
                                         <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsn-Nd-w6d">
+                                            <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsn-Nd-w6d">
                                                 <rect key="frame" x="0.0" y="0.0" width="286" height="69.5"/>
                                                 <state key="normal" backgroundImage="day"/>
                                                 <connections>
-                                                    <action selector="dayButoonPressing:" destination="VYX-dm-ufD" eventType="touchUpInside" id="vKe-zR-Unu"/>
+                                                    <action selector="themeButoonPressing:" destination="VYX-dm-ufD" eventType="touchUpInside" id="h3j-1w-z28"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAg-yO-ZyS">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAg-yO-ZyS">
                                                 <rect key="frame" x="126.5" y="77.5" width="33" height="23.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <nil key="textColor"/>
@@ -323,14 +323,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lIN-ne-ub5">
                                         <rect key="frame" x="1.5" y="242" width="283" height="101"/>
                                         <subviews>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llm-pr-1VN">
+                                            <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llm-pr-1VN">
                                                 <rect key="frame" x="0.0" y="0.0" width="283" height="70"/>
                                                 <state key="normal" backgroundImage="night"/>
                                                 <connections>
-                                                    <action selector="nightButoonPressing:" destination="VYX-dm-ufD" eventType="touchUpInside" id="s9x-1b-nfI"/>
+                                                    <action selector="themeButoonPressing:" destination="VYX-dm-ufD" eventType="touchUpInside" id="z0U-9k-XNg"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFC-MU-FV3">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFC-MU-FV3">
                                                 <rect key="frame" x="118.5" y="78" width="46" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <nil key="textColor"/>

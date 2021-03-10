@@ -102,10 +102,6 @@ class ConversationsListViewController: UIViewController {
     @IBAction func settingsButoonPressing(_ sender: UIBarButtonItem) {
         
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "ThemesViewController") as? ThemesViewController else { return }
-        controller.delegate = self
-        controller.closure = { color in
-            self.view.backgroundColor = color
-        }
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -158,14 +154,5 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-// MARK: - ThemesPickerDelegate
-
-extension ConversationsListViewController: ThemesPickerDelegate {
-    
-    func setBackgroundColor(_ color: UIColor) {
-        view.backgroundColor = color
     }
 }

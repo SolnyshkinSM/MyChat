@@ -29,7 +29,9 @@ class ProfileViewController: UIViewController {
         
     // MARK: - Private properties
     
-    var profile = Profile(name: "Marina",
+    private let theme = ThemeManager.shared.currentTheme
+    
+    private var profile = Profile(name: "Marina",
                           lastname: "Dudarenko",
                           details: "UX/UI designer, web-designer, Moscow, Russia")
         
@@ -79,11 +81,11 @@ class ProfileViewController: UIViewController {
         }
         
         profileImageButton.setBackgroundImage(image, for: .normal)
-        profileImageButton.backgroundColor = Theme.current.profileImageButtonColor
+        profileImageButton.backgroundColor = theme.profileImageButtonColor
         
-        barView.backgroundColor = Theme.current.barViewColor
-        editButoon.backgroundColor = Theme.current.buttonBackgroundColor
-        editButoon.setTitleColor(Theme.current.buttonTintColor, for: .normal)
+        barView.backgroundColor = theme.barViewColor
+        editButoon.backgroundColor = theme.buttonBackgroundColor
+        editButoon.setTitleColor(theme.buttonTintColor, for: .normal)
         closeButoon.backgroundColor = .clear
         myProfileLabel.backgroundColor = .clear
     }
@@ -137,7 +139,7 @@ class ProfileViewController: UIViewController {
         actionSheet.addAction(photo)
         actionSheet.addAction(cancel)
           
-        actionSheet.setBackgroundColor(color: Theme.current.buttonBackgroundColor)
+        actionSheet.setBackgroundColor(color: theme.buttonBackgroundColor)
         
         present(actionSheet, animated: true)
              

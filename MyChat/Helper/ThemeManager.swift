@@ -7,56 +7,11 @@
 
 import UIKit
 
-/*enum Theme: Int {
- 
- case theme1, theme2
- 
- var backgroundColor: UIColor {
- switch self {
- case .theme1:
- return UIColor(hexaRGBA: "#EBEBEB") ?? .white
- case .theme2:
- return UIColor(hexaRGBA: "#919191") ?? .white
- }
- }
- }
- 
- let selectedThemeKey = "SelectedTheme"
- 
- class ThemeManager {
- 
- static func currentTheme() -> Theme {
- 
- if let storedTheme = (UserDefaults.standard.value(forKey: selectedThemeKey) as AnyObject).integerValue {
- return Theme(rawValue: storedTheme) ?? .theme1
- } else {
- return .theme1
- }
- }
- 
- static func applyTheme(theme: Theme) {
- 
- UserDefaults.standard.setValue(theme.rawValue, forKey: selectedThemeKey)
- UserDefaults.standard.synchronize()
- 
- UIButton.appearance().backgroundColor = theme.backgroundColor
- }
- }*/
-
-
+// MARK: - Theme
 
 enum Theme: Int {
     
     case `default`, day, night
-    
-    private enum Keys {
-        static let selectedTheme = "SelectedTheme"
-    }
-    
-    static var current: Theme {
-        let storedTheme = UserDefaults.standard.integer(forKey: Keys.selectedTheme)
-        return Theme(rawValue: storedTheme) ?? .default
-    }
     
     var tintColor: UIColor {
         switch self {
@@ -136,64 +91,90 @@ enum Theme: Int {
             return #colorLiteral(red: 0.1058823529, green: 0.1058823529, blue: 0.1058823529, alpha: 1)
         }
     }
-        
-    func apply() {
-        
-        UserDefaults.standard.set(rawValue, forKey: Keys.selectedTheme)
-        UserDefaults.standard.synchronize()
-        
-        //UIApplication.shared.delegate?.window??.tintColor = mainColor
-        
-        UIView.appearance().tintColor = tintColor
-        
-        //UIWindow.appearance().backgroundColor = mainColor
-        
-        UINavigationBar.appearance().barStyle = barStyle
-        //UINavigationBar.appearance().setBackgroundImage(navigationBackgroundImage, for: .default)
-        
-        
-        UIView.appearance(whenContainedInInstancesOf: [ThemesViewController.self]).backgroundColor = backgroundColor
-        UILabel.appearance(whenContainedInInstancesOf: [ThemesViewController.self]).textColor = textColor
-        
-        
-        //UITableViewCell.appearance().backgroundColor = backgroundColor
-        //UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = textColor
-        //UILabel.appearance().textColor = textColor
-        UIView.appearance(whenContainedInInstancesOf: [ConversationsListViewController.self]).backgroundColor = backgroundColor
-        UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = textColor
-        
-        
-        
-        UIView.appearance(whenContainedInInstancesOf: [ConversationViewController.self]).backgroundColor = backgroundColor
-        //UILabel.appearance(whenContainedInInstancesOf: [UITextField.self]).tintColor = .white
-        //UILabel.appearance(whenContainedInInstancesOf: [UITextField.self]).textColor = .white
-        //UIView.appearance(whenContainedInInstancesOf: [ConversationViewController.self]).backgroundColor = backgroundColor
-        
-        UITextField.appearance().keyboardAppearance = keyboardAppearance
-        //UITextField.appearance().tintColor = mainColor
-        //UITextField.appearance().textColor = mainColor
-        //UITextField.appearance().attributedPlaceholder = .init()
-        
-        UITextField.appearance().textColor = textColor
-        
-        UITextField.appearance().backgroundColor = backgroundColor
-        
-        
-        
-        
-        
-        UIView.appearance(whenContainedInInstancesOf: [ProfileViewController.self]).backgroundColor = backgroundColor
-        UILabel.appearance(whenContainedInInstancesOf: [ProfileViewController.self]).textColor = textColor
-        
-        //UILabel.appearance(whenContainedInInstancesOf: [UIButton.self]).tintColor = buttonTintColor
-        
-        
+    
+}
+
+// MARK: - ThemeManager
+
+class ThemeManager {
+    
+    deinit {
+        print("ThemeManager deinit")
     }
     
+    static let shared = ThemeManager()
     
+    static let selectedTheme = "SelectedTheme"
     
+    var currentViewController: UIViewController?
     
+    var currentTheme: Theme {
+        let storedTheme = UserDefaults.standard.integer(forKey: ThemeManager.selectedTheme)
+        return Theme(rawValue: storedTheme) ?? .default
+    }
     
+    let closureApplyTheme = { (theme: Theme) in
+        
+        UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
+        UserDefaults.standard.synchronize()
+        
+        UIView.appearance().tintColor = theme.tintColor
+        UINavigationBar.appearance().barStyle = theme.barStyle
+        
+        UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
+        UITextField.appearance().textColor = theme.textColor
+        UITextField.appearance().backgroundColor = theme.backgroundColor
+        
+        UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = theme.textColor
+        
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ThemesViewController.self]).backgroundColor = theme.backgroundColor
+        UILabel.appearance(whenContainedInInstancesOf:
+                            [ThemesViewController.self]).textColor = theme.textColor
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ConversationsListViewController.self]).backgroundColor = theme.backgroundColor
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ConversationViewController.self]).backgroundColor = theme.backgroundColor
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ProfileViewController.self]).backgroundColor = theme.backgroundColor
+        UILabel.appearance(whenContainedInInstancesOf:
+                            [ProfileViewController.self]).textColor = theme.textColor
+    }
     
-    
+    func applyTheme(_ theme: Theme = shared.currentTheme) {
+        
+        UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
+        UserDefaults.standard.synchronize()
+        
+        UIView.appearance().tintColor = theme.tintColor
+        UINavigationBar.appearance().barStyle = theme.barStyle
+        
+        UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
+        UITextField.appearance().textColor = theme.textColor
+        UITextField.appearance().backgroundColor = theme.backgroundColor
+        
+        UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = theme.textColor
+        
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ThemesViewController.self]).backgroundColor = theme.backgroundColor
+        UILabel.appearance(whenContainedInInstancesOf:
+                            [ThemesViewController.self]).textColor = theme.textColor
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ConversationsListViewController.self]).backgroundColor = theme.backgroundColor
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ConversationViewController.self]).backgroundColor = theme.backgroundColor
+        
+        UIView.appearance(whenContainedInInstancesOf:
+                            [ProfileViewController.self]).backgroundColor = theme.backgroundColor
+        UILabel.appearance(whenContainedInInstancesOf:
+                            [ProfileViewController.self]).textColor = theme.textColor
+    }
+        
 }

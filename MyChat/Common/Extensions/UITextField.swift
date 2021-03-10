@@ -15,7 +15,7 @@ extension UITextField {
         
         self.attributedPlaceholder = NSAttributedString(
             string: text,
-            attributes: [NSAttributedString.Key.foregroundColor: Theme.current.tintColor])
+            attributes: [NSAttributedString.Key.foregroundColor: ThemeManager.shared.currentTheme.tintColor])
         
         self.subviews.forEach { view in
             view.backgroundColor = .clear

@@ -7,24 +7,9 @@
 
 import UIKit
 
-// MARK: - ThemesViewControllerProtocol
-
-protocol ThemesViewControllerProtocol {
-    
-    var delegate: ThemesPickerDelegate? { get set }
-    var closure: (_ color: UIColor) -> () { get set }
-}
-
-// MARK: - ThemesPickerDelegate
-
-protocol ThemesPickerDelegate {
-    
-    func setBackgroundColor(_ color: UIColor)
-}
-
 // MARK: - ThemesViewController
 
-class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
+class ThemesViewController: UIViewController {
     
     // MARK: - Public properties
     
@@ -43,25 +28,19 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     @IBOutlet weak var dayLabel: UILabel!
     
     @IBOutlet weak var nightLabel: UILabel!
+      
+    // MARK: - Private properties
+        
+    private var themeManager = ThemeManager()
     
+    private lazy var currentTheme = themeManager.currentTheme
     
-    
-    var currentTheme: Theme?
-    
-    var delegate: ThemesPickerDelegate?
-    
-    var closure: (UIColor) -> () = {_ in }
-    
-    private lazy var clousureTwo: (() -> ()) = {
-        self.view.backgroundColor = .yellow
-    }
-    
+    private lazy var closure = themeManager.closureApplyTheme
+        
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        currentTheme = Theme.current
         
         configureView()
         updateButtons()
@@ -76,45 +55,23 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
     }
     
     deinit {
-        //print("ThemesViewController deinit")
+        print("ThemesViewController deinit")
     }
     
     // MARK: - Public methods
     
-    @IBAction func classicButoonPressing(_ sender: UIButton) {
+    @IBAction func themeButoonPressing(_ sender: AnyObject) {
         
-        //delegate?.setBackgroundColor(.white)
-        //closure(.white)
+        let rawValue = ((sender as? UITapGestureRecognizer) != nil) ? (sender as? UITapGestureRecognizer)?.view?.tag : (sender as? UIButton)?.tag
         
-        if let selectedTheme = Theme(rawValue: 0) {
-            selectedTheme.apply()
-        }
-        
-        updateButtons()
-        reloadView()
-    }
-    
-    @IBAction func dayButoonPressing(_ sender: Any) {
-        
-        //delegate?.setBackgroundColor(.yellow)
-        //closure(view.backgroundColor!)
-        //clousureTwo()
-        
-        if let selectedTheme = Theme(rawValue: 1) {
-            selectedTheme.apply()
-        }
-        
-        updateButtons()
-        reloadView()
-    }
-    
-    @IBAction func nightButoonPressing(_ sender: UIButton) {
-        
-        //delegate?.setBackgroundColor(.black)
-        //closure(.black)
-        
-        if let selectedTheme = Theme(rawValue: 2) {
-            selectedTheme.apply()
+        if let selectedTheme = Theme(rawValue: rawValue ?? 0) {
+            
+            //Изменение темы приложения
+            //themeManager.applyTheme(selectedTheme)
+            closure(selectedTheme)
+            
+            //retain cycle может возникнуть если установить текущий ViewController в качестве свойства
+            //themeManager.currentViewController = self
         }
         
         updateButtons()
@@ -134,40 +91,32 @@ class ThemesViewController: UIViewController, ThemesViewControllerProtocol {
         
         collectionLabels.forEach { label in
             label.isUserInteractionEnabled = true
-            
-            var action = #selector(updateButtons)
-            switch label {
-            case classicLabel: action = #selector(classicButoonPressing)
-            case dayLabel: action = #selector(dayButoonPressing)
-            case nightLabel: action = #selector(nightButoonPressing)
-            default:
-                break
-            }
-            
-            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
+            label.addGestureRecognizer(UITapGestureRecognizer(
+                                        target: self,
+                                        action: #selector(themeButoonPressing(_:))))
         }
     }
     
-    @objc
     private func updateButtons() {
         
         collectionButtons.forEach { button in
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.lightGray.cgColor
         }
-                    
-        collectionButtons[Theme.current.rawValue].layer.borderWidth = 2
-        collectionButtons[Theme.current.rawValue].layer.borderColor = UIColor.blue.cgColor
+        
+        let rawValue = themeManager.currentTheme.rawValue                    
+        collectionButtons[rawValue].layer.borderWidth = 2
+        collectionButtons[rawValue].layer.borderColor = UIColor.blue.cgColor
     }
     
     @objc
     func cancelButoonPressing(_ sender: UIBarItem) {
         
-        if currentTheme != Theme.current {
-            currentTheme?.apply()
+        if currentTheme != ThemeManager.shared.currentTheme {
+            themeManager.applyTheme(currentTheme)
             reloadView()
-            navigationController?.popViewController(animated: true)
         }
+        navigationController?.popViewController(animated: true)
     }
     
     private func reloadView() {
