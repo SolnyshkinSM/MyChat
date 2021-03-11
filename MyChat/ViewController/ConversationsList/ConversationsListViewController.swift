@@ -17,7 +17,7 @@ class ConversationsListViewController: UIViewController {
     
     // MARK: - Private properties
     
-    let refreshControl = UIRefreshControl()
+    private let refreshControl = UIRefreshControl()
     
     private let names = [
         "Sergey", "Kirill", "Isabella", "Sophie", "Bob",
