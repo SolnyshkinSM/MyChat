@@ -150,8 +150,8 @@ class ThemeManager {
                             [ProfileViewController.self]).textColor = theme.textColor
     }
     
-    lazy var closureApplyThemeRetainCycle = { [self] (theme: Theme) in
-        self.closureApplyTheme(theme)
+    lazy var closureRetainCycle = { [self] in
+        print(self)
     }
     
     func applyTheme(_ theme: Theme = shared.currentTheme) {

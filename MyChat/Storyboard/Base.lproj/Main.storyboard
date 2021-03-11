@@ -13,7 +13,7 @@
         <!--Tinkoff Chat-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ConversationsListViewController" customModule="MyChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConversationsListViewController" id="BYZ-38-t0r" customClass="ConversationsListViewController" customModule="MyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -485,7 +485,7 @@
         <!--Navigation Controller-->
         <scene sceneID="52u-ir-TBK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LVC-S1-r86" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ConversationsListViewControllerNC" automaticallyAdjustsScrollViewInsets="NO" id="LVC-S1-r86" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="7hd-lu-iQY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -506,7 +506,7 @@
         <!--Navigation Controller-->
         <scene sceneID="yJF-U5-641">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L77-jQ-hOq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ConversationViewControllerNC" automaticallyAdjustsScrollViewInsets="NO" id="L77-jQ-hOq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1HC-TL-sKK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

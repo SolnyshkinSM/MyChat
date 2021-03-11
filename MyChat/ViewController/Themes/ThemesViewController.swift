@@ -28,21 +28,22 @@ class ThemesViewController: UIViewController {
     @IBOutlet weak var dayLabel: UILabel!
     
     @IBOutlet weak var nightLabel: UILabel!
+    
+    
+    var themeManager: ThemeManager?
+    
+    var closure: ((Theme) -> Void)?
       
     // MARK: - Private properties
-        
-    private var themeManager = ThemeManager()
     
     private var currentTheme: Theme?
-    
-    private lazy var closure = themeManager.closureApplyTheme
         
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentTheme = themeManager.currentTheme
+        currentTheme = themeManager?.currentTheme
         
         configureView()
         updateButtons()
@@ -69,17 +70,19 @@ class ThemesViewController: UIViewController {
         if let selectedTheme = Theme(rawValue: rawValue ?? 0) {
             
             //Изменение темы приложения
-            //themeManager.applyTheme(selectedTheme)
-            closure(selectedTheme)
+            //themeManager?.applyTheme(selectedTheme)
+            if let closure = closure {
+                closure(selectedTheme)
+            }
             
             
             //retain cycle может возникнуть:
             
             //1. Если установить текущий ViewController в качестве свойства themeManager
-            //themeManager.currentViewController = self
+            //themeManager?.currentViewController = self
             
             //2. Если в closure использовать strong захват
-            //themeManager.closureApplyThemeRetainCycle(selectedTheme)
+            //themeManager?.closureRetainCycle()
         }
         
         updateButtons()
@@ -112,16 +115,16 @@ class ThemesViewController: UIViewController {
             button.layer.borderColor = UIColor.lightGray.cgColor
         }
         
-        let rawValue = themeManager.currentTheme.rawValue                    
-        collectionButtons[rawValue].layer.borderWidth = 2
-        collectionButtons[rawValue].layer.borderColor = UIColor.blue.cgColor
+        let rawValue = themeManager?.currentTheme.rawValue
+        collectionButtons[rawValue ?? 0].layer.borderWidth = 2
+        collectionButtons[rawValue ?? 0].layer.borderColor = UIColor.blue.cgColor
     }
     
     @objc
     func cancelButoonPressing(_ sender: UIBarItem) {
         
-        if currentTheme != themeManager.currentTheme {
-            themeManager.applyTheme(currentTheme ?? .default)
+        if currentTheme != themeManager?.currentTheme {
+            themeManager?.applyTheme(currentTheme ?? .default)
             reloadView()
         }
         navigationController?.popViewController(animated: true)

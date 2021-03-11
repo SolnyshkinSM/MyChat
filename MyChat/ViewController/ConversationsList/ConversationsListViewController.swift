@@ -88,6 +88,9 @@ class ConversationsListViewController: UIViewController {
     @IBAction func settingsButoonPressing(_ sender: UIBarButtonItem) {
         
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "ThemesViewController") as? ThemesViewController else { return }
+        let themeManager = ThemeManager()
+        controller.themeManager = themeManager
+        controller.closure = themeManager.closureApplyTheme
         navigationController?.pushViewController(controller, animated: true)
     }
     
