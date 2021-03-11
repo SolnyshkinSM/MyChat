@@ -32,7 +32,9 @@ class ConversationViewController: UIViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
         
-        messageField.setPlaceholder("Your message here...")        
+        messageField.setPlaceholder("Your message here...")
+        
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func viewDidLayoutSubviews() {
