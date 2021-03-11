@@ -17,6 +17,8 @@ class ConversationsListViewController: UIViewController {
     
     // MARK: - Private properties
     
+    let refreshControl = UIRefreshControl()
+    
     private let names = [
         "Sergey", "Kirill", "Isabella", "Sophie", "Bob",
         "Alex", "Olga", "Heather", "Alla", "Max",
@@ -69,6 +71,9 @@ class ConversationsListViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
                 
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+                
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     // MARK: - Public methods
@@ -84,6 +89,14 @@ class ConversationsListViewController: UIViewController {
         
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "ThemesViewController") as? ThemesViewController else { return }
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc
+    func refreshTableView() {
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { timer in
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
 }

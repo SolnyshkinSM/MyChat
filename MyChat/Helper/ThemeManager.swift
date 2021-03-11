@@ -124,6 +124,7 @@ class ThemeManager {
         
         UIView.appearance().tintColor = theme.tintColor
         UINavigationBar.appearance().barStyle = theme.barStyle
+        UIRefreshControl.appearance().tintColor = theme.tintColor
         
         UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
         UITextField.appearance().textColor = theme.textColor
@@ -160,6 +161,7 @@ class ThemeManager {
         
         UIView.appearance().tintColor = theme.tintColor
         UINavigationBar.appearance().barStyle = theme.barStyle
+        UIRefreshControl.appearance().tintColor = theme.tintColor
         
         UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
         UITextField.appearance().textColor = theme.textColor
