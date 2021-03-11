@@ -10,27 +10,6 @@ import UIKit
 // MARK: - ConversationsListViewController
 
 class ConversationsListViewController: UIViewController {
-        
-    // MARK: - Model
-    
-    struct Section {
-        let name: String
-        var online: Bool
-    }
-    
-    struct User {
-        var name: String?
-        var unreadMessage: String?
-        var date: Date?
-        var online: Bool
-        var hasUnreadMessage: Bool
-        var messages: [Message]?
-    }
-    
-    struct Message {
-        let text: String?
-        let inbox: Bool        
-    }
     
     // MARK: - Public properties
     
@@ -49,7 +28,7 @@ class ConversationsListViewController: UIViewController {
         "Hello my friend!", "Hello", "Let's go", "What do you do?", "Howdy!", nil
     ]
         
-    private lazy var users = names.map { name -> User in
+    private lazy var users: [UserProtocol] = names.map { name -> User in
         let message = messages[Int(arc4random_uniform(UInt32(messages.count)))]
         var user = User(name: name,
              unreadMessage: message,
@@ -73,10 +52,11 @@ class ConversationsListViewController: UIViewController {
                 
             ]
         }
+        user.date = arc4random_uniform(2) != 0 ? nil : user.date
         return user
     }
     
-    private let sections = [
+    private let sections: [SectionProtocol] = [
         Section(name: "Online", online: true),
         Section(name: "History", online: false)
     ]
@@ -85,8 +65,7 @@ class ConversationsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
     

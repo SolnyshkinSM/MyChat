@@ -31,10 +31,11 @@ class ProfileViewController: UIViewController {
     
     private let theme = ThemeManager.shared.currentTheme
     
-    private var profile = Profile(name: "Marina",
-                          lastname: "Dudarenko",
-                          details: "UX/UI designer, web-designer, Moscow, Russia")
-        
+    private var profile: ProfileProtocol = Profile(
+        name: "Marina",
+        lastname: "Dudarenko",
+        details: "UX/UI designer, web-designer, Moscow, Russia")
+    
     // MARK: - Initialization
     
     required init?(coder: NSCoder) {

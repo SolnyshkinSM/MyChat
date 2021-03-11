@@ -26,16 +26,13 @@ class ConversationCell: UITableViewCell {
         messageLabel.backgroundColor = .none
         
         self.removeBottomSeparator()
-        
-        //backgroundColor = .clear
-        //bubbleView.layer.cornerRadius = bubbleView.bounds.height / 2
-        
     }
+    
+    // MARK: - Public methods
     
     func configure (withMessage message: String, inbox: Bool) {
         
         messageLabel.text = message
         bubbleView.inbox = inbox
-    }
-        
+    }        
 }

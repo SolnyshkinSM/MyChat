@@ -21,7 +21,7 @@ class ConversationViewController: UIViewController {
     
     private var keyboardHeight: CGFloat = 0
     
-    private var messages: [ConversationsListViewController.Message] = []
+    private var messages: [MessageProtocol] = []
         
     // MARK: - Lifecycle
     
@@ -32,29 +32,7 @@ class ConversationViewController: UIViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
         
-        //tableView.separatorStyle = .none
-        //tableView.separatorColor = .clear
-        
-        //tableView.tableFooterView = UIView(frame: .zero)
-        //tableView.separatorInset = .zero
-        
-        //tableView.layoutMargins = UIEdgeInsets.zero
-        //tableView.separatorInset = UIEdgeInsets.zero
-        
-        
-        /*if let placeholder = messageField.placeholder {
-            messageField.attributedPlaceholder = NSAttributedString(
-                string: placeholder,
-                attributes: [NSAttributedString.Key.foregroundColor: Theme.current.mainColor])
-        }
-        
-                
-        for view in messageField.subviews {
-            view.backgroundColor = .clear
-        }*/
-        
-        messageField.setPlaceholder("Your message here...")
-        
+        messageField.setPlaceholder("Your message here...")        
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,7 +65,8 @@ class ConversationViewController: UIViewController {
     
     // MARK: - Public methods
     
-    func configure(with user: ConversationsListViewController.User) {
+    func configure(with user: UserProtocol) {
+        
         title = user.name
         if let messages = user.messages {
             self.messages = messages
@@ -97,6 +76,7 @@ class ConversationViewController: UIViewController {
     // MARK: - Private methods
     
     @objc private func keyboardWillShow(notification: Notification) {
+       
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             
@@ -121,7 +101,6 @@ class ConversationViewController: UIViewController {
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -145,16 +124,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         }
                 
         cell.configure(withMessage: text, inbox: message.inbox)
-        
-        //cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.size.width, bottom: 0, right: 0);
-        //cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        //cell.layoutMargins = .zero
-        
-        //cell.layoutMargins = UIEdgeInsets.zero
-        
-        //cell.backgroundColor = .clear
-                
+                        
         return cell
     }
     
@@ -169,8 +139,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         
     }
         
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -182,7 +151,7 @@ extension ConversationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let text = textField.text {
-            messages.append(ConversationsListViewController.Message(text: text, inbox: false))
+            messages.append(Message(text: text, inbox: false))
             textField.text = .none
             tableView.reloadData()
             

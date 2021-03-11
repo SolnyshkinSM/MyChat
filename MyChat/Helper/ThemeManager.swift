@@ -99,11 +99,11 @@ enum Theme: Int {
 class ThemeManager {
     
     init() {
-        print("ThemeManager init")
+        //print("ThemeManager init")
     }
     
     deinit {
-        print("ThemeManager deinit")
+        //print("ThemeManager deinit")
     }
     
     static let shared = ThemeManager()

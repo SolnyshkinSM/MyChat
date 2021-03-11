@@ -12,6 +12,7 @@ import UIKit
 extension UIButton {
     
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        
         let circlePath = UIBezierPath(ovalIn: self.bounds)
         return circlePath.contains(point)
     }

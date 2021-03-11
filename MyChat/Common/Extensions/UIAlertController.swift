@@ -11,7 +11,8 @@ import UIKit
 
 extension UIAlertController {
     
-    func setBackgroundColor(color: UIColor) {        
+    func setBackgroundColor(color: UIColor) {
+        
         self.view.subviews.first?.subviews.first?.subviews.forEach { view in
             view.backgroundColor = color
         }

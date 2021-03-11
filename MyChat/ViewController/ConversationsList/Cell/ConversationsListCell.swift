@@ -33,28 +33,32 @@ class ConversationsListCell: UITableViewCell {
     
     // MARK: - Public methods
     
-    func configure(with user: ConversationsListViewController.User) {
+    func configure(with user: UserProtocol) {
+        
+        onlineImageView.backgroundColor = .clear
         
         logoImageView.image = UIImage(named: "nologo")
         nameLabel.text = user.name
         messageLabel.text = user.unreadMessage ?? "No messages yet"
-        onlineImageView.isHidden = !user.online
         
         if user.hasUnreadMessage {
             messageLabel.font = .boldSystemFont(ofSize: 13)
-            //messageLabel.textColor = .black
         } else {
             messageLabel.font = .systemFont(ofSize: 13)
-            //messageLabel.textColor = .lightGray
         }
         
-        onlineImageView.isHidden = true
-       
+        if user.online {
+            onlineImageView.isHidden = false
+        } else {
+            onlineImageView.isHidden = true
+        }
+               
         if let date = user.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
             dateLabel.text = dateFormatter.string(from: date)
+        } else {
+            dateLabel.text = "no date"
         }
     }
-
 }

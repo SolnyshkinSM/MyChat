@@ -57,7 +57,7 @@ class ThemesViewController: UIViewController {
     }
     
     deinit {
-        print("ThemesViewController deinit")
+        //print("ThemesViewController deinit")
     }
     
     // MARK: - Public methods
