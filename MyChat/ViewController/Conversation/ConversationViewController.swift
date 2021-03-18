@@ -21,7 +21,7 @@ class ConversationViewController: UIViewController {
     
     private var keyboardHeight: CGFloat = 0
     
-    private var messages: [ConversationsListViewController.Message] = []
+    private var messages: [MessageProtocol] = []
         
     // MARK: - Lifecycle
     
@@ -31,7 +31,10 @@ class ConversationViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
+        
+        messageField.setPlaceholder("Your message here...")
+        
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,7 +67,8 @@ class ConversationViewController: UIViewController {
     
     // MARK: - Public methods
     
-    func configure(with user: ConversationsListViewController.User) {
+    func configure(with user: UserProtocol) {
+        
         title = user.name
         if let messages = user.messages {
             self.messages = messages
@@ -74,6 +78,7 @@ class ConversationViewController: UIViewController {
     // MARK: - Private methods
     
     @objc private func keyboardWillShow(notification: Notification) {
+       
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             
@@ -98,7 +103,6 @@ class ConversationViewController: UIViewController {
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -122,7 +126,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         }
                 
         cell.configure(withMessage: text, inbox: message.inbox)
-        
+                        
         return cell
     }
     
@@ -136,6 +140,10 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         }
         
     }
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -145,7 +153,7 @@ extension ConversationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let text = textField.text {
-            messages.append(ConversationsListViewController.Message(text: text, inbox: false))
+            messages.append(Message(text: text, inbox: false))
             textField.text = .none
             tableView.reloadData()
             

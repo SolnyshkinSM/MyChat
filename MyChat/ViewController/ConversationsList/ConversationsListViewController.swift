@@ -10,33 +10,14 @@ import UIKit
 // MARK: - ConversationsListViewController
 
 class ConversationsListViewController: UIViewController {
-        
-    // MARK: - Model
-    
-    struct Section {
-        let name: String
-        var online: Bool
-    }
-    
-    struct User {
-        var name: String?
-        var unreadMessage: String?
-        var date: Date?
-        var online: Bool
-        var hasUnreadMessage: Bool
-        var messages: [Message]?
-    }
-    
-    struct Message {
-        let text: String?
-        let inbox: Bool        
-    }
     
     // MARK: - Public properties
     
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Private properties
+    
+    private let refreshControl = UIRefreshControl()
     
     private let names = [
         "Sergey", "Kirill", "Isabella", "Sophie", "Bob",
@@ -49,7 +30,7 @@ class ConversationsListViewController: UIViewController {
         "Hello my friend!", "Hello", "Let's go", "What do you do?", "Howdy!", nil
     ]
         
-    private lazy var users = names.map { name -> User in
+    private lazy var users: [UserProtocol] = names.map { name -> User in
         let message = messages[Int(arc4random_uniform(UInt32(messages.count)))]
         var user = User(name: name,
              unreadMessage: message,
@@ -73,10 +54,11 @@ class ConversationsListViewController: UIViewController {
                 
             ]
         }
+        user.date = arc4random_uniform(2) != 0 ? nil : user.date
         return user
     }
     
-    private let sections = [
+    private let sections: [SectionProtocol] = [
         Section(name: "Online", online: true),
         Section(name: "History", online: false)
     ]
@@ -86,8 +68,12 @@ class ConversationsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navigationItem.largeTitleDisplayMode = .always
+                
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+                
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     // MARK: - Public methods
@@ -100,6 +86,20 @@ class ConversationsListViewController: UIViewController {
     }
     
     @IBAction func settingsButoonPressing(_ sender: UIBarButtonItem) {
+        
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: "ThemesViewController") as? ThemesViewController else { return }
+        let themeManager = ThemeManager()
+        controller.themeManager = themeManager
+        controller.closure = themeManager.closureApplyTheme
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc
+    func refreshTableView() {
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { timer in
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
 }
@@ -114,6 +114,13 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].name
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.backgroundColor = .clear
+        header.contentView.backgroundColor = .lightGray
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

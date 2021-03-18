@@ -12,7 +12,9 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     // MARK: - Public properties
-
+    
+    @IBOutlet weak var barView: UIView!
+    
     @IBOutlet weak var profileImageButton: UIButton!
         
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,12 +23,19 @@ class ProfileViewController: UIViewController {
      
     @IBOutlet weak var editButoon: UIButton!
     
+    @IBOutlet weak var closeButoon: UIButton!
+    
+    @IBOutlet weak var myProfileLabel: UILabel!
+        
     // MARK: - Private properties
     
-    var profile = Profile(name: "Marina",
-                          lastname: "Dudarenko",
-                          details: "UX/UI designer, web-designer, Moscow, Russia")
-        
+    private let theme = ThemeManager.shared.currentTheme
+    
+    private var profile: ProfileProtocol = Profile(
+        name: "Marina",
+        lastname: "Dudarenko",
+        details: "UX/UI designer, web-designer, Moscow, Russia")
+    
     // MARK: - Initialization
     
     required init?(coder: NSCoder) {
@@ -49,27 +58,37 @@ class ProfileViewController: UIViewController {
         
         
         let renderer = UIGraphicsImageRenderer(size: profileImageButton.bounds.size)
-        let image = renderer.image { context in
-
+        let image = renderer.image { (context) in
+            
+            context.stroke(renderer.format.bounds)
+            #colorLiteral(red: 0.8941176471, green: 0.9098039216, blue: 0.168627451, alpha: 1).setFill()
+            context.fill(renderer.format.bounds)
+            
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
-
+            
             let font = UIFont.systemFont(ofSize: profileImageButton.bounds.height * 0.6)
             let offset = font.capHeight - font.ascender
-
+            
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: font,
                 .paragraphStyle: paragraphStyle,
                 .baselineOffset: offset,
                 .kern: 0
             ]
-
+            
             let initialsString = String(profile.name.prefix(1)) + String(profile.lastname.prefix(1))
-            initialsString.draw(with: profileImageButton.bounds, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            initialsString.draw(with: renderer.format.bounds, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
         }
         
         profileImageButton.setBackgroundImage(image, for: .normal)
+        profileImageButton.backgroundColor = theme.profileImageButtonColor
         
+        barView.backgroundColor = theme.barViewColor
+        editButoon.backgroundColor = theme.buttonBackgroundColor
+        editButoon.setTitleColor(theme.buttonTintColor, for: .normal)
+        closeButoon.backgroundColor = .clear
+        myProfileLabel.backgroundColor = .clear
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -115,12 +134,14 @@ class ProfileViewController: UIViewController {
         photo.setValue(photoIcon, forKey: "image")
         photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         
         actionSheet.addAction(camera)
         actionSheet.addAction(photo)
         actionSheet.addAction(cancel)
-                
+          
+        actionSheet.setBackgroundColor(color: theme.buttonBackgroundColor)
+        
         present(actionSheet, animated: true)
              
         
