@@ -47,12 +47,8 @@ class ConversationsListCell: UITableViewCell {
             messageLabel.font = .systemFont(ofSize: 13)
         }
         
-        if user.online {
-            onlineImageView.isHidden = false
-        } else {
-            onlineImageView.isHidden = true
-        }
-               
+        onlineImageView.isHidden = !user.online
+                       
         if let date = user.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"

@@ -7,16 +7,9 @@
 
 import Foundation
 
-// MARK: - MessageProtocol
-
-protocol MessageProtocol {
-    var text: String?  { get set }
-    var inbox: Bool  { get set }
-}
-
 // MARK: - Message
 
-struct Message: MessageProtocol {
+struct Message {
     var text: String?
     var inbox: Bool
 }
