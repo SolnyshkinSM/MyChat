@@ -13,4 +13,3 @@ struct Message {
     var text: String?
     var inbox: Bool
 }
-
