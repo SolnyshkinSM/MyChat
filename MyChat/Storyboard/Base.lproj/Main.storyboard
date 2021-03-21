@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tinkoff Chat-->
+        <!--Channels-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="ConversationsListViewController" id="BYZ-38-t0r" customClass="ConversationsListViewController" customModule="MyChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -107,7 +107,7 @@
                             <constraint firstItem="6BL-yT-wPt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ykT-sA-MHC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="lu9-Qz-leZ">
+                    <navigationItem key="navigationItem" title="Channels" id="lu9-Qz-leZ">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="settings" id="IdC-I4-Z1Q">
                             <connections>
                                 <action selector="settingsButoonPressing:" destination="BYZ-38-t0r" id="2Xs-oA-wzS"/>

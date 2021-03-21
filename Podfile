@@ -7,7 +7,8 @@ target 'MyChat' do
 
   # Pods for MyChat
 
-  pod 'Firebase/Firestore', '7.8'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
   pod 'SwiftLint'
 
 end

@@ -33,28 +33,54 @@ class ConversationsListCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func configure(with user: UserProtocol) {
+//    func configure(with user: UserProtocol) {
+//
+//        onlineImageView.backgroundColor = .clear
+//
+//        logoImageView.image = UIImage(named: "nologo")
+//        nameLabel.text = user.name
+//        messageLabel.text = user.unreadMessage ?? "No messages yet"
+//
+//        if user.hasUnreadMessage {
+//            messageLabel.font = .boldSystemFont(ofSize: 13)
+//        } else {
+//            messageLabel.font = .systemFont(ofSize: 13)
+//        }
+//
+//        onlineImageView.isHidden = !user.online
+//
+//        if let date = user.date {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
+//            dateLabel.text = dateFormatter.string(from: date)
+//        } else {
+//            dateLabel.text = "no date"
+//        }
+//    }
+    
+    func configure(with channel: Channel) {
 
         onlineImageView.backgroundColor = .clear
 
         logoImageView.image = UIImage(named: "nologo")
-        nameLabel.text = user.name
-        messageLabel.text = user.unreadMessage ?? "No messages yet"
+        nameLabel.text = channel.name
+        messageLabel.text = channel.lastMessage ?? "No messages yet"
 
-        if user.hasUnreadMessage {
+        if channel.lastMessage != nil {
             messageLabel.font = .boldSystemFont(ofSize: 13)
         } else {
             messageLabel.font = .systemFont(ofSize: 13)
         }
 
-        onlineImageView.isHidden = !user.online
-
-        if let date = user.date {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
-            dateLabel.text = dateFormatter.string(from: date)
-        } else {
-            dateLabel.text = "no date"
-        }
+//        onlineImageView.isHidden = !user.online
+//
+//        if let date = user.date {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
+//            dateLabel.text = dateFormatter.string(from: date)
+//        } else {
+//            dateLabel.text = "no date"
+//        }
     }
+    
 }

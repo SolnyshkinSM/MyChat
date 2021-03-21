@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
 // MARK: - ConversationsListViewController
 
@@ -61,7 +63,15 @@ class ConversationsListViewController: UIViewController {
         Section(name: "Online", online: true),
         Section(name: "History", online: false)
     ]
+    
+    lazy var db = Firestore.firestore()
 
+    lazy var reference = db.collection("channels")
+    
+    lazy var channels: [Channel] = []
+
+    //lazy var reference = db.collection("channels").document("tO6bszmEQ7aGHFR76AXX").collection("messages")
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -72,6 +82,95 @@ class ConversationsListViewController: UIViewController {
 
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        
+        
+        
+        
+
+        reference.addSnapshotListener { [weak self] snapshot, _ in
+            /*snapshot?.documents.forEach({ document in
+                if let name = document.data()["name"] {
+                    print("\(name) \(document.documentID)")
+                }
+            })*/
+            /*snapshot?.documents.forEach({ document in
+                if let content = document.data()["content"] {
+                    print(content)
+                }
+            })*/
+            
+            
+            self?.channels.removeAll()
+            snapshot?.documents.forEach({ document in
+                                
+                let result = Result {
+                    try document.data(as: Channel.self)
+                }
+
+                switch result {
+                case .success(let channel):
+                    if let channel = channel {
+                        //print("Channel: \(channel)")
+                        self?.channels.append(channel)
+                    } else {
+                        //print("Document does not exist")
+                    }
+                case .failure(let error):
+                    print("Error decoding message: \(error)")
+                }
+            })
+            self?.tableView.reloadData()
+            
+            
+            
+            
+        }
+        
+        //return
+        
+        // New channel 6d5qQjgtBXb1DTKmqAqw
+        // Tinkoff Channel tO6bszmEQ7aGHFR76AXX
+        
+        
+        
+        struct Messages: Identifiable, Codable {
+            @DocumentID public var id: String?
+            let content: String
+            let created: Date
+            let senderId: String
+            let senderName: String
+        }
+        
+//        let docRef = db.collection("channels").document("tO6bszmEQ7aGHFR76AXX")
+//
+//        docRef.getDocument { (document, error) in
+//
+//            if let name = document?.data()?["lastActivity"] {
+//                print("\(name) \(document?.documentID)")
+//            }
+//
+//            let result = Result {
+//                try document?.data(as: Channel.self)
+//            }
+//
+//            switch result {
+//            case .success(let channel):
+//                if let channel = channel {
+//                    print("Channel: \(channel)")
+//                } else {
+//                    print("Document does not exist")
+//                }
+//            case .failure(let error):
+//                print("Error decoding message: \(error)")
+//            }
+//        }
+        
+        
+        
+        
+        
+
     }
 
     // MARK: - Public methods
@@ -106,23 +205,24 @@ class ConversationsListViewController: UIViewController {
 
 extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].name
-    }
-
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.backgroundColor = .clear
-        header.contentView.backgroundColor = .lightGray
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return sections.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return sections[section].name
+//    }
+//
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//
+//        guard let header = view as? UITableViewHeaderFooterView else { return }
+//        header.textLabel?.backgroundColor = .clear
+//        header.contentView.backgroundColor = .lightGray
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.filter { $0.online == sections[section].online }.count
+        //return users.filter { $0.online == sections[section].online }.count
+        return channels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,10 +232,13 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
             return UITableViewCell()
         }
 
-        let usersByType = users.filter { $0.online == sections[indexPath.section].online }
+        //let usersByType = users.filter { $0.online == sections[indexPath.section].online }
 
-        let user = usersByType[indexPath.row]
-        cell.configure(with: user)
+        //let user = usersByType[indexPath.row]
+        //cell.configure(with: user)
+        
+        let channel = channels[indexPath.row]
+        cell.configure(with: channel)
 
         return cell
     }
