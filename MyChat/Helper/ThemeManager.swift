@@ -102,6 +102,26 @@ enum Theme: Int {
             return #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         }
     }
+    
+    var contentViewColor: UIColor {
+        switch self {
+        case .default:
+            return .white
+        case .day:
+            return #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        case .night:
+            return .black
+        }
+    }
+    
+    var shadowColor: UIColor {
+        switch self {
+        case .default, .day:
+            return .black
+        case .night:
+            return .white
+        }
+    }
 }
 
 // MARK: - ThemeManager

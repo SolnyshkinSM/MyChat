@@ -42,6 +42,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var myProfileLabel: UILabel!
 
     // MARK: - Private properties
+    
+    private var keyboardHeight: CGFloat = 0
 
     private var profile: Profile?
 
@@ -72,21 +74,38 @@ class ProfileViewController: UIViewController {
         self?.activityIndicator.stopAnimating()
     }
 
-    // MARK: - Initialization
+    // MARK: - Lifecycle
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         // print(editButoon.frame)
         // На данном этапе создания View еще нет ни самой View, ни ее свойств.
     }
-
-    // MARK: - Lifecycle
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // print(#function + " Edit butoon frame: \(editButoon.frame)")
         configureView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -331,6 +350,35 @@ class ProfileViewController: UIViewController {
         editButoon.isHidden = show
         collectionField.forEach { $0.isEnabled = show }
         saveCollectionButtons.forEach { $0.isHidden = !show }
+    }
+    
+    @objc
+    private func keyboardWillShow(notification: Notification) {
+
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+
+            if keyboardHeight != keyboardRectangle.height {
+                keyboardHeight = keyboardRectangle.height
+                moveTextField(moveDistance: keyboardHeight, moveUp: false)
+            }
+        }
+    }
+
+    @objc
+    private func keyboardWillHide(notification: Notification) {
+
+        moveTextField(moveDistance: keyboardHeight, moveUp: true)
+        keyboardHeight = 0
+    }
+
+    private func moveTextField(moveDistance: CGFloat, moveUp: Bool) {
+
+        let movement: CGFloat = CGFloat(moveUp ? moveDistance: -moveDistance)
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        }
     }
 
     // MARK: - UIResponder

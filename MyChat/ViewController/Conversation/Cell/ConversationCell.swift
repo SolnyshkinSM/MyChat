@@ -13,6 +13,11 @@ class ConversationCell: UITableViewCell {
 
     @IBOutlet weak var bubbleView: BubbleView!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+
+    // MARK: - Private properties
+
+    private let theme = ThemeManager.shared.currentTheme
 
     // MARK: - Initialization
 
@@ -23,16 +28,28 @@ class ConversationCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        nameLabel.backgroundColor = .none
         messageLabel.backgroundColor = .none
+
+        nameLabel.textColor = theme.buttonTintColor
 
         self.removeBottomSeparator()
     }
 
     // MARK: - Public methods
 
-    func configure (withMessage message: String, inbox: Bool) {
+    func configure (with message: Message, inbox: Bool) {
 
-        messageLabel.text = message
+        if var content = message.content {
+            if let senderName = message.senderName, content.count < senderName.count {
+                for _ in 0...senderName.count - content.count + 4 {
+                    content += " "
+                }
+            }
+            messageLabel.text = content
+        }
+
+        nameLabel.text = inbox ? message.senderName : .none
         bubbleView.inbox = inbox
     }
 }

@@ -15,7 +15,6 @@ protocol UserProtocol {
     var date: Date? { get set }
     var online: Bool { get set }
     var hasUnreadMessage: Bool { get set }
-    var messages: [Message]? { get set }
 }
 
 // MARK: - User
@@ -26,5 +25,4 @@ struct User: UserProtocol {
     var date: Date?
     var online: Bool
     var hasUnreadMessage: Bool
-    var messages: [Message]?
 }

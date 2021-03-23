@@ -13,56 +13,32 @@ class ConversationsListCell: UITableViewCell {
 
     // MARK: - Public properties
 
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var onlineImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-
+    
+    // MARK: - Private properties
+    
+    private let theme = ThemeManager.shared.currentTheme
+    
     // MARK: - Initialization
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupContentView()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        logoImageView.layer.cornerRadius = logoImageView.bounds.height / 2
+        contentView.frame = contentView.frame.inset(by:
+            UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
 
     // MARK: - Public methods
 
-//    func configure(with user: UserProtocol) {
-//
-//        onlineImageView.backgroundColor = .clear
-//
-//        logoImageView.image = UIImage(named: "nologo")
-//        nameLabel.text = user.name
-//        messageLabel.text = user.unreadMessage ?? "No messages yet"
-//
-//        if user.hasUnreadMessage {
-//            messageLabel.font = .boldSystemFont(ofSize: 13)
-//        } else {
-//            messageLabel.font = .systemFont(ofSize: 13)
-//        }
-//
-//        onlineImageView.isHidden = !user.online
-//
-//        if let date = user.date {
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
-//            dateLabel.text = dateFormatter.string(from: date)
-//        } else {
-//            dateLabel.text = "no date"
-//        }
-//    }
-    
     func configure(with channel: Channel) {
 
-        onlineImageView.backgroundColor = .clear
-
-        logoImageView.image = UIImage(named: "nologo")
         nameLabel.text = channel.name
         messageLabel.text = channel.lastMessage ?? "No messages yet"
 
@@ -72,15 +48,29 @@ class ConversationsListCell: UITableViewCell {
             messageLabel.font = .systemFont(ofSize: 13)
         }
 
-//        onlineImageView.isHidden = !user.online
-//
-//        if let date = user.date {
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
-//            dateLabel.text = dateFormatter.string(from: date)
-//        } else {
-//            dateLabel.text = "no date"
-//        }
+        if let date = channel.lastActivity {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = Calendar.current.isDateInToday(date) ? "HH:mm" : "dd MMM"
+            dateLabel.text = dateFormatter.string(from: date)
+        } else {
+            dateLabel.text = "no date"
+        }
     }
-    
+
+    // MARK: - Private methods
+
+    func setupContentView() {
+        
+        backgroundColor = .clear
+        clipsToBounds = false
+        selectionStyle = .none
+
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.7
+        layer.cornerRadius = 4
+        layer.shadowColor = theme.shadowColor.cgColor
+
+        contentView.backgroundColor = theme.contentViewColor
+        contentView.layer.cornerRadius = contentView.bounds.height * 0.05
+    }
 }

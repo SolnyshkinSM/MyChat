@@ -1,7 +1,7 @@
 // This file is derived from swift/stdlib/public/SDK/Foundation/JSONEncoder.swift
 // and swift/stdlib/public/SDK/Foundation/PlistEncoder.swift
 
-//===----------------------------------------------------------------------===//
+// ===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift.org open source project
 //
@@ -11,7 +11,7 @@
 // See https://swift.org/LICENSE.txt for license information
 // See https://swift.org/CONTRIBUTORS.txt for the list of Swift project authors
 //
-//===----------------------------------------------------------------------===//
+// ===----------------------------------------------------------------------===//
 
 import FirebaseFirestore
 import Foundation

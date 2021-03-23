@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
 // MARK: - ConversationViewController
 
@@ -21,17 +23,30 @@ class ConversationViewController: UIViewController {
 
     private var keyboardHeight: CGFloat = 0
 
+    private lazy var deviceID = UIDevice.current.identifierForVendor?.uuidString
+
+    private var fileLoader: FileLoaderProtocol = GCDFileLoader.shared
+
+    private var profile: Profile?
+
+    lazy var db = Firestore.firestore()
+
+    var reference: CollectionReference?
+
+    var listener: ListenerRegistration?
+
     private var messages: [Message] = []
 
     // MARK: - Lifecycle
 
     deinit {
+        listener?.remove()
         NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
@@ -39,6 +54,15 @@ class ConversationViewController: UIViewController {
         messageField.setPlaceholder("Your message here...")
 
         navigationItem.largeTitleDisplayMode = .never
+
+        fileLoader.readFile { [weak self] (result: Result<Profile, Error>) -> Void in
+            switch result {
+            case .success(let profile):
+                self?.profile = profile
+            case .failure:
+                break
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -65,15 +89,50 @@ class ConversationViewController: UIViewController {
 
     // MARK: - Public methods
 
-    func configure(with user: UserProtocol) {
+    func configure(with channel: Channel) {
 
-        title = user.name
-        if let messages = user.messages {
-            self.messages = messages
+        title = channel.name
+
+        if let id = channel.id {
+            reference = db.collection("channels").document(id).collection("messages")
+            loadData()
         }
     }
 
     // MARK: - Private methods
+
+    private func loadData() {
+
+        listener = reference?.addSnapshotListener { [weak self] snapshot, _ in
+
+            self?.messages.removeAll()
+            snapshot?.documents.forEach({ document in
+
+                let result = Result {
+                    try document.data(as: Message.self)
+                }
+
+                switch result {
+                case .success(let message):
+                    if let message = message {
+                        self?.messages.append(message)
+                    }
+                case .failure(let error):
+                    print("Error decoding message: \(error)")
+                }
+            })
+
+            self?.messages.sort {
+                if let oneDate = $0.created, let twoDate = $1.created {
+                    return oneDate < twoDate
+                } else {
+                    return true
+                }
+            }
+
+            self?.tableView.reloadData()
+        }
+    }
 
     @objc private func keyboardWillShow(notification: Notification) {
 
@@ -101,6 +160,12 @@ class ConversationViewController: UIViewController {
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
+    
+    // MARK: - UIResponder
+        
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -114,17 +179,15 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let message = messages[indexPath.row]
-
-        guard let text = message.text else { return UITableViewCell() }
-
-        let cellIdentifier = message.inbox ? "ConversationInboxCell" : "ConversationOutboxCell"
+        let inbox = message.senderId != deviceID
+        let cellIdentifier = inbox ? "ConversationInboxCell" : "ConversationOutboxCell"
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
                                                        for: indexPath) as? ConversationCell else {
             return UITableViewCell()
         }
 
-        cell.configure(withMessage: text, inbox: message.inbox)
+        cell.configure(with: message, inbox: inbox)
 
         return cell
     }
@@ -154,12 +217,23 @@ extension ConversationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
         if let text = textField.text {
-            messages.append(Message(text: text, inbox: false))
+
+            let message = Message(id: nil, content: text, created: Date(), senderId: deviceID, senderName: profile?.fullname)
+
+            messages.append(message)
+
+            do {
+                _ = try reference?.addDocument(from: message)
+            } catch let error {
+                print("Error message website to Firestore: \(error)")
+            }
+
             textField.text = .none
             tableView.reloadData()
 
             let lastIndex = IndexPath(item: messages.count - 1, section: 0)
-            tableView.scrollToRow(at: lastIndex, at: UITableView.ScrollPosition.bottom, animated: true)
+            tableView.scrollToRow(at: lastIndex,
+                                  at: UITableView.ScrollPosition.bottom, animated: true)
         }
 
         textField.resignFirstResponder()
