@@ -117,8 +117,8 @@ class ConversationViewController: UIViewController {
                     if let message = message {
                         self?.messages.append(message)
                     }
-                case .failure(let error):
-                    print("Error decoding message: \(error)")
+                case .failure:
+                    break
                 }
             })
 
@@ -216,7 +216,7 @@ extension ConversationViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
-        if let text = textField.text {
+        if let text = textField.text, !text.isEmpty, !text.blank {
 
             let message = Message(id: nil, content: text, created: Date(), senderId: deviceID, senderName: profile?.fullname)
 
@@ -238,5 +238,13 @@ extension ConversationViewController: UITextFieldDelegate {
 
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension String {
+    
+    var blank: Bool {
+        let trimmed = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        return trimmed.isEmpty
     }
 }

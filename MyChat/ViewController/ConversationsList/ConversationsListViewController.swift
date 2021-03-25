@@ -139,8 +139,8 @@ class ConversationsListViewController: UIViewController {
                     if let channel = channel {
                         self?.channels.append(channel)
                     }
-                case .failure(let error):
-                    print("Error decoding message: \(error)")
+                case .failure:
+                    break
                 }
             })
             self?.tableView.reloadData()
