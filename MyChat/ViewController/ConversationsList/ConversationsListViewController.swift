@@ -16,7 +16,7 @@ class ConversationsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Private properties
-    
+        
     private let refreshControl = UIRefreshControl()
     
     private let names = [
@@ -31,14 +31,14 @@ class ConversationsListViewController: UIViewController {
     ]
         
     private lazy var users: [UserProtocol] = names.map { name -> User in
-        let message = messages[Int(arc4random_uniform(UInt32(messages.count)))]
+        let message = messages[Int.random(in: 0..<messages.count)]
         var user = User(name: name,
              unreadMessage: message,
              date: Calendar.current.date(
-                byAdding: arc4random_uniform(2) != 0 ? .day : .hour,
-                value: Int(arc4random_uniform(5)) * -1,
+                byAdding: Int.random(in: 0...1) != 0 ? .day : .hour,
+                value: Int(Int.random(in: 0...5)) * -1,
                 to: Date()),
-             online: (arc4random_uniform(2) != 0),
+             online: (Int.random(in: 0...1) != 0),
              hasUnreadMessage: message != nil,
              messages: [
                 Message(text: message,
@@ -54,15 +54,15 @@ class ConversationsListViewController: UIViewController {
                 
             ]
         }
-        user.date = arc4random_uniform(2) != 0 ? nil : user.date
+        user.date = Int.random(in: 0...1) != 0 ? nil : user.date
         return user
     }
     
-    private let sections: [SectionProtocol] = [
+    private let sections: [Section] = [
         Section(name: "Online", online: true),
         Section(name: "History", online: false)
     ]
-    
+        
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -100,8 +100,7 @@ class ConversationsListViewController: UIViewController {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
         }
-    }
-    
+    }    
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate

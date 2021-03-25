@@ -56,11 +56,7 @@ class ThemesViewController: UIViewController {
             button.layer.cornerRadius = button.bounds.height / 4
         }
     }
-    
-    deinit {
-        //print("ThemesViewController deinit")
-    }
-    
+        
     // MARK: - Public methods
     
     @IBAction func themeButoonPressing(_ sender: AnyObject) {
@@ -71,9 +67,7 @@ class ThemesViewController: UIViewController {
             
             //Изменение темы приложения
             //themeManager?.applyTheme(selectedTheme)
-            if let closure = closure {
-                closure(selectedTheme)
-            }
+            closure?(selectedTheme)
             
             
             //retain cycle может возникнуть:
@@ -83,9 +77,10 @@ class ThemesViewController: UIViewController {
             
             //2. Если в closure использовать strong захват
             //themeManager?.closureRetainCycle()
+            
+            updateButtons(theme: selectedTheme)
         }
-        
-        updateButtons()
+                
         reloadView()
     }
     
@@ -108,14 +103,14 @@ class ThemesViewController: UIViewController {
         }
     }
     
-    private func updateButtons() {
+    private func updateButtons(theme: Theme? = nil) {
         
         collectionButtons.forEach { button in
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.lightGray.cgColor
         }
         
-        let rawValue = themeManager?.currentTheme.rawValue
+        let rawValue = theme != nil ? theme?.rawValue : themeManager?.currentTheme.rawValue
         collectionButtons[rawValue ?? 0].layer.borderWidth = 2
         collectionButtons[rawValue ?? 0].layer.borderColor = UIColor.blue.cgColor
     }

@@ -21,7 +21,7 @@ class ConversationViewController: UIViewController {
     
     private var keyboardHeight: CGFloat = 0
     
-    private var messages: [MessageProtocol] = []
+    private var messages: [Message] = []
         
     // MARK: - Lifecycle
     

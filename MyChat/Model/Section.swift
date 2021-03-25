@@ -7,16 +7,9 @@
 
 import Foundation
 
-// MARK: - SectionProtocol
-
-protocol SectionProtocol {
-    var name: String  { get set }
-    var online: Bool  { get set }
-}
-
 // MARK: - Section
 
-struct Section: SectionProtocol {
+struct Section {
     var name: String
     var online: Bool
 }

@@ -92,20 +92,22 @@ enum Theme: Int {
         }
     }
     
+    var textFieldbackgroundColor: UIColor {
+        switch self {
+        case .default:
+            return #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        case .day:
+            return #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        case .night:
+            return #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+    }
 }
 
 // MARK: - ThemeManager
 
 class ThemeManager {
-    
-    init() {
-        //print("ThemeManager init")
-    }
-    
-    deinit {
-        //print("ThemeManager deinit")
-    }
-    
+        
     static let shared = ThemeManager()
     
     static let selectedTheme = "SelectedTheme"
@@ -113,14 +115,33 @@ class ThemeManager {
     var currentViewController: UIViewController?
     
     var currentTheme: Theme {
-        let storedTheme = UserDefaults.standard.integer(forKey: ThemeManager.selectedTheme)
-        return Theme(rawValue: storedTheme) ?? .default
+        
+        //UserDefaults
+        //let storedTheme = UserDefaults.standard.integer(forKey: ThemeManager.selectedTheme)
+        //return Theme(rawValue: storedTheme) ?? .default
+        
+        //FileWorkManager
+        var theme: Theme = .default
+        FileWorkManager<Settings>().read() { result in
+                switch result {
+                case .success(let resultTheme):
+                    theme = Theme(rawValue: resultTheme.theme) ?? .default
+                case .failure:
+                    break
+                }
+        }
+        return theme
     }
     
     let closureApplyTheme = { (theme: Theme) in
+        
+        //UserDefaults
+        //UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
+        //UserDefaults.standard.synchronize()
                 
-        UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
-        UserDefaults.standard.synchronize()
+        //GCDFileLoader
+        GCDFileLoader.shared.writeFile(object: Settings(theme: theme.rawValue)) { _ in }
+        
         
         UIView.appearance().tintColor = theme.tintColor
         UINavigationBar.appearance().barStyle = theme.barStyle
@@ -128,8 +149,8 @@ class ThemeManager {
         
         UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
         UITextField.appearance().textColor = theme.textColor
-        UITextField.appearance().backgroundColor = theme.backgroundColor
-        
+        UITextField.appearance().backgroundColor = theme.textFieldbackgroundColor
+                
         UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = theme.textColor
         
         
@@ -156,8 +177,13 @@ class ThemeManager {
     
     func applyTheme(_ theme: Theme = shared.currentTheme) {
         
-        UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
-        UserDefaults.standard.synchronize()
+        //UserDefaults
+        //UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
+        //UserDefaults.standard.synchronize()
+                
+        //GCDFileLoader
+        GCDFileLoader.shared.writeFile(object: Settings(theme: theme.rawValue)) { _ in }
+        
         
         UIView.appearance().tintColor = theme.tintColor
         UINavigationBar.appearance().barStyle = theme.barStyle
@@ -165,7 +191,7 @@ class ThemeManager {
         
         UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
         UITextField.appearance().textColor = theme.textColor
-        UITextField.appearance().backgroundColor = theme.backgroundColor
+        UITextField.appearance().backgroundColor = theme.textFieldbackgroundColor
         
         UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = theme.textColor
         
@@ -186,5 +212,4 @@ class ThemeManager {
         UILabel.appearance(whenContainedInInstancesOf:
                             [ProfileViewController.self]).textColor = theme.textColor
     }
-        
 }
