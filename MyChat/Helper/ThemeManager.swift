@@ -102,7 +102,7 @@ enum Theme: Int {
             return #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         }
     }
-    
+
     var contentViewColor: UIColor {
         switch self {
         case .default:
@@ -113,7 +113,7 @@ enum Theme: Int {
             return .black
         }
     }
-    
+
     var shadowColor: UIColor {
         switch self {
         case .default, .day:

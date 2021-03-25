@@ -7,7 +7,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestoreSwift
 
 // MARK: - ConversationsListViewController
 
@@ -79,13 +78,8 @@ class ConversationsListViewController: UIViewController {
 
             if let answer = alert.textFields?.first, let name = answer.text {
 
-                let channel = Channel(id: nil, name: name, lastMessage: nil, lastActivity: nil)
-
-                do {
-                    _ = try self.reference.addDocument(from: channel)
-                } catch let error {
-                    print("Error message website to Firestore: \(error)")
-                }
+                let channel: [String: Any] = ["name": name]
+                self.reference.addDocument(data: channel)
             }
         }
         alert.addAction(createButton)
@@ -130,18 +124,8 @@ class ConversationsListViewController: UIViewController {
             self?.channels.removeAll()
             snapshot?.documents.forEach({ document in
 
-                let result = Result {
-                    try document.data(as: Channel.self)
-                }
-
-                switch result {
-                case .success(let channel):
-                    if let channel = channel {
-                        self?.channels.append(channel)
-                    }
-                case .failure:
-                    break
-                }
+                let channel = Channel(identifier: document.documentID, with: document.data())
+                self?.channels.append(channel)
             })
             self?.tableView.reloadData()
         }
@@ -167,7 +151,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
 
         let channel = channels[indexPath.row]
         cell.configure(with: channel)
-        
+
         return cell
     }
 

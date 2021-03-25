@@ -6,36 +6,31 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+import Firebase
 
 // MARK: - Message
 
-struct Message: Identifiable, Codable {
+struct Message: Codable {
 
-    @DocumentID public var id: String?
+    let content: String
+    let created: Date
+    let senderId: String
+    let senderName: String
 
-    // let identifier: String?
-    let content: String?
-    let created: Date?
-    let senderId: String?
-    let senderName: String?
-
-    /*enum CodingKeys: String, CodingKey {
-        case identifier
+    enum CodingKeys: String, CodingKey {
         case content
         case created
         case senderId
         case senderName
     }
-    
-    init(from decoder: Decoder) throws {
 
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+    init(_ data: [String: Any]) {
 
-        identifier = try? container.decode(String.self, forKey: .identifier)
-        content = try? container.decode(String.self, forKey: .content)
-        created = try? container.decode(Date.self, forKey: .created)
-        senderId = try? container.decode(String.self, forKey: .senderId)
-        senderName = try? container.decode(String.self, forKey: .senderName)
-    }*/
+        content = data[CodingKeys.content.rawValue] as? String ?? ""
+        senderId = data[CodingKeys.senderId.rawValue] as? String ?? ""
+        senderName = data[CodingKeys.senderName.rawValue] as? String ?? ""
+
+        let timestamp = data[CodingKeys.created.rawValue] as? Timestamp
+        created = timestamp?.dateValue() ?? Date()
+    }
 }

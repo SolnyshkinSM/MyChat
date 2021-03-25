@@ -40,14 +40,14 @@ class ConversationCell: UITableViewCell {
 
     func configure (with message: Message, inbox: Bool) {
 
-        if var content = message.content {
-            if let senderName = message.senderName, content.count < senderName.count {
-                for _ in 0...senderName.count - content.count + 4 {
-                    content += " "
-                }
+        var content = message.content
+        if content.count < message.senderName.count {
+            for _ in 0...message.senderName.count - content.count + 4 {
+                content += " "
             }
-            messageLabel.text = content
         }
+
+        messageLabel.text = content
 
         nameLabel.text = inbox ? message.senderName : .none
         bubbleView.inbox = inbox

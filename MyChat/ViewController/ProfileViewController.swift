@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var myProfileLabel: UILabel!
 
     // MARK: - Private properties
-    
+
     private var keyboardHeight: CGFloat = 0
 
     private var profile: Profile?
@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController {
         // print(editButoon.frame)
         // На данном этапе создания View еще нет ни самой View, ни ее свойств.
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController {
         // print(#function + " Edit butoon frame: \(editButoon.frame)")
         configureView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -351,7 +351,7 @@ class ProfileViewController: UIViewController {
         collectionField.forEach { $0.isEnabled = show }
         saveCollectionButtons.forEach { $0.isHidden = !show }
     }
-    
+
     @objc
     private func keyboardWillShow(notification: Notification) {
 

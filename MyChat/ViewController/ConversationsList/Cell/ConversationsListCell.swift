@@ -16,11 +16,11 @@ class ConversationsListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    
+
     // MARK: - Private properties
-    
+
     private let theme = ThemeManager.shared.currentTheme
-    
+
     // MARK: - Initialization
 
     override func awakeFromNib() {
@@ -60,7 +60,7 @@ class ConversationsListCell: UITableViewCell {
     // MARK: - Private methods
 
     func setupContentView() {
-        
+
         backgroundColor = .clear
         clipsToBounds = false
         selectionStyle = .none

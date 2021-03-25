@@ -6,33 +6,31 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+import Firebase
 
 // MARK: - Channel
 
-struct Channel: Identifiable, Codable {
+struct Channel: Codable {
 
-    @DocumentID public var id: String?
-
-    // let identifier: String?
+    let identifier: String
     let name: String
     let lastMessage: String?
     let lastActivity: Date?
 
-    /*enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case identifier
         case name
         case lastMessage
         case lastActivity
     }
-    
-    init(from decoder: Decoder) throws {
 
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+    init(identifier: String, with data: [String: Any]) {
 
-        identifier = try? container.decode(String.self, forKey: .identifier)
-        name = try? container.decode(String.self, forKey: .name)
-        lastMessage = try? container.decode(String.self, forKey: .lastMessage)
-        lastActivity = try? container.decode(Date.self, forKey: .lastActivity)
-    }*/
+        self.identifier = identifier
+        name = data[CodingKeys.name.rawValue] as? String ?? ""
+        lastMessage = data[CodingKeys.lastMessage.rawValue] as? String
+
+        let timestamp = data[CodingKeys.lastActivity.rawValue] as? Timestamp
+        lastActivity = timestamp?.dateValue()
+    }
 }

@@ -36,7 +36,7 @@ class ThemesViewController: UIViewController {
     // MARK: - Private properties
 
     private var currentTheme: Theme?
-    
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class ThemesViewController: UIViewController {
             button.layer.cornerRadius = button.bounds.height / 4
         }
     }
-    
+
     // MARK: - Public methods
 
     @IBAction func themeButoonPressing(_ sender: AnyObject) {
@@ -129,5 +129,5 @@ class ThemesViewController: UIViewController {
 
         view.window?.reload()
         navigationController?.view.window?.reload()
-    }    
+    }
 }

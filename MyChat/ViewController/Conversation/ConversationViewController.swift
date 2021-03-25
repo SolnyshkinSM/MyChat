@@ -7,7 +7,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestoreSwift
 
 // MARK: - ConversationViewController
 
@@ -46,7 +45,7 @@ class ConversationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
@@ -93,10 +92,8 @@ class ConversationViewController: UIViewController {
 
         title = channel.name
 
-        if let id = channel.id {
-            reference = db.collection("channels").document(id).collection("messages")
-            loadData()
-        }
+        reference = db.collection("channels").document(channel.identifier).collection("messages")
+        loadData()
     }
 
     // MARK: - Private methods
@@ -108,27 +105,11 @@ class ConversationViewController: UIViewController {
             self?.messages.removeAll()
             snapshot?.documents.forEach({ document in
 
-                let result = Result {
-                    try document.data(as: Message.self)
-                }
-
-                switch result {
-                case .success(let message):
-                    if let message = message {
-                        self?.messages.append(message)
-                    }
-                case .failure:
-                    break
-                }
+                let message = Message(document.data())
+                self?.messages.append(message)
             })
 
-            self?.messages.sort {
-                if let oneDate = $0.created, let twoDate = $1.created {
-                    return oneDate < twoDate
-                } else {
-                    return true
-                }
-            }
+            self?.messages.sort { $0.created < $1.created }
 
             self?.tableView.reloadData()
         }
@@ -160,9 +141,9 @@ class ConversationViewController: UIViewController {
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
-    
+
     // MARK: - UIResponder
-        
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -218,15 +199,16 @@ extension ConversationViewController: UITextFieldDelegate {
 
         if let text = textField.text, !text.isEmpty, !text.blank {
 
-            let message = Message(id: nil, content: text, created: Date(), senderId: deviceID, senderName: profile?.fullname)
+            let message: [String: Any] = [
+                "content": text,
+                "created": Date(),
+                "senderId": deviceID ?? "",
+                "senderName": profile?.fullname ?? ""
+            ]
 
-            messages.append(message)
+            messages.append(Message(message))
 
-            do {
-                _ = try reference?.addDocument(from: message)
-            } catch let error {
-                print("Error message website to Firestore: \(error)")
-            }
+            reference?.addDocument(data: message)
 
             textField.text = .none
             tableView.reloadData()
@@ -242,7 +224,7 @@ extension ConversationViewController: UITextFieldDelegate {
 }
 
 extension String {
-    
+
     var blank: Bool {
         let trimmed = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         return trimmed.isEmpty
