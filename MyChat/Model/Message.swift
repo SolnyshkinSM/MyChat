@@ -10,7 +10,7 @@ import Firebase
 
 // MARK: - Message
 
-struct Message: Codable {
+struct Message {
 
     let content: String
     let created: Date

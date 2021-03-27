@@ -10,7 +10,7 @@ import Firebase
 
 // MARK: - Channel
 
-struct Channel: Codable {
+struct Channel {
 
     let identifier: String
     let name: String
