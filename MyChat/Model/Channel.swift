@@ -36,7 +36,6 @@ class Channel {
         let timestamp = data[CodingKeys.lastActivity.rawValue] as? Timestamp
         lastActivity = timestamp?.dateValue()
         
-        
         let reference = Channel.reference.document(identifier).collection("messages")
         reference.getDocuments { [weak self] querySnapshot, _ in
             if let querySnapshot = querySnapshot {
