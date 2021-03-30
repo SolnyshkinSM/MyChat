@@ -21,7 +21,6 @@ class Channel {
     var messages: [Message] = []
     
     enum CodingKeys: String, CodingKey {
-        case identifier
         case name
         case lastMessage
         case lastActivity
@@ -40,7 +39,8 @@ class Channel {
         reference.getDocuments { [weak self] querySnapshot, _ in
             if let querySnapshot = querySnapshot {
                 for document in querySnapshot.documents {
-                    let message = Message(document.data())
+                    let message = Message(identifier: document.documentID,
+                                          with: document.data())
                     self?.messages.append(message)
                 }
             }

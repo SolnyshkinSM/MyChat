@@ -39,6 +39,7 @@ extension Message_db {
     convenience init(message: Message,
                      in context: NSManagedObjectContext) {
         self.init(context: context)
+        self.identifier = message.identifier
         self.content = message.content
         self.created = message.created
         self.senderId = message.senderId

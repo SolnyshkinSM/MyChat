@@ -12,6 +12,7 @@ import Firebase
 
 struct Message {
 
+    var identifier: String
     let content: String
     let created: Date
     let senderId: String
@@ -24,8 +25,9 @@ struct Message {
         case senderName
     }
 
-    init(_ data: [String: Any]) {
-
+    init(identifier: String, with data: [String: Any]) {
+        
+        self.identifier = identifier
         content = data[CodingKeys.content.rawValue] as? String ?? ""
         senderId = data[CodingKeys.senderId.rawValue] as? String ?? ""
         senderName = data[CodingKeys.senderName.rawValue] as? String ?? ""
