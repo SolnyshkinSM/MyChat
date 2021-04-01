@@ -10,9 +10,9 @@ import UIKit
 // MARK: - UIWindow
 
 extension UIWindow {
-    
+
     func reload() {
-        
+
         subviews.forEach { view in
             view.removeFromSuperview()
             addSubview(view)

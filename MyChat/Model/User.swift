@@ -10,12 +10,11 @@ import Foundation
 // MARK: - UserProtocol
 
 protocol UserProtocol {
-    var name: String?  { get set }
-    var unreadMessage: String?  { get set }
-    var date: Date?  { get set }
-    var online: Bool  { get set }
-    var hasUnreadMessage: Bool  { get set }
-    var messages: [Message]?  { get set }
+    var name: String? { get set }
+    var unreadMessage: String? { get set }
+    var date: Date? { get set }
+    var online: Bool { get set }
+    var hasUnreadMessage: Bool { get set }
 }
 
 // MARK: - User
@@ -26,5 +25,4 @@ struct User: UserProtocol {
     var date: Date?
     var online: Bool
     var hasUnreadMessage: Bool
-    var messages: [Message]?
 }
