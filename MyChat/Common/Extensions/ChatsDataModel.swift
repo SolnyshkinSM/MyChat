@@ -7,24 +7,35 @@
 
 import Foundation
 import CoreData
+import Firebase
 
-// MARK: - Channel_db
+// MARK: - Channel
 
-extension Channel_db {
+extension Channel {
     
-    convenience init(channel: Channel,
+    enum CodingKeys: String, CodingKey {
+        case name
+        case lastMessage
+        case lastActivity
+    }
+    
+    convenience init(identifier: String,
+                     with data: [String: Any],
                      in context: NSManagedObjectContext) {
         self.init(context: context)
-        self.identifier = channel.identifier
-        self.name = channel.name
-        self.lastMessage = channel.lastMessage
-        self.lastActivity = channel.lastActivity
+        
+        self.identifier = identifier
+        name = data[CodingKeys.name.rawValue] as? String ?? ""
+        lastMessage = data[CodingKeys.lastMessage.rawValue] as? String
+        
+        let timestamp = data[CodingKeys.lastActivity.rawValue] as? Timestamp
+        lastActivity = timestamp?.dateValue()
     }
     
     var about: String {
         let description = "\(String(describing: name)), identifier: \(String(describing: identifier)) \n"
         let messages = self.messages?.allObjects
-            .compactMap { $0 as? Message_db }
+            .compactMap { $0 as? Message }
             .map { "\t\t\t\($0.about)" }
             .joined(separator: "\n") ?? ""
         
@@ -32,18 +43,29 @@ extension Channel_db {
     }
 }
 
-// MARK: - Message_db
+// MARK: - Message
 
-extension Message_db {
+extension Message {
     
-    convenience init(message: Message,
+    enum CodingKeys: String, CodingKey {
+        case content
+        case created
+        case senderId
+        case senderName
+    }
+    
+    convenience init(identifier: String,
+                     with data: [String: Any],
                      in context: NSManagedObjectContext) {
         self.init(context: context)
-        self.identifier = message.identifier
-        self.content = message.content
-        self.created = message.created
-        self.senderId = message.senderId
-        self.senderName = message.senderName
+        
+        self.identifier = identifier
+        content = data[CodingKeys.content.rawValue] as? String ?? ""
+        senderId = data[CodingKeys.senderId.rawValue] as? String ?? ""
+        senderName = data[CodingKeys.senderName.rawValue] as? String ?? ""
+
+        let timestamp = data[CodingKeys.created.rawValue] as? Timestamp
+        created = timestamp?.dateValue() ?? Date()
     }
     
     var about: String {

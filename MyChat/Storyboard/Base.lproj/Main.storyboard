@@ -601,8 +601,8 @@
         <image name="classic" width="283" height="51"/>
         <image name="day" width="286" height="51"/>
         <image name="night" width="283" height="52"/>
-        <image name="plus" width="24" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus" width="24" height="24"/>
         <image name="profile" width="32" height="32"/>
         <image name="settings" width="32" height="32"/>
         <systemColor name="linkColor">
