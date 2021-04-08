@@ -154,22 +154,40 @@ class ConversationViewController: UIViewController {
 
     private func loadData() {
         
+        guard let context = coreDataStack?.context else { return }
+        
         let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
         fetchRequest.resultType = .managedObjectResultType
         
         listener = reference?.addSnapshotListener { [weak self] snapshot, _ in
             
-            if let context = self?.coreDataStack?.context {
-                snapshot?.documents.forEach { document in
+            snapshot?.documentChanges.forEach { diff in
+                
+                let document = diff.document
+                fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
+                guard let fetchResults = try? context.fetch(fetchRequest) else { return }
+                
+                if fetchResults.isEmpty {
+                    let message_db = Message(identifier: document.documentID,
+                                             with: document.data(), in: context)
+                    self?.channel?.addToMessages(message_db)
+                } else {
+                    guard let message = fetchResults.first else { return }
                     
-                    fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
-                    
-                    if let fetchResults = try? context.fetch(fetchRequest) {
-                        if fetchResults.isEmpty {
+                    switch diff.type {
+                    case .modified:
+                        let data = document.data()
+                        if message.content != data["content"] as? String {
                             let message_db = Message(identifier: document.documentID,
-                                                        with: document.data(), in: context)
+                                                     with: document.data(), in: context)
                             self?.channel?.addToMessages(message_db)
                         }
+                    case .removed:
+                        context.delete(message)
+                    default:
+                        let message_db = Message(identifier: document.documentID,
+                                                 with: document.data(), in: context)
+                        self?.channel?.addToMessages(message_db)
                     }
                 }
             }
@@ -285,8 +303,8 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
                 db.collection("channels").document(channelIdentifier).collection("messages").document(messageIdentifier).delete()
             }
             
-            coreDataStack?.context.delete(message)
-            coreDataStack?.saveContext()
+            //coreDataStack?.context.delete(message)
+            //coreDataStack?.saveContext()
         }
     }
 }
