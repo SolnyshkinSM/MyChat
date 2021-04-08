@@ -302,9 +302,6 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
                let messageIdentifier = message.identifier {
                 db.collection("channels").document(channelIdentifier).collection("messages").document(messageIdentifier).delete()
             }
-            
-            //coreDataStack?.context.delete(message)
-            //coreDataStack?.saveContext()
         }
     }
 }
