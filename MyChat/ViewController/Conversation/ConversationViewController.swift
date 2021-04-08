@@ -321,6 +321,7 @@ extension ConversationViewController: UITextFieldDelegate {
 extension ConversationViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if tableView.window == nil { return }
         tableView.beginUpdates()
     }
     
@@ -328,7 +329,7 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
-        
+        if tableView.window == nil { return }
         switch type {
         case .insert:
             tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
@@ -342,7 +343,7 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange anObject: Any, at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
+        if tableView.window == nil { return }
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
@@ -372,6 +373,7 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if tableView.window == nil { return }
         tableView.endUpdates()
         scrollToRowFetchedObjects()
     }

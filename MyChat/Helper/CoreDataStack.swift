@@ -25,7 +25,7 @@ class CoreDataStack {
     }()
     
     lazy var context: NSManagedObjectContext = {
-        let context = container.viewContext
+        let context = container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
