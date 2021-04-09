@@ -22,6 +22,23 @@ class ConversationViewController: UIViewController {
     @IBOutlet weak var vaultView: UIView!
 
     // MARK: - Private properties
+        
+    lazy private var tableViewDataSource: TableViewDataSource<Message> = {
+        let tableViewDataSource = TableViewDataSource(
+            database: db,
+            coreDataStack: coreDataStack,
+            fetchedResultsController: fetchedResultsController)
+        return tableViewDataSource
+    }()
+    
+    lazy private var tableViewDelegate: TableViewDelegate<Message> = {
+        let tableViewDelegate = TableViewDelegate(
+            coordinator: nil,
+            coreDataStack: nil,
+            listener: listener,
+            fetchedResultsController: fetchedResultsController)
+        return tableViewDelegate
+    }()
 
     private var keyboardHeight: CGFloat = 0
 
@@ -105,6 +122,9 @@ class ConversationViewController: UIViewController {
                 break
             }
         }
+                
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDelegate
     }
 
     override func viewDidLayoutSubviews() {
@@ -185,9 +205,7 @@ class ConversationViewController: UIViewController {
                     case .removed:
                         context.delete(message)
                     default:
-                        let message_db = Message(identifier: document.documentID,
-                                                 with: document.data(), in: context)
-                        self?.channel?.addToMessages(message_db)
+                        break
                     }
                 }
             }
@@ -236,73 +254,6 @@ class ConversationViewController: UIViewController {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-}
-
-// MARK: - UITableViewDelegate, UITableViewDataSource
-
-extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
-        return sectionInfo.numberOfObjects
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let message = fetchedResultsController.object(at: indexPath)
-        
-        let inbox = message.senderId != deviceID
-        let cellIdentifier = inbox ? "ConversationInboxCell" : "ConversationOutboxCell"
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
-                                                       for: indexPath) as? ConversationCell else {
-            return UITableViewCell()
-        }
-
-        cell.configure(with: message, inbox: inbox)
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-        guard let countFetchedObjects = fetchedResultsController.fetchedObjects?.count
-        else { return }
-        
-        if indexPath.row == countFetchedObjects - 1 {
-            cell.transform = CGAffineTransform(translationX: 0, y: tableView.bounds.size.height)
-            UIView.animate(withDuration: 0.7, delay: 0.05,
-                           usingSpringWithDamping: 0.8, initialSpringVelocity: 0,
-                           options: [], animations: {
-                cell.transform = CGAffineTransform(translationX: 0, y: 0)
-            }, completion: nil)
-        }
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let message = fetchedResultsController.object(at: indexPath)
-        
-        if editingStyle == .delete {
-                        
-            if let channelIdentifier = message.channel?.identifier,
-               let messageIdentifier = message.identifier {
-                db.collection("channels").document(channelIdentifier).collection("messages").document(messageIdentifier).delete()
-            }
-        }
     }
 }
 

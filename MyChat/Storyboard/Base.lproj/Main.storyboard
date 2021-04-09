@@ -72,10 +72,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="TP2-zg-5Ob"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5lq-T7-r40"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -220,10 +216,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="opp-mE-1YN" id="N6z-t4-5c1"/>
-                                    <outlet property="delegate" destination="opp-mE-1YN" id="GvC-8c-CCM"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJy-0q-UNK">
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>

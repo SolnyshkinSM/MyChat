@@ -21,6 +21,23 @@ class ConversationsListViewController: UIViewController {
 
     // MARK: - Private properties
     
+    lazy private var tableViewDataSource: TableViewDataSource<Channel> = {
+        let tableViewDataSource = TableViewDataSource(
+            database: db,
+            coreDataStack: coreDataStack,
+            fetchedResultsController: fetchedResultsController)
+        return tableViewDataSource
+    }()
+    
+    lazy private var tableViewDelegate: TableViewDelegate<Channel> = {
+        let tableViewDelegate = TableViewDelegate<Channel>(
+            coordinator: coordinator,
+            coreDataStack: coreDataStack,
+            listener: listener,
+            fetchedResultsController: fetchedResultsController)
+        return tableViewDelegate
+    }()
+    
     private let refreshControl = UIRefreshControl()
 
     private let theme = ThemeManager.shared.currentTheme
@@ -78,14 +95,24 @@ class ConversationsListViewController: UIViewController {
 
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
+                
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDelegate
     }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         loadData()
+        
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.rowHeight = tableView.bounds.height * 0.3
+    }
+    
     deinit {
         listener?.remove()
     }
@@ -193,62 +220,6 @@ class ConversationsListViewController: UIViewController {
                 }
             }
             self?.coreDataStack.saveContext()
-        }
-    }
-}
-
-// MARK: - UITableViewDataSource, UITableViewDelegate
-
-extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
-        return sectionInfo.numberOfObjects
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsListCell",
-                                                       for: indexPath) as? ConversationsListCell
-        else { return UITableViewCell() }
-
-        let channel = fetchedResultsController.object(at: indexPath)
-        cell.configure(with: channel)
-                
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let channel = fetchedResultsController.object(at: indexPath)
-        coordinator?.goToChannelDetailViewController(coreDataStack: coreDataStack, channel: channel)
-        
-        listener?.remove()
-
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.bounds.height * 0.3
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let channel = fetchedResultsController.object(at: indexPath)
-        
-        if editingStyle == .delete {
-            
-            if let identifier = channel.identifier {
-                db.collection("channels").document(identifier).delete()
-            }
         }
     }
 }

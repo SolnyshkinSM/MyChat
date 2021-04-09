@@ -30,6 +30,8 @@
 		C366506325D93FB700335208 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C366506125D93FB700335208 /* LaunchScreen.storyboard */; };
 		C366507A25D9496C00335208 /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366507925D9496C00335208 /* Print.swift */; };
 		C36EEE9425E2582600A60E66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36EEE9325E2582600A60E66 /* ProfileViewController.swift */; };
+		C36EF9AF26208BDF00F1DF87 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36EF9AE26208BDF00F1DF87 /* TableViewDataSource.swift */; };
+		C36EF9B326208C7800F1DF87 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36EF9B226208C7800F1DF87 /* TableViewDelegate.swift */; };
 		C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724ACD25EA2C5E0039CD24 /* ConversationsListViewController.swift */; };
 		C3724AD125EA2EA20039CD24 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */; };
 		C3725D252605D5C000A49989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3725D242605D5C000A49989 /* GoogleService-Info.plist */; };
@@ -74,6 +76,8 @@
 		C366506425D93FB700335208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C366507925D9496C00335208 /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
 		C36EEE9325E2582600A60E66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C36EF9AE26208BDF00F1DF87 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		C36EF9B226208C7800F1DF87 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		C3724ACD25EA2C5E0039CD24 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		C3725D242605D5C000A49989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -235,6 +239,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C36EF9AD26208BBE00F1DF87 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				C36EF9AE26208BDF00F1DF87 /* TableViewDataSource.swift */,
+				C36EF9B226208C7800F1DF87 /* TableViewDelegate.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		C3724AD325EA47730039CD24 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				C3CC03A426203B520003CF0E /* Coordinator */,
+				C36EF9AD26208BBE00F1DF87 /* TableView */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -464,6 +478,7 @@
 				C3FFDE4C260F5AF700974C5C /* ChatsDataModel.swift in Sources */,
 				C35F135B25FA2FE90028A796 /* User.swift in Sources */,
 				C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */,
+				C36EF9B326208C7800F1DF87 /* TableViewDelegate.swift in Sources */,
 				C32247332601F59600F5F639 /* FileLoaderProtocol.swift in Sources */,
 				C3CC03AD26203C2D0003CF0E /* IChannelsCoordinator.swift in Sources */,
 				C3FFDE49260F580B00974C5C /* CoreDataStack.swift in Sources */,
@@ -474,6 +489,7 @@
 				C3AD54D9261A410E004CB375 /* NSManagedObject.swift in Sources */,
 				C325085F25F0179100A92D9C /* BubbleView.swift in Sources */,
 				C36EEE9425E2582600A60E66 /* ProfileViewController.swift in Sources */,
+				C36EF9AF26208BDF00F1DF87 /* TableViewDataSource.swift in Sources */,
 				C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */,
 				C32E748425FE74CF0063AB24 /* GCDFileLoader.swift in Sources */,
 				C3CC03A626203B690003CF0E /* ICoordinator.swift in Sources */,
