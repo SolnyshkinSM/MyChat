@@ -16,6 +16,8 @@ class ConversationsListViewController: UIViewController {
     // MARK: - Public properties
 
     @IBOutlet weak var tableView: UITableView!
+    
+    public var coordinator: IChannelsCoordinator?
 
     // MARK: - Private properties
     
@@ -222,16 +224,10 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        if let controller = storyboard?.instantiateViewController(
-            withIdentifier: "ConversationViewController") as? ConversationViewController {
-            
-            listener?.remove()
-            
-            let channel = fetchedResultsController.object(at: indexPath)
-            controller.coreDataStack = coreDataStack
-            controller.configure(with: channel)
-            navigationController?.pushViewController(controller, animated: true)
-        }
+        let channel = fetchedResultsController.object(at: indexPath)
+        coordinator?.goToChannelDetailViewController(coreDataStack: coreDataStack, channel: channel)
+        
+        listener?.remove()
 
         tableView.deselectRow(at: indexPath, animated: true)
     }

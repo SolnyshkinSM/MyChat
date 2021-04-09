@@ -37,6 +37,9 @@
 		C3AD54DF261A43ED004CB375 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD54DE261A43ED004CB375 /* String.swift */; };
 		C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */; };
 		C3B4167425F4FF3900A486BE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4167325F4FF3900A486BE /* UITextField.swift */; };
+		C3CC03A626203B690003CF0E /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC03A526203B690003CF0E /* ICoordinator.swift */; };
+		C3CC03AD26203C2D0003CF0E /* IChannelsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC03AC26203C2D0003CF0E /* IChannelsCoordinator.swift */; };
+		C3CC03B326203CC30003CF0E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC03B226203CC30003CF0E /* Coordinator.swift */; };
 		C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CEF75B25EAD81200C1C933 /* ConversationsListCell.swift */; };
 		C3CEF76125EAD8A000C1C933 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CEF75F25EAD8A000C1C933 /* ConversationCell.swift */; };
 		C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F5E72B25E6A89500633D0D /* Profile.swift */; };
@@ -78,6 +81,9 @@
 		C3AD54DE261A43ED004CB375 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		C3B4167325F4FF3900A486BE /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		C3CC03A526203B690003CF0E /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
+		C3CC03AC26203C2D0003CF0E /* IChannelsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChannelsCoordinator.swift; sourceTree = "<group>"; };
+		C3CC03B226203CC30003CF0E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C3CEF75B25EAD81200C1C933 /* ConversationsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListCell.swift; sourceTree = "<group>"; };
 		C3CEF75F25EAD8A000C1C933 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		C3F5E72B25E6A89500633D0D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 				C3F5E72A25E6A87B00633D0D /* Model */,
 				C3FFDE20260F47CE00974C5C /* DataModel */,
 				C36EEE9825E27E1D00A60E66 /* Common */,
+				C3CC03A326203B330003CF0E /* Core */,
 				C366507325D9483000335208 /* Helper */,
 				C3725D202605D59D00A49989 /* File */,
 			);
@@ -242,6 +249,24 @@
 				C3725D242605D5C000A49989 /* GoogleService-Info.plist */,
 			);
 			path = File;
+			sourceTree = "<group>";
+		};
+		C3CC03A326203B330003CF0E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC03A426203B520003CF0E /* Coordinator */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C3CC03A426203B520003CF0E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC03A526203B690003CF0E /* ICoordinator.swift */,
+				C3CC03AC26203C2D0003CF0E /* IChannelsCoordinator.swift */,
+				C3CC03B226203CC30003CF0E /* Coordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		C3CEF75625EACC2900C1C933 /* ConversationsList */ = {
@@ -433,12 +458,14 @@
 				C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */,
 				C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */,
 				C35F135825FA2F280028A796 /* Section.swift in Sources */,
+				C3CC03B326203CC30003CF0E /* Coordinator.swift in Sources */,
 				C304FFFC25FCEBAC005A3A14 /* Settings.swift in Sources */,
 				C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */,
 				C3FFDE4C260F5AF700974C5C /* ChatsDataModel.swift in Sources */,
 				C35F135B25FA2FE90028A796 /* User.swift in Sources */,
 				C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */,
 				C32247332601F59600F5F639 /* FileLoaderProtocol.swift in Sources */,
+				C3CC03AD26203C2D0003CF0E /* IChannelsCoordinator.swift in Sources */,
 				C3FFDE49260F580B00974C5C /* CoreDataStack.swift in Sources */,
 				C3724AD125EA2EA20039CD24 /* ConversationViewController.swift in Sources */,
 				C366505725D93FB600335208 /* AppDelegate.swift in Sources */,
@@ -449,6 +476,7 @@
 				C36EEE9425E2582600A60E66 /* ProfileViewController.swift in Sources */,
 				C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */,
 				C32E748425FE74CF0063AB24 /* GCDFileLoader.swift in Sources */,
+				C3CC03A626203B690003CF0E /* ICoordinator.swift in Sources */,
 				C34551DF25E63919004F13ED /* UIButton.swift in Sources */,
 				C366505925D93FB600335208 /* SceneDelegate.swift in Sources */,
 				C3B4167425F4FF3900A486BE /* UITextField.swift in Sources */,
