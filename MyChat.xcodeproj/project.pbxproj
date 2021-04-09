@@ -19,6 +19,7 @@
 		C34551DF25E63919004F13ED /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34551DE25E63918004F13ED /* UIButton.swift */; };
 		C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */; };
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
+		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
 		C35F135825FA2F280028A796 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135725FA2F280028A796 /* Section.swift */; };
 		C35F135B25FA2FE90028A796 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135A25FA2FE90028A796 /* User.swift */; };
 		C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3648F79260347BA000D75C8 /* StateLoader.swift */; };
@@ -63,6 +64,7 @@
 		C34551DE25E63918004F13ED /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C35F135725FA2F280028A796 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		C35F135A25FA2FE90028A796 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C3648F79260347BA000D75C8 /* StateLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoader.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 				C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		C35C14822620914A00716EDA /* FetchedResultsController */ = {
+			isa = PBXGroup;
+			children = (
+				C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */,
+			);
+			path = FetchedResultsController;
 			sourceTree = "<group>";
 		};
 		C366504A25D93FB600335208 = {
@@ -269,6 +279,7 @@
 			children = (
 				C3CC03A426203B520003CF0E /* Coordinator */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
+				C35C14822620914A00716EDA /* FetchedResultsController */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -463,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C366505B25D93FB600335208 /* ViewController.swift in Sources */,
+				C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */,
 				C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */,
 				C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */,
 				C30A65BC25F6737B00962C9C /* UIWindow.swift in Sources */,

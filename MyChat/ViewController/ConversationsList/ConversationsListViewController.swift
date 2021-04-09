@@ -38,6 +38,9 @@ class ConversationsListViewController: UIViewController {
         return tableViewDelegate
     }()
     
+    lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Channel>(
+        tableView: tableView)
+    
     private let refreshControl = UIRefreshControl()
 
     private let theme = ThemeManager.shared.currentTheme
@@ -70,7 +73,7 @@ class ConversationsListViewController: UIViewController {
             sectionNameKeyPath: nil,
             cacheName: nil)
         
-        aFetchedResultsController.delegate = self
+        aFetchedResultsController.delegate = fetchedResultsControllerDelegate
         _fetchedResultsController = aFetchedResultsController
                 
         do {
@@ -221,65 +224,5 @@ class ConversationsListViewController: UIViewController {
             }
             self?.coreDataStack.saveContext()
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if tableView.window == nil { return }
-        tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange sectionInfo: NSFetchedResultsSectionInfo,
-                    atSectionIndex sectionIndex: Int,
-                    for type: NSFetchedResultsChangeType) {
-        if tableView.window == nil { return }
-        switch type {
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-        default:
-            return
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        if tableView.window == nil { return }
-        switch type {
-        case .insert:
-            guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .fade)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        case .update:
-            guard let indexPath = indexPath,
-                  let cell = tableView.cellForRow(at: indexPath) as? ConversationsListCell,
-                  let channel = anObject as? Channel
-            else { return }
-            cell.configure(with: channel)
-        case .move:
-            guard let indexPath = indexPath,
-                  let newIndexPath = newIndexPath,
-                  let cell = tableView.cellForRow(at: indexPath) as? ConversationsListCell,
-                  let channel = anObject as? Channel
-            else { return }
-            cell.configure(with: channel)
-            tableView.moveRow(at: indexPath, to: newIndexPath)
-        default:
-            return
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if tableView.window == nil { return }
-        tableView.endUpdates()
     }
 }

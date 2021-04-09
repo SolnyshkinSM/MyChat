@@ -39,6 +39,9 @@ class ConversationViewController: UIViewController {
             fetchedResultsController: fetchedResultsController)
         return tableViewDelegate
     }()
+    
+    lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Message>(
+        tableView: tableView)
 
     private var keyboardHeight: CGFloat = 0
 
@@ -83,7 +86,7 @@ class ConversationViewController: UIViewController {
             sectionNameKeyPath: nil,
             cacheName: nil)
         
-        aFetchedResultsController.delegate = self
+        aFetchedResultsController.delegate = fetchedResultsControllerDelegate
         _fetchedResultsController = aFetchedResultsController
         
         do {
@@ -152,7 +155,9 @@ class ConversationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        scrollToRowFetchedObjects()
+        if let fetchedResultsController = fetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> {
+            fetchedResultsControllerDelegate.scrollToRowFetchedObjects(controller: fetchedResultsController)
+        }
     }
     
     // MARK: - Public methods
@@ -213,16 +218,6 @@ class ConversationViewController: UIViewController {
         }
     }
     
-    private func scrollToRowFetchedObjects() {
-        
-        if let countFetchedObjects = fetchedResultsController.fetchedObjects?.count,
-           countFetchedObjects != 0 {
-            let lastIndex = IndexPath(item: countFetchedObjects - 1, section: 0)
-            tableView.scrollToRow(at: lastIndex,
-                                  at: UITableView.ScrollPosition.bottom, animated: true)
-        }
-    }
-    
     @objc private func keyboardWillShow(notification: Notification) {
 
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -279,68 +274,5 @@ extension ConversationViewController: UITextFieldDelegate {
 
         textField.resignFirstResponder()
         return true
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension ConversationViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if tableView.window == nil { return }
-        tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange sectionInfo: NSFetchedResultsSectionInfo,
-                    atSectionIndex sectionIndex: Int,
-                    for type: NSFetchedResultsChangeType) {
-        if tableView.window == nil { return }
-        switch type {
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-        default:
-            return
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        if tableView.window == nil { return }
-        switch type {
-        case .insert:
-            guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .fade)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        case .update:
-            guard let indexPath = indexPath,
-                  let cell = tableView.cellForRow(at: indexPath) as? ConversationCell,
-                  let message = anObject as? Message
-            else { return }
-            let inbox = message.senderId != deviceID
-            cell.configure(with: message, inbox: inbox)
-        case .move:
-            guard let indexPath = indexPath,
-                  let newIndexPath = newIndexPath,
-                  let cell = tableView.cellForRow(at: indexPath) as? ConversationCell,
-                  let message = anObject as? Message
-            else { return }
-            let inbox = message.senderId != deviceID
-            cell.configure(with: message, inbox: inbox)
-            tableView.moveRow(at: indexPath, to: newIndexPath)
-        default:
-            return
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if tableView.window == nil { return }
-        tableView.endUpdates()
-        scrollToRowFetchedObjects()
     }
 }
