@@ -20,6 +20,7 @@
 		C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */; };
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
 		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
+		C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14872620996700716EDA /* TextFieldDelegate.swift */; };
 		C35F135825FA2F280028A796 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135725FA2F280028A796 /* Section.swift */; };
 		C35F135B25FA2FE90028A796 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135A25FA2FE90028A796 /* User.swift */; };
 		C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3648F79260347BA000D75C8 /* StateLoader.swift */; };
@@ -65,6 +66,7 @@
 		C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
+		C35C14872620996700716EDA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		C35F135725FA2F280028A796 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		C35F135A25FA2FE90028A796 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C3648F79260347BA000D75C8 /* StateLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoader.swift; sourceTree = "<group>"; };
@@ -143,6 +145,14 @@
 				C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */,
 			);
 			path = FetchedResultsController;
+			sourceTree = "<group>";
+		};
+		C35C14862620994300716EDA /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				C35C14872620996700716EDA /* TextFieldDelegate.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		C366504A25D93FB600335208 = {
@@ -280,6 +290,7 @@
 				C3CC03A426203B520003CF0E /* Coordinator */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
+				C35C14862620994300716EDA /* TextField */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -493,6 +504,7 @@
 				C36EF9B326208C7800F1DF87 /* TableViewDelegate.swift in Sources */,
 				C32247332601F59600F5F639 /* FileLoaderProtocol.swift in Sources */,
 				C3CC03AD26203C2D0003CF0E /* IChannelsCoordinator.swift in Sources */,
+				C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */,
 				C3FFDE49260F580B00974C5C /* CoreDataStack.swift in Sources */,
 				C3724AD125EA2EA20039CD24 /* ConversationViewController.swift in Sources */,
 				C366505725D93FB600335208 /* AppDelegate.swift in Sources */,

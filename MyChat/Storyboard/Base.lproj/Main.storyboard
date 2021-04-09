@@ -224,9 +224,6 @@
                                         <rect key="frame" x="64" y="31.5" width="291" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="send"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="opp-mE-1YN" id="x81-rn-ysY"/>
-                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e1-fz-SMd">
                                         <rect key="frame" x="20" y="38" width="24" height="24"/>

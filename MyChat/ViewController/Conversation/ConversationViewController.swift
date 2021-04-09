@@ -40,6 +40,8 @@ class ConversationViewController: UIViewController {
         return tableViewDelegate
     }()
     
+    lazy private var textFieldDelegate = TextFieldDelegate(profile: profile, reference: reference)
+    
     lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Message>(
         tableView: tableView)
 
@@ -49,7 +51,7 @@ class ConversationViewController: UIViewController {
 
     private var fileLoader: FileLoaderProtocol = GCDFileLoader.shared
 
-    private var profile: Profile?
+    private var profile: Profile? { didSet { messageField.delegate = textFieldDelegate } }
 
     private lazy var db = Firestore.firestore()
 
@@ -249,30 +251,5 @@ class ConversationViewController: UIViewController {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension ConversationViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if let text = textField.text, !text.isEmpty, !text.blank {
-
-            let messageData: [String: Any] = [
-                "content": text,
-                "created": Date(),
-                "senderId": deviceID ?? "",
-                "senderName": profile?.fullname ?? ""
-            ]
-            
-            _ = reference?.addDocument(data: messageData)
-            
-            textField.text = .none
-        }
-
-        textField.resignFirstResponder()
-        return true
     }
 }
