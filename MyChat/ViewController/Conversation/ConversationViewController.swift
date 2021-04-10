@@ -15,12 +15,12 @@ class ConversationViewController: UIViewController {
 
     // MARK: - Public properties
     
-    var coreDataStack: CoreDataStack?
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!
     @IBOutlet weak var vaultView: UIView!
-
+    
+    var coreDataStack: CoreDataStack?
+    
     // MARK: - Private properties
         
     lazy private var tableViewDataSource: TableViewDataSource<Message> = {
@@ -96,13 +96,15 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.largeTitleDisplayMode = .never
+        
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDelegate
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.showsVerticalScrollIndicator = false
 
         messageField.setPlaceholder("Your message here...")
-
-        navigationItem.largeTitleDisplayMode = .never
 
         fileLoader.readFile { [weak self] (result: Result<Profile, Error>) -> Void in
             switch result {
@@ -112,9 +114,6 @@ class ConversationViewController: UIViewController {
                 break
             }
         }
-                
-        tableView.dataSource = tableViewDataSource
-        tableView.delegate = tableViewDelegate
     }
 
     override func viewDidLayoutSubviews() {

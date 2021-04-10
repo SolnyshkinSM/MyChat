@@ -78,13 +78,13 @@ class ConversationsListViewController: UIViewController {
         screenSaver.loadScreenSaver()
 
         navigationItem.largeTitleDisplayMode = .always
+        
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDelegate
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
-                
-        tableView.dataSource = tableViewDataSource
-        tableView.delegate = tableViewDelegate
     }
         
     override func viewDidAppear(_ animated: Bool) {
