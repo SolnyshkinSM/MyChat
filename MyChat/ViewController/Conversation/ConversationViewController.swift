@@ -44,6 +44,9 @@ class ConversationViewController: UIViewController {
     
     lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Message>(
         tableView: tableView)
+    
+    lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
+                                                       reference: reference)
 
     private var keyboardHeight: CGFloat = 0
 
@@ -173,52 +176,11 @@ class ConversationViewController: UIViewController {
         if let identifier = channel.identifier {
             predicate = NSPredicate(format: "channel.identifier = %@", identifier)
             reference = db.collection("channels").document(identifier).collection("messages")
-            loadData()
+            listener = firebaseManager.addSnapshotListenerMessage(for: channel)
         }
     }
 
     // MARK: - Private methods
-
-    private func loadData() {
-        
-        guard let context = coreDataStack?.context else { return }
-        
-        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
-        fetchRequest.resultType = .managedObjectResultType
-        
-        listener = reference?.addSnapshotListener { [weak self] snapshot, _ in
-            
-            snapshot?.documentChanges.forEach { diff in
-                
-                let document = diff.document
-                fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
-                guard let fetchResults = try? context.fetch(fetchRequest) else { return }
-                
-                if fetchResults.isEmpty {
-                    let message_db = Message(identifier: document.documentID,
-                                             with: document.data(), in: context)
-                    self?.channel?.addToMessages(message_db)
-                } else {
-                    guard let message = fetchResults.first else { return }
-                    
-                    switch diff.type {
-                    case .modified:
-                        let data = document.data()
-                        if message.content != data["content"] as? String {
-                            let message_db = Message(identifier: document.documentID,
-                                                     with: document.data(), in: context)
-                            self?.channel?.addToMessages(message_db)
-                        }
-                    case .removed:
-                        context.delete(message)
-                    default:
-                        break
-                    }
-                }
-            }
-            self?.coreDataStack?.saveContext()
-        }
-    }
     
     @objc private func keyboardWillShow(notification: Notification) {
 

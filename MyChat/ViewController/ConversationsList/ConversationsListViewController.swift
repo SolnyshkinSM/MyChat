@@ -43,6 +43,9 @@ class ConversationsListViewController: UIViewController {
     
     lazy private var screenSaver = ScreenSaver(viewController: self)
     
+    lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
+                                                       reference: reference)
+    
     private let refreshControl = UIRefreshControl()
 
     private let theme = ThemeManager.shared.currentTheme
@@ -108,8 +111,7 @@ class ConversationsListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadData()
-        
+        listener = firebaseManager.addSnapshotListenerChannel()
     }
     
     override func viewDidLayoutSubviews() {
@@ -169,47 +171,8 @@ class ConversationsListViewController: UIViewController {
     @objc
     func refreshTableView() {
         Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { [weak self] _ in
-            self?.loadData()
+            self?.listener = self?.firebaseManager.addSnapshotListenerChannel()
             self?.refreshControl.endRefreshing()
-        }
-    }
-
-    // MARK: - Private methods
-        
-    private func loadData() {
-        
-        let context = coreDataStack.context
-        
-        let fetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
-        fetchRequest.resultType = .managedObjectResultType
-        
-        listener = reference.addSnapshotListener { [weak self] snapshot, _ in
-            
-            snapshot?.documentChanges.forEach { diff in
-                
-                let document = diff.document
-                fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
-                guard let fetchResults = try? context.fetch(fetchRequest) else { return }
-                
-                if fetchResults.isEmpty {
-                    _ = Channel(identifier: document.documentID, with: document.data(), in: context)
-                } else {
-                    guard let channel = fetchResults.first else { return }
-                    
-                    switch diff.type {
-                    case .modified:
-                        let data = document.data()
-                        if channel.lastMessage != data["lastMessage"] as? String {
-                            _ = Channel(identifier: document.documentID, with: data, in: context)
-                        }
-                    case .removed:
-                        context.delete(channel)
-                    default:
-                        break
-                    }
-                }
-            }
-            self?.coreDataStack.saveContext()
         }
     }
 }

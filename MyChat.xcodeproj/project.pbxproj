@@ -47,6 +47,7 @@
 		C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CEF75B25EAD81200C1C933 /* ConversationsListCell.swift */; };
 		C3CEF76125EAD8A000C1C933 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CEF75F25EAD8A000C1C933 /* ConversationCell.swift */; };
 		C3F15156262186410021CE85 /* ScreenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F15155262186410021CE85 /* ScreenSaver.swift */; };
+		C3F1515B2621897E0021CE85 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1515A2621897E0021CE85 /* FirebaseManager.swift */; };
 		C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F5E72B25E6A89500633D0D /* Profile.swift */; };
 		C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3FFDE21260F481400974C5C /* Chats.xcdatamodeld */; };
 		C3FFDE49260F580B00974C5C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFDE48260F580B00974C5C /* CoreDataStack.swift */; };
@@ -96,6 +97,7 @@
 		C3CEF75B25EAD81200C1C933 /* ConversationsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListCell.swift; sourceTree = "<group>"; };
 		C3CEF75F25EAD8A000C1C933 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		C3F15155262186410021CE85 /* ScreenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaver.swift; sourceTree = "<group>"; };
+		C3F1515A2621897E0021CE85 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C3F5E72B25E6A89500633D0D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C3FFDE22260F481400974C5C /* Chats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chats.xcdatamodel; sourceTree = "<group>"; };
 		C3FFDE48260F580B00974C5C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C35C14862620994300716EDA /* TextField */,
 				C3F151542621861A0021CE85 /* ScreenSaver */,
+				C3F15159262189660021CE85 /* FirebaseManager */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -341,6 +344,14 @@
 				C3F15155262186410021CE85 /* ScreenSaver.swift */,
 			);
 			path = ScreenSaver;
+			sourceTree = "<group>";
+		};
+		C3F15159262189660021CE85 /* FirebaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				C3F1515A2621897E0021CE85 /* FirebaseManager.swift */,
+			);
+			path = FirebaseManager;
 			sourceTree = "<group>";
 		};
 		C3F5E72A25E6A87B00633D0D /* Model */ = {
@@ -507,6 +518,7 @@
 				C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */,
 				C35F135825FA2F280028A796 /* Section.swift in Sources */,
 				C3CC03B326203CC30003CF0E /* Coordinator.swift in Sources */,
+				C3F1515B2621897E0021CE85 /* FirebaseManager.swift in Sources */,
 				C304FFFC25FCEBAC005A3A14 /* Settings.swift in Sources */,
 				C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */,
 				C3FFDE4C260F5AF700974C5C /* ChatsDataModel.swift in Sources */,
