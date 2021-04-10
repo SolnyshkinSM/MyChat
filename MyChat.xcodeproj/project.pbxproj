@@ -37,6 +37,7 @@
 		C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724ACD25EA2C5E0039CD24 /* ConversationsListViewController.swift */; };
 		C3724AD125EA2EA20039CD24 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */; };
 		C3725D252605D5C000A49989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3725D242605D5C000A49989 /* GoogleService-Info.plist */; };
+		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
 		C3AD54D9261A410E004CB375 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD54D8261A410E004CB375 /* NSManagedObject.swift */; };
 		C3AD54DF261A43ED004CB375 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD54DE261A43ED004CB375 /* String.swift */; };
 		C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */; };
@@ -87,6 +88,7 @@
 		C3724ACD25EA2C5E0039CD24 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		C3725D242605D5C000A49989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
 		C3AD54D8261A410E004CB375 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 		C3AD54DE261A43ED004CB375 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -288,6 +290,14 @@
 			path = File;
 			sourceTree = "<group>";
 		};
+		C3A9A7142621C124000682CF /* PickerController */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9A7152621C136000682CF /* PickerController.swift */,
+			);
+			path = PickerController;
+			sourceTree = "<group>";
+		};
 		C3CC03A326203B330003CF0E /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +307,7 @@
 				C35C14862620994300716EDA /* TextField */,
 				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
+				C3A9A7142621C124000682CF /* PickerController */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -508,6 +519,7 @@
 			files = (
 				C366505B25D93FB600335208 /* ViewController.swift in Sources */,
 				C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */,
+				C3A9A7162621C136000682CF /* PickerController.swift in Sources */,
 				C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */,
 				C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */,
 				C30A65BC25F6737B00962C9C /* UIWindow.swift in Sources */,

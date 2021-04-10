@@ -84,9 +84,21 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-
+    
+    lazy private var pickerController = PickerController(viewController: self) { [weak self] info in
+        
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self?.profileImageButton.setBackgroundImage(image, for: .normal)
+            self?.profileImageButton.backgroundColor = .clear
+            
+            self?.showSavePanel(true)
+            [self?.saveGCDButton, self?.saveOperationsButton].forEach { $0?.isEnabled = true }
+        }
+        self?.dismiss(animated: true)
+    }
+    
     // MARK: - Lifecycle
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         // print(editButoon.frame)
@@ -156,13 +168,13 @@ class ProfileViewController: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-            self.chooseImagePicker(source: .camera)
+            self.pickerController.chooseImagePicker(source: .camera)
         }
         camera.setValue(cameraIcon, forKey: "image")
         camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
 
         let photo = UIAlertAction(title: "Photo", style: .default) { _ in
-            self.chooseImagePicker(source: .photoLibrary)
+            self.pickerController.chooseImagePicker(source: .photoLibrary)
         }
         photo.setValue(photoIcon, forKey: "image")
         photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
@@ -405,33 +417,5 @@ class ProfileViewController: UIViewController {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-}
-
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func chooseImagePicker(source: UIImagePickerController.SourceType) {
-        if UIImagePickerController.isSourceTypeAvailable(source) {
-            let pickerController = UIImagePickerController()
-            pickerController.allowsEditing = true
-            pickerController.sourceType = source
-            pickerController.delegate = self
-
-            present(pickerController, animated: true)
-        }
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            profileImageButton.setBackgroundImage(image, for: .normal)
-            profileImageButton.backgroundColor = .clear
-
-            showSavePanel(true)
-            [saveGCDButton, saveOperationsButton].forEach { $0.isEnabled = true }
-        }
-        dismiss(animated: true)
     }
 }
