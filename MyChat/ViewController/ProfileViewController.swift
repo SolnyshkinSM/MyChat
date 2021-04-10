@@ -198,9 +198,7 @@ class ProfileViewController: UIViewController {
 
     @IBAction func cancelButtonPressing(_ sender: UIButton) {
 
-        if let profile = self.profile {
-            configureProfile(profile: profile)
-        }
+        if let profile = self.profile { configureProfile(profile: profile) }
 
         editButoon.isHidden = false
         collectionField.forEach { $0.isEnabled = false }

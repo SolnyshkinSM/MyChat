@@ -50,7 +50,6 @@ class ConversationViewController: UIViewController {
                 "senderId": self?.deviceID ?? "",
                 "senderName": self?.profile?.fullname ?? ""
             ])
-            
             textField.text = .none
         }
     }
@@ -183,7 +182,6 @@ class ConversationViewController: UIViewController {
     func configure(with channel: Channel) {
 
         title = channel.name
-
         self.channel = channel
         
         if let identifier = channel.identifier {

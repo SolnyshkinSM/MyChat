@@ -61,4 +61,22 @@ extension Coordinator: IChannelsCoordinator {
             navigationController.pushViewController(viewController, animated: true)
         }
     }
+    
+    func goToProfileViewController() {
+        
+        if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+            navigationController.present(controller, animated: true)
+        }
+    }
+    
+    func goToThemesViewController() {
+        
+        if let controller = storyboard.instantiateViewController(
+            withIdentifier: "ThemesViewController") as? ThemesViewController {
+            let themeManager = ThemeManager()
+            controller.themeManager = themeManager
+            controller.closure = themeManager.closureApplyTheme
+            navigationController.pushViewController(controller, animated: true)
+        }
+    }
 }

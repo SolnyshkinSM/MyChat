@@ -13,9 +13,7 @@ class BubbleView: UIView {
 
     // MARK: - Public properties
 
-    var inbox = true {
-        didSet { setNeedsDisplay() }
-    }
+    var inbox = true { didSet { setNeedsDisplay() } }
 
     // MARK: - UIViewRendering
 

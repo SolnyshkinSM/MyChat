@@ -23,7 +23,7 @@ class ConversationsListViewController: UIViewController {
     
     lazy private var tableViewDataSource: TableViewDataSource<Channel> = {
         let tableViewDataSource = TableViewDataSource(
-            database: db,
+            database: database,
             coreDataStack: coreDataStack,
             fetchedResultsController: fetchedResultsController)
         return tableViewDataSource
@@ -46,13 +46,20 @@ class ConversationsListViewController: UIViewController {
     lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
                                                        reference: reference)
     
+    lazy private var channelsManager = ChannelsManager(viewController: self) { [weak self] alert in
+        if let answer = alert.textFields?.first,
+           let name = answer.text, !name.isEmpty {
+            self?.reference.addDocument(data: ["name": name])
+        }
+    }
+    
     private let refreshControl = UIRefreshControl()
 
     private let theme = ThemeManager.shared.currentTheme
 
-    private lazy var db = Firestore.firestore()
+    private lazy var database = Firestore.firestore()
 
-    private lazy var reference = db.collection("channels")
+    private lazy var reference = database.collection("channels")
 
     private var listener: ListenerRegistration?
 
@@ -120,52 +127,20 @@ class ConversationsListViewController: UIViewController {
         tableView.rowHeight = tableView.bounds.height * 0.3
     }
     
-    deinit {
-        listener?.remove()
-    }
+    deinit { listener?.remove() }
 
     // MARK: - Public methods
 
     @IBAction func profileButoonPressing(_ sender: UIBarButtonItem) {
-
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") {
-            present(controller, animated: true)
-        }
+        coordinator?.goToProfileViewController()
     }
 
     @IBAction func settingsButoonPressing(_ sender: UIBarButtonItem) {
-
-        guard let controller = storyboard?.instantiateViewController(
-                withIdentifier: "ThemesViewController") as? ThemesViewController else { return }
-        let themeManager = ThemeManager()
-        controller.themeManager = themeManager
-        controller.closure = themeManager.closureApplyTheme
-        navigationController?.pushViewController(controller, animated: true)
+        coordinator?.goToThemesViewController()
     }
 
     @IBAction func newChannelsButoonPressing(_ sender: UIBarButtonItem) {
-
-        let alert = UIAlertController(title: "Enter channel name",
-                                      message: nil, preferredStyle: .alert)
-        alert.addTextField()
-
-        let createButton = UIAlertAction(title: "Create", style: .default) { [unowned alert] _ in
-
-            if let answer = alert.textFields?.first,
-               let name = answer.text, !name.isEmpty {
-
-                let channel: [String: Any] = ["name": name]
-                self.reference.addDocument(data: channel)
-            }
-        }
-        alert.addAction(createButton)
-
-        let cancelButton = UIAlertAction(title: "Cancel", style: .default)
-        alert.addAction(cancelButton)
-
-        alert.setBackgroundColor(color: theme.buttonBackgroundColor)
-
-        present(alert, animated: true)
+        channelsManager.addNewChannel()
     }
 
     @objc

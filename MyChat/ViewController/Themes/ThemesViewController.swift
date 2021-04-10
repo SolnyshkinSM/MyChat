@@ -51,9 +51,7 @@ class ThemesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        collectionButtons.forEach { button in
-            button.layer.cornerRadius = button.bounds.height / 4
-        }
+        collectionButtons.forEach { $0.layer.cornerRadius = $0.bounds.height / 4 }
     }
 
     // MARK: - Public methods

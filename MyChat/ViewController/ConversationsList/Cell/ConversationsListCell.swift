@@ -59,7 +59,7 @@ class ConversationsListCell: UITableViewCell {
 
     // MARK: - Private methods
 
-    func setupContentView() {
+    private func setupContentView() {
 
         backgroundColor = .clear
         clipsToBounds = false

@@ -11,4 +11,6 @@ import Foundation
 
 protocol IChannelsCoordinator {
     func goToChannelDetailViewController(coreDataStack: CoreDataStack, channel: Channel)
+    func goToProfileViewController()
+    func goToThemesViewController()
 }

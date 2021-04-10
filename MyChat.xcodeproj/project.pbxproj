@@ -38,6 +38,7 @@
 		C3724AD125EA2EA20039CD24 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */; };
 		C3725D252605D5C000A49989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3725D242605D5C000A49989 /* GoogleService-Info.plist */; };
 		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
+		C3A9A71A2621C9BE000682CF /* ChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7192621C9BE000682CF /* ChannelsManager.swift */; };
 		C3AD54D9261A410E004CB375 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD54D8261A410E004CB375 /* NSManagedObject.swift */; };
 		C3AD54DF261A43ED004CB375 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD54DE261A43ED004CB375 /* String.swift */; };
 		C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */; };
@@ -89,6 +90,7 @@
 		C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		C3725D242605D5C000A49989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
+		C3A9A7192621C9BE000682CF /* ChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManager.swift; sourceTree = "<group>"; };
 		C3AD54D8261A410E004CB375 /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 		C3AD54DE261A43ED004CB375 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -298,6 +300,14 @@
 			path = PickerController;
 			sourceTree = "<group>";
 		};
+		C3A9A7182621C98E000682CF /* ChannelsManager */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9A7192621C9BE000682CF /* ChannelsManager.swift */,
+			);
+			path = ChannelsManager;
+			sourceTree = "<group>";
+		};
 		C3CC03A326203B330003CF0E /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +318,7 @@
 				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C3A9A7142621C124000682CF /* PickerController */,
+				C3A9A7182621C98E000682CF /* ChannelsManager */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -538,6 +549,7 @@
 				C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */,
 				C36EF9B326208C7800F1DF87 /* TableViewDelegate.swift in Sources */,
 				C32247332601F59600F5F639 /* FileLoaderProtocol.swift in Sources */,
+				C3A9A71A2621C9BE000682CF /* ChannelsManager.swift in Sources */,
 				C3CC03AD26203C2D0003CF0E /* IChannelsCoordinator.swift in Sources */,
 				C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */,
 				C3FFDE49260F580B00974C5C /* CoreDataStack.swift in Sources */,
