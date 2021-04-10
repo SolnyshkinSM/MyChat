@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 // MARK: - TextFieldDelegate
 
@@ -14,38 +13,20 @@ class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
     // MARK: - Private properties
     
-    private let profile: Profile?
-    
-    private var reference: CollectionReference?
-    
-    private lazy var deviceID = UIDevice.current.identifierForVendor?.uuidString
+    private let textFieldShouldReturnHandler: (_ textField: UITextField) -> Void
     
     // MARK: - Initialization
     
-    init(profile: Profile?,
-         reference: CollectionReference?) {
-        self.profile = profile
-        self.reference = reference
+    init(textFieldShouldReturnHandler: @escaping (_ textField: UITextField) -> Void) {
+        self.textFieldShouldReturnHandler = textFieldShouldReturnHandler
     }
     
     // MARK: - Public methods
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if let text = textField.text, !text.isEmpty, !text.blank {
-
-            let messageData: [String: Any] = [
-                "content": text,
-                "created": Date(),
-                "senderId": deviceID ?? "",
-                "senderName": profile?.fullname ?? ""
-            ]
-            
-            _ = reference?.addDocument(data: messageData)
-            
-            textField.text = .none
-        }
-
+        textFieldShouldReturnHandler(textField)
+        
         textField.resignFirstResponder()
         return true
     }

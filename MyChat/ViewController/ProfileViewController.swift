@@ -73,6 +73,17 @@ class ProfileViewController: UIViewController {
 
         self?.activityIndicator.stopAnimating()
     }
+    
+    lazy private var textFieldDelegate = TextFieldDelegate { [weak self] textField in
+        
+        if textField == self?.collectionField.last {
+            textField.resignFirstResponder()
+        } else {
+            if let index = self?.collectionField.firstIndex(of: textField) {
+                self?.collectionField[index + 1].becomeFirstResponder()
+            }
+        }
+    }
 
     // MARK: - Lifecycle
 
@@ -269,7 +280,7 @@ class ProfileViewController: UIViewController {
         nameTextField.setPlaceholder("Full name")
         detailsTextField.setPlaceholder("Detailed information")
 
-        collectionField.forEach { $0.delegate = self; $0.isEnabled = false }
+        collectionField.forEach { $0.delegate = textFieldDelegate; $0.isEnabled = false }
 
         nameTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
         detailsTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
@@ -371,6 +382,15 @@ class ProfileViewController: UIViewController {
         moveTextField(moveDistance: keyboardHeight, moveUp: true)
         keyboardHeight = 0
     }
+    
+    @objc
+    private func changedNameField() {
+
+        [saveGCDButton, saveOperationsButton].forEach {
+            $0.isEnabled =
+                nameTextField.text?.isEmpty == false || detailsTextField.text?.isEmpty == false
+        }
+    }
 
     private func moveTextField(moveDistance: CGFloat, moveUp: Bool) {
 
@@ -413,30 +433,5 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             [saveGCDButton, saveOperationsButton].forEach { $0.isEnabled = true }
         }
         dismiss(animated: true)
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension ProfileViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == collectionField.last {
-            textField.resignFirstResponder()
-        } else {
-            if let index = collectionField.firstIndex(of: textField) {
-                collectionField[index + 1].becomeFirstResponder()
-            }
-        }
-        return true
-    }
-
-    @objc
-    func changedNameField() {
-
-        [saveGCDButton, saveOperationsButton].forEach {
-            $0.isEnabled =
-                nameTextField.text?.isEmpty == false || detailsTextField.text?.isEmpty == false
-        }
     }
 }

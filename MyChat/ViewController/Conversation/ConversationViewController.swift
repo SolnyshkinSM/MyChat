@@ -40,7 +40,20 @@ class ConversationViewController: UIViewController {
         return tableViewDelegate
     }()
     
-    lazy private var textFieldDelegate = TextFieldDelegate(profile: profile, reference: reference)
+    lazy private var textFieldDelegate = TextFieldDelegate { [weak self] textField in
+        
+        if let text = textField.text, !text.isEmpty, !text.blank {
+
+            _ = self?.reference?.addDocument(data: [
+                "content": text,
+                "created": Date(),
+                "senderId": self?.deviceID ?? "",
+                "senderName": self?.profile?.fullname ?? ""
+            ])
+            
+            textField.text = .none
+        }
+    }
     
     lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Message>(
         tableView: tableView)
