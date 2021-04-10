@@ -45,17 +45,13 @@ class ConversationViewController: UIViewController {
         if let text = textField.text, !text.isEmpty, !text.blank {
 
             _ = self?.reference?.addDocument(data: [
-                "content": text,
-                "created": Date(),
+                "content": text, "created": Date(),
                 "senderId": self?.deviceID ?? "",
                 "senderName": self?.profile?.fullname ?? ""
             ])
             textField.text = .none
         }
     }
-    
-    lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Message>(
-        tableView: tableView)
     
     lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
                                                        reference: reference)
@@ -78,44 +74,16 @@ class ConversationViewController: UIViewController {
     
     private var predicate: NSPredicate?
     
-    private var _fetchedResultsController: NSFetchedResultsController<Message>?
+    private lazy var fetchedResultsManager = FetchedResultsManager<Message>(
+        tableView: tableView,
+        sortDescriptors: [NSSortDescriptor(key: "created", ascending: true)],
+        fetchRequest: Message.fetchRequest(),
+        coreDataStack: coreDataStack)
     
-    private var fetchedResultsController: NSFetchedResultsController<Message> {
-        
-        if let _fetchedResultsController = _fetchedResultsController {
-            return _fetchedResultsController
-        }
-        
-        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
-        fetchRequest.fetchBatchSize = 50
-        fetchRequest.predicate = predicate
-        
-        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-                
-        guard let context = coreDataStack?.context else {
-            return NSFetchedResultsController<Message>()
-        }
-        
-        let aFetchedResultsController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: context,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        
-        aFetchedResultsController.delegate = fetchedResultsControllerDelegate
-        _fetchedResultsController = aFetchedResultsController
-        
-        do {
-            try _fetchedResultsController?.performFetch()
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
-        
-        return _fetchedResultsController ?? NSFetchedResultsController<Message>()
-    }
-
+    private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
+    
+    lazy private var fetchedResultsControllerDelegate = fetchedResultsManager.fetchedResultsControllerDelegate
+    
     // MARK: - Lifecycle
 
     deinit {

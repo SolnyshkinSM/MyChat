@@ -38,9 +38,6 @@ class ConversationsListViewController: UIViewController {
         return tableViewDelegate
     }()
     
-    lazy private var fetchedResultsControllerDelegate =
-        FetchedResultsControllerDelegate<Channel>(tableView: tableView)
-    
     lazy private var screenSaver = ScreenSaver(viewController: self)
     
     lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
@@ -65,39 +62,14 @@ class ConversationsListViewController: UIViewController {
 
     private let coreDataStack = CoreDataStack()
     
-    private var _fetchedResultsController: NSFetchedResultsController<Channel>?
+    private lazy var fetchedResultsManager = FetchedResultsManager<Channel>(
+        tableView: tableView,
+        sortDescriptors: [NSSortDescriptor(key: "name", ascending: false)],
+        fetchRequest: Channel.fetchRequest(),
+        coreDataStack: coreDataStack)
     
-    private var fetchedResultsController: NSFetchedResultsController<Channel> {
-        
-        if let _fetchedResultsController = _fetchedResultsController {
-            return _fetchedResultsController
-        }        
-        
-        let fetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
-        fetchRequest.fetchBatchSize = 10
-
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-                
-        let aFetchedResultsController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: coreDataStack.context,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        
-        aFetchedResultsController.delegate = fetchedResultsControllerDelegate
-        _fetchedResultsController = aFetchedResultsController
-                
-        do {
-            try _fetchedResultsController?.performFetch()
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
-        
-        return _fetchedResultsController ?? NSFetchedResultsController<Channel>()
-    }
-
+    private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
