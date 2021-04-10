@@ -39,6 +39,7 @@
 		C3725D252605D5C000A49989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3725D242605D5C000A49989 /* GoogleService-Info.plist */; };
 		C394759F26221F9D009FB796 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394759E26221F9D009FB796 /* ProfileButton.swift */; };
 		C39475A3262223F5009FB796 /* ImageSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A2262223F5009FB796 /* ImageSelectionManager.swift */; };
+		C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A726222677009FB796 /* GraphicsImageRenderer.swift */; };
 		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
 		C3A9A71A2621C9BE000682CF /* ChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7192621C9BE000682CF /* ChannelsManager.swift */; };
 		C3A9A7212621DCB5000682CF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */; };
@@ -94,6 +95,7 @@
 		C3725D242605D5C000A49989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C394759E26221F9D009FB796 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		C39475A2262223F5009FB796 /* ImageSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionManager.swift; sourceTree = "<group>"; };
+		C39475A726222677009FB796 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
 		C3A9A7192621C9BE000682CF /* ChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManager.swift; sourceTree = "<group>"; };
 		C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
@@ -308,6 +310,14 @@
 			path = ImageSelectionManager;
 			sourceTree = "<group>";
 		};
+		C39475A626222668009FB796 /* GraphicsImageRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				C39475A726222677009FB796 /* GraphicsImageRenderer.swift */,
+			);
+			path = GraphicsImageRenderer;
+			sourceTree = "<group>";
+		};
 		C3A9A7142621C124000682CF /* PickerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +346,7 @@
 				C3A9A7142621C124000682CF /* PickerController */,
 				C3A9A7182621C98E000682CF /* ChannelsManager */,
 				C39475A1262223D2009FB796 /* ImageSelectionManager */,
+				C39475A626222668009FB796 /* GraphicsImageRenderer */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -584,6 +595,7 @@
 				C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */,
 				C3F15156262186410021CE85 /* ScreenSaver.swift in Sources */,
 				C32E748425FE74CF0063AB24 /* GCDFileLoader.swift in Sources */,
+				C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */,
 				C3CC03A626203B690003CF0E /* ICoordinator.swift in Sources */,
 				C34551DF25E63919004F13ED /* UIButton.swift in Sources */,
 				C366505925D93FB600335208 /* SceneDelegate.swift in Sources */,

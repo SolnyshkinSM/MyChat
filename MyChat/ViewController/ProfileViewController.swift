@@ -100,6 +100,8 @@ class ProfileViewController: UIViewController {
     lazy private var imageSelectionManager = ImageSelectionManager(
         viewController: self, pickerController: pickerController)
     
+    lazy private var graphicsImageRenderer = GraphicsImageRenderer()
+    
     // MARK: - Lifecycle
     
     required init?(coder: NSCoder) {
@@ -283,40 +285,16 @@ class ProfileViewController: UIViewController {
             profileImageButton.setBackgroundImage(image, for: .normal)
             return
         }
-
-        let renderer = UIGraphicsImageRenderer(size: profileImageButton.bounds.size)
-        let image = renderer.image { (context) in
-
-            context.stroke(renderer.format.bounds)
-            #colorLiteral(red: 0.8941176471, green: 0.9098039216, blue: 0.168627451, alpha: 1).setFill()
-            context.fill(renderer.format.bounds)
-
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-
-            let font = UIFont.systemFont(ofSize: profileImageButton.bounds.height * 0.6)
-            let offset = font.capHeight - font.ascender
-
-            let attributes: [NSAttributedString.Key: Any] = [
-                .font: font,
-                .paragraphStyle: paragraphStyle,
-                .baselineOffset: offset,
-                .kern: 0
-            ]
-
-            var initialsString = "--"
-            if let fullname = profile.fullname {
-                initialsString = String(fullname.prefix(1))
-                if let words = profile.fullname?.components(separatedBy: " "), words.count == 2 {
-                    initialsString += String(words[1].prefix(1))
-                }
+        
+        var initialsString = "--"
+        if let fullname = profile.fullname {
+            initialsString = String(fullname.prefix(1))
+            if let words = profile.fullname?.components(separatedBy: " "), words.count == 2 {
+                initialsString += String(words[1].prefix(1))
             }
-
-            initialsString.draw(with: renderer.format.bounds,
-                                options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
         }
-
-        profileImageButton.setBackgroundImage(image, for: .normal)
+        
+        graphicsImageRenderer.drawSymbolsOnButton(button: profileImageButton, of: initialsString)
     }
 
     private func configureButtons() {
