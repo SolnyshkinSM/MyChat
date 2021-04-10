@@ -70,7 +70,6 @@ class ProfileViewController: UIViewController {
                 self?.present(alert, animated: true)
             }
         }
-
         self?.activityIndicator.stopAnimating()
     }
     
@@ -114,8 +113,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // print(#function + " Edit butoon frame: \(editButoon.frame)")
+        
         configureView()
     }
 
@@ -133,16 +131,7 @@ class ProfileViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // print(#function + " Edit butoon frame: \(editButoon.frame)")
-        /* viewDidLoad вызывается когда View загружено но еще не помещено
-         в иерархию представлений, поэтому отображаются размеры из раскадровки (Storyboard).
-         После добавления View в иерархию представлений, отображается реалиный размер элемента.
-         */
-    }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -156,7 +145,7 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func editButoonPressing(_ sender: UIButton) {
-
+        
         showSavePanel(true)
         nameTextField.becomeFirstResponder()
     }
