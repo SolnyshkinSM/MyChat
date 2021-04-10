@@ -38,8 +38,10 @@ class ConversationsListViewController: UIViewController {
         return tableViewDelegate
     }()
     
-    lazy private var fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Channel>(
-        tableView: tableView)
+    lazy private var fetchedResultsControllerDelegate =
+        FetchedResultsControllerDelegate<Channel>(tableView: tableView)
+    
+    lazy private var screenSaver = ScreenSaver(viewController: self)
     
     private let refreshControl = UIRefreshControl()
 
@@ -91,7 +93,7 @@ class ConversationsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupScreenSaver()
+        screenSaver.loadScreenSaver()
 
         navigationItem.largeTitleDisplayMode = .always
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
@@ -173,22 +175,7 @@ class ConversationsListViewController: UIViewController {
     }
 
     // MARK: - Private methods
-    
-    private func setupScreenSaver() {
-
-        let screensaver = UIImageView(frame: view.bounds)
-        screensaver.backgroundColor = theme.backgroundColor
-        screensaver.contentMode = .center
-        screensaver.image = UIImage(named: "logo")
-        screensaver.clipsToBounds = true
-        view.addSubview(screensaver)
-
-        UIView.animate(withDuration: 3) {
-            screensaver.alpha = 0
-            self.navigationController?.navigationBar.alpha = 1
-        }
-    }
-    
+        
     private func loadData() {
         
         let context = coreDataStack.context
