@@ -53,8 +53,9 @@ class ConversationViewController: UIViewController {
         }
     }
     
-    lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
-                                                       reference: reference)
+    lazy private var firebaseManager = FirebaseManager<Message>(
+        coreDataStack: coreDataStack, reference: reference,
+        fetchRequest: Message.fetchRequest(), channel: channel)
 
     private var keyboardHeight: CGFloat = 0
 
@@ -78,6 +79,7 @@ class ConversationViewController: UIViewController {
         tableView: tableView,
         sortDescriptors: [NSSortDescriptor(key: "created", ascending: true)],
         fetchRequest: Message.fetchRequest(),
+        predicate: predicate,
         coreDataStack: coreDataStack)
     
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
@@ -155,7 +157,7 @@ class ConversationViewController: UIViewController {
         if let identifier = channel.identifier {
             predicate = NSPredicate(format: "channel.identifier = %@", identifier)
             reference = db.collection("channels").document(identifier).collection("messages")
-            listener = firebaseManager.addSnapshotListenerMessage(for: channel)
+            listener = firebaseManager.addSnapshotListener()
         }
     }
 

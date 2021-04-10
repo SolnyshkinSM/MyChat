@@ -39,10 +39,10 @@ class ConversationsListViewController: UIViewController {
     }()
     
     lazy private var screenSaver = ScreenSaver(viewController: self)
-    
-    lazy private var firebaseManager = FirebaseManager(coreDataStack: coreDataStack,
-                                                       reference: reference)
-    
+   
+    lazy private var firebaseManager = FirebaseManager(
+        coreDataStack: coreDataStack, reference: reference, fetchRequest: Channel.fetchRequest())
+        
     lazy private var channelsManager = ChannelsManager(viewController: self) { [weak self] alert in
         if let answer = alert.textFields?.first,
            let name = answer.text, !name.isEmpty {
@@ -89,8 +89,7 @@ class ConversationsListViewController: UIViewController {
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        listener = firebaseManager.addSnapshotListenerChannel()
+        listener = firebaseManager.addSnapshotListener()
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,7 +117,7 @@ class ConversationsListViewController: UIViewController {
     @objc
     func refreshTableView() {
         Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { [weak self] _ in
-            self?.listener = self?.firebaseManager.addSnapshotListenerChannel()
+            self?.listener = self?.firebaseManager.addSnapshotListener()
             self?.refreshControl.endRefreshing()
         }
     }

@@ -38,7 +38,6 @@ class GCDFileLoader: FileLoaderProtocol {
     }
 
     func cancelAllOperations() {
-
         state = .cancelled
     }
 }

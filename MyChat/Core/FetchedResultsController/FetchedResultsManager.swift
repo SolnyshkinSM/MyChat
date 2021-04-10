@@ -22,6 +22,8 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
     
     private let fetchRequest: NSFetchRequest<Model>
     
+    private let predicate: NSPredicate?
+    
     private var _fetchedResultsController: NSFetchedResultsController<Model>?
     
     // MARK: - Public properties
@@ -35,6 +37,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
         
         guard let context = coreDataStack?.context else { return NSFetchedResultsController<Model>() }
         
+        fetchRequest.predicate = predicate
         fetchRequest.fetchBatchSize = 10
         fetchRequest.sortDescriptors = sortDescriptors
         
@@ -62,10 +65,12 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
     init(tableView: UITableView,
          sortDescriptors: [NSSortDescriptor],
          fetchRequest: NSFetchRequest<Model>,
+         predicate: NSPredicate? = nil,
          coreDataStack: CoreDataStack?) {
         self.tableView = tableView
         self.sortDescriptors = sortDescriptors
         self.fetchRequest = fetchRequest
         self.coreDataStack = coreDataStack
+        self.predicate = predicate
     }
 }

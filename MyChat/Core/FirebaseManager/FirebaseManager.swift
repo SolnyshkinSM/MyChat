@@ -11,7 +11,7 @@ import CoreData
 
 // MARK: - FirebaseManager
 
-class FirebaseManager {
+class FirebaseManager<Model: NSFetchRequestResult> {
     
     // MARK: - Private properties
     
@@ -19,87 +19,61 @@ class FirebaseManager {
     
     private let reference: CollectionReference?
     
+    private let fetchRequest: NSFetchRequest<Model>
+    
+    private let channel: Channel?
+    
     // MARK: - Initialization
     
     init(coreDataStack: CoreDataStack?,
-         reference: CollectionReference?) {
+         reference: CollectionReference?,
+         fetchRequest: NSFetchRequest<Model>,
+         channel: Channel? = nil) {
         self.coreDataStack = coreDataStack
         self.reference = reference
+        self.fetchRequest = fetchRequest
+        self.channel = channel
     }
     
     // MARK: - Public methods
     
-    func addSnapshotListenerChannel() -> ListenerRegistration? {
-        
-        guard let context = coreDataStack?.context else { return nil }    
-        
-        let fetchRequest: NSFetchRequest<Channel> = Channel.fetchRequest()
-        fetchRequest.resultType = .managedObjectResultType
-        
-        let listener = reference?.addSnapshotListener { [weak self] snapshot, _ in
-            
-            snapshot?.documentChanges.forEach { diff in
-                
-                let document = diff.document
-                fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
-                guard let fetchResults = try? context.fetch(fetchRequest) else { return }
-                
-                if fetchResults.isEmpty {
-                    _ = Channel(identifier: document.documentID, with: document.data(), in: context)
-                } else {
-                    guard let channel = fetchResults.first else { return }
-                    
-                    switch diff.type {
-                    case .modified:
-                        let data = document.data()
-                        if channel.lastMessage != data["lastMessage"] as? String {
-                            _ = Channel(identifier: document.documentID, with: data, in: context)
-                        }
-                    case .removed:
-                        context.delete(channel)
-                    default:
-                        break
-                    }
-                }
-            }
-            self?.coreDataStack?.saveContext()
-        }
-        
-        return listener
-    }
-    
-    func addSnapshotListenerMessage(for channel: Channel?) -> ListenerRegistration? {
+    func addSnapshotListener() -> ListenerRegistration? {
         
         guard let context = coreDataStack?.context else { return nil }
         
-        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
         fetchRequest.resultType = .managedObjectResultType
         
         let listener = reference?.addSnapshotListener { [weak self] snapshot, _ in
             
             snapshot?.documentChanges.forEach { diff in
                 
+                guard let fetchRequest = self?.fetchRequest else { return }
+                
                 let document = diff.document
                 fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
                 guard let fetchResults = try? context.fetch(fetchRequest) else { return }
                 
                 if fetchResults.isEmpty {
-                    let message_db = Message(identifier: document.documentID,
-                                             with: document.data(), in: context)
-                    channel?.addToMessages(message_db)
+                    self?.addNewObject(document, in: context)
                 } else {
-                    guard let message = fetchResults.first else { return }
+                    
+                    guard let object = fetchResults.first as? NSManagedObject else { return }
                     
                     switch diff.type {
                     case .modified:
-                        let data = document.data()
-                        if message.content != data["content"] as? String {
-                            let message_db = Message(identifier: document.documentID,
-                                                     with: document.data(), in: context)
-                            channel?.addToMessages(message_db)
+                        
+                        if let channel = object as? Channel,
+                           channel.lastMessage != document.data()["lastMessage"] as? String {
+                            self?.addNewObject(document, in: context)
                         }
+                        
+                        if let message = object as? Message,
+                           message.content != document.data()["content"] as? String {
+                            self?.addNewObject(document, in: context)
+                        }
+                        
                     case .removed:
-                        context.delete(message)
+                        context.delete(object)
                     default:
                         break
                     }
@@ -107,7 +81,27 @@ class FirebaseManager {
             }
             self?.coreDataStack?.saveContext()
         }
-        
         return listener
+    }
+    
+    // MARK: - Private methods
+    
+    private func addNewObject(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
+        
+        if Model.self == Channel.self {
+            addNewChannel(document, in: context)
+        } else if Model.self == Message.self {
+            addNewMessage(document, in: context)
+        }
+    }
+    
+    private func addNewChannel(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
+        _ = Channel(identifier: document.documentID, with: document.data(), in: context)
+    }
+    
+    private func addNewMessage(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
+        let message_db = Message(identifier: document.documentID,
+                                 with: document.data(), in: context)
+        channel?.addToMessages(message_db)
     }
 }
