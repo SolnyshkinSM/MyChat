@@ -154,7 +154,7 @@ class ThemeManager {
     }
 
     let closureApplyTheme = { (theme: Theme) in
-
+        
         // UserDefaults
         // UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
         // UserDefaults.standard.synchronize()
@@ -194,38 +194,6 @@ class ThemeManager {
     }
 
     func applyTheme(_ theme: Theme = shared.currentTheme) {
-
-        // UserDefaults
-        // UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
-        // UserDefaults.standard.synchronize()
-
-        // GCDFileLoader
-        GCDFileLoader.shared.writeFile(object: Settings(theme: theme.rawValue)) { _ in }
-
-        UIView.appearance().tintColor = theme.tintColor
-        UINavigationBar.appearance().barStyle = theme.barStyle
-        UIRefreshControl.appearance().tintColor = theme.tintColor
-
-        UITextField.appearance().keyboardAppearance = theme.keyboardAppearance
-        UITextField.appearance().textColor = theme.textColor
-        UITextField.appearance().backgroundColor = theme.textFieldbackgroundColor
-
-        UILabel.appearance(whenContainedInInstancesOf: [UITableView.self]).textColor = theme.textColor
-
-        UIView.appearance(whenContainedInInstancesOf:
-                            [ThemesViewController.self]).backgroundColor = theme.backgroundColor
-        UILabel.appearance(whenContainedInInstancesOf:
-                            [ThemesViewController.self]).textColor = theme.textColor
-
-        UIView.appearance(whenContainedInInstancesOf:
-                            [ConversationsListViewController.self]).backgroundColor = theme.backgroundColor
-
-        UIView.appearance(whenContainedInInstancesOf:
-                            [ConversationViewController.self]).backgroundColor = theme.backgroundColor
-
-        UIView.appearance(whenContainedInInstancesOf:
-                            [ProfileViewController.self]).backgroundColor = theme.backgroundColor
-        UILabel.appearance(whenContainedInInstancesOf:
-                            [ProfileViewController.self]).textColor = theme.textColor
+        closureApplyTheme(theme)
     }
 }

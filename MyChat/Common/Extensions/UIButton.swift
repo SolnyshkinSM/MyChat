@@ -16,4 +16,11 @@ extension UIButton {
         let circlePath = UIBezierPath(ovalIn: self.bounds)
         return circlePath.contains(point)
     }
+    
+    func configereCircleButton(theme: Theme) {
+        
+        layer.masksToBounds = true
+        backgroundColor = theme.profileImageButtonColor
+        layer.cornerRadius = bounds.height / 2
+    }
 }

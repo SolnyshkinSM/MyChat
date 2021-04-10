@@ -37,6 +37,7 @@
 		C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724ACD25EA2C5E0039CD24 /* ConversationsListViewController.swift */; };
 		C3724AD125EA2EA20039CD24 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */; };
 		C3725D252605D5C000A49989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3725D242605D5C000A49989 /* GoogleService-Info.plist */; };
+		C394759F26221F9D009FB796 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394759E26221F9D009FB796 /* ProfileButton.swift */; };
 		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
 		C3A9A71A2621C9BE000682CF /* ChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7192621C9BE000682CF /* ChannelsManager.swift */; };
 		C3A9A7212621DCB5000682CF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */; };
@@ -90,6 +91,7 @@
 		C3724ACD25EA2C5E0039CD24 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		C3724AD025EA2EA20039CD24 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		C3725D242605D5C000A49989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C394759E26221F9D009FB796 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
 		C3A9A7192621C9BE000682CF /* ChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManager.swift; sourceTree = "<group>"; };
 		C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */,
 				C322472F2601F55A00F5F639 /* OperationFileLoader.swift */,
 				C3FFDE48260F580B00974C5C /* CoreDataStack.swift */,
+				C394759E26221F9D009FB796 /* ProfileButton.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				C366505B25D93FB600335208 /* ViewController.swift in Sources */,
 				C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */,
 				C3A9A7162621C136000682CF /* PickerController.swift in Sources */,
+				C394759F26221F9D009FB796 /* ProfileButton.swift in Sources */,
 				C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */,
 				C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */,
 				C30A65BC25F6737B00962C9C /* UIWindow.swift in Sources */,

@@ -105,9 +105,7 @@ class ProfileViewController: UIViewController {
         // На данном этапе создания View еще нет ни самой View, ни ее свойств.
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+    deinit { NotificationCenter.default.removeObserver(self) }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,9 +141,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        profileImageButton.layer.masksToBounds = true
-        profileImageButton.backgroundColor = theme.profileImageButtonColor
-        profileImageButton.layer.cornerRadius = profileImageButton.bounds.height / 2
+        profileImageButton.configereCircleButton(theme: theme)
     }
 
     // MARK: - Public methods
