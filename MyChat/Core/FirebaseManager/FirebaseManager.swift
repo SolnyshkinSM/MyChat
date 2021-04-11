@@ -15,7 +15,7 @@ class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
     
     // MARK: - Private properties
     
-    private let coreDataStack: CoreDataStack?
+    private let coreDataStack: CoreDataStackProtocol?
     
     private let reference: CollectionReference?
     
@@ -25,7 +25,7 @@ class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
     
     // MARK: - Initialization
     
-    init(coreDataStack: CoreDataStack?,
+    init(coreDataStack: CoreDataStackProtocol?,
          reference: CollectionReference?,
          fetchRequest: NSFetchRequest<Model>,
          channel: Channel? = nil) {

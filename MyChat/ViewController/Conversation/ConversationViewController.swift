@@ -21,13 +21,13 @@ class ConversationViewController: UIViewController {
     
     // MARK: - Public properties
     
-    var coreDataStack: CoreDataStack?
+    var coreDataStack: CoreDataStackProtocol?
     
     // MARK: - Private properties
         
     lazy private var tableViewDataSource: TableViewDataSourceProtocol = {
         let tableViewDataSource = TableViewDataSource(
-            database: db,
+            database: database,
             coreDataStack: coreDataStack,
             fetchedResultsController: fetchedResultsController)
         return tableViewDataSource
@@ -67,7 +67,7 @@ class ConversationViewController: UIViewController {
 
     private var profile: Profile? { didSet { messageField.delegate = textFieldDelegate } }
 
-    private lazy var db = Firestore.firestore()
+    private lazy var database = Firestore.firestore()
 
     private var reference: CollectionReference?
 
@@ -157,7 +157,7 @@ class ConversationViewController: UIViewController {
         
         if let identifier = channel.identifier {
             predicate = NSPredicate(format: "channel.identifier = %@", identifier)
-            reference = db.collection("channels").document(identifier).collection("messages")
+            reference = database.collection("channels").document(identifier).collection("messages")
             listener = firebaseManager.addSnapshotListener()
         }
     }

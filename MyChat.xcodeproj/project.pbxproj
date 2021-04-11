@@ -20,6 +20,7 @@
 		C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */; };
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
 		C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */; };
+		C355D7D72623540700028130 /* CoreDataStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D62623540700028130 /* CoreDataStackProtocol.swift */; };
 		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
 		C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14872620996700716EDA /* TextFieldDelegate.swift */; };
 		C35F135825FA2F280028A796 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135725FA2F280028A796 /* Section.swift */; };
@@ -81,6 +82,7 @@
 		C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManagerProtocol.swift; sourceTree = "<group>"; };
+		C355D7D62623540700028130 /* CoreDataStackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackProtocol.swift; sourceTree = "<group>"; };
 		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C35C14872620996700716EDA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		C35F135725FA2F280028A796 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -169,6 +171,15 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		C355D7D5262353F200028130 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				C355D7D62623540700028130 /* CoreDataStackProtocol.swift */,
+				C3FFDE48260F580B00974C5C /* CoreDataStack.swift */,
+			);
+			path = CoreDataStack;
+			sourceTree = "<group>";
+		};
 		C35C14822620914A00716EDA /* FetchedResultsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +241,6 @@
 				C3648F79260347BA000D75C8 /* StateLoader.swift */,
 				C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */,
 				C322472F2601F55A00F5F639 /* OperationFileLoader.swift */,
-				C3FFDE48260F580B00974C5C /* CoreDataStack.swift */,
 				C394759E26221F9D009FB796 /* ProfileButton.swift */,
 			);
 			path = Helper;
@@ -393,6 +403,7 @@
 				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C3A9A7182621C98E000682CF /* ChannelsManager */,
+				C355D7D5262353F200028130 /* CoreDataStack */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C35C14862620994300716EDA /* TextField */,
 				C3A9A7142621C124000682CF /* PickerController */,
@@ -626,6 +637,7 @@
 				C3CEF76125EAD8A000C1C933 /* ConversationCell.swift in Sources */,
 				C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */,
 				C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */,
+				C355D7D72623540700028130 /* CoreDataStackProtocol.swift in Sources */,
 				C35F135825FA2F280028A796 /* Section.swift in Sources */,
 				C3B04FD22622FD5C0044632B /* FirebaseManagerProtocol.swift in Sources */,
 				C3CC03B326203CC30003CF0E /* Coordinator.swift in Sources */,

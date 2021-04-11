@@ -17,7 +17,7 @@ class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, TableViewDelegat
     
     private let coordinator: GoToCoordinatorProtocol?
     
-    private let coreDataStack: CoreDataStack?
+    private let coreDataStack: CoreDataStackProtocol?
     
     private let listener: ListenerRegistration?
     
@@ -26,7 +26,7 @@ class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, TableViewDelegat
     // MARK: - Initialization
     
     init(coordinator: GoToCoordinatorProtocol?,
-         coreDataStack: CoreDataStack?,
+         coreDataStack: CoreDataStackProtocol?,
          listener: ListenerRegistration?,
          fetchedResultsController: NSFetchedResultsController<Model>) {
         self.coordinator = coordinator

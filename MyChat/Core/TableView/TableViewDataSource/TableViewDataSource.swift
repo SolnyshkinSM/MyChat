@@ -17,7 +17,7 @@ class TableViewDataSource<Model: NSFetchRequestResult>: NSObject, TableViewDataS
     
     private let database: Firestore
     
-    private let coreDataStack: CoreDataStack?
+    private let coreDataStack: CoreDataStackProtocol?
     
     private let fetchedResultsController: NSFetchedResultsController<Model>?
     
@@ -26,7 +26,7 @@ class TableViewDataSource<Model: NSFetchRequestResult>: NSObject, TableViewDataS
     // MARK: - Initialization
     
     init(database: Firestore,
-         coreDataStack: CoreDataStack?,
+         coreDataStack: CoreDataStackProtocol?,
          fetchedResultsController: NSFetchedResultsController<Model>) {
         self.database = database
         self.coreDataStack = coreDataStack

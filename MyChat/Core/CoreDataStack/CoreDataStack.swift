@@ -10,11 +10,13 @@ import CoreData
 
 // MARK: - CoreDataStack
 
-class CoreDataStack {
+class CoreDataStack: CoreDataStackProtocol {
         
+    // MARK: - Private properties
+    
     private let dataBaseName = "Chats"
     
-    lazy var container: NSPersistentContainer = {
+    private lazy var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: dataBaseName)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
@@ -24,11 +26,15 @@ class CoreDataStack {
         return container
     }()
     
+    // MARK: - Public properties
+    
     lazy var context: NSManagedObjectContext = {
         let context = container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
+    
+    // MARK: - Public methods
     
     func saveContext() {
         if context.hasChanges {

@@ -62,7 +62,7 @@ class ConversationsListViewController: UIViewController {
 
     private var listener: ListenerRegistration?
 
-    private let coreDataStack = CoreDataStack()
+    private let coreDataStack: CoreDataStackProtocol = CoreDataStack()
     
     private lazy var fetchedResultsManager = FetchedResultsManager<Channel>(
         tableView: tableView,

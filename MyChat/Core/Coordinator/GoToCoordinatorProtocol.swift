@@ -10,7 +10,7 @@ import Foundation
 // MARK: - GoToCoordinatorProtocol
 
 protocol GoToCoordinatorProtocol {
-    func goToChannelDetailViewController(coreDataStack: CoreDataStack, channel: Channel)
+    func goToChannelDetailViewController(coreDataStack: CoreDataStackProtocol, channel: Channel)
     func goToProfileViewController()
     func goToThemesViewController()
 }

@@ -52,7 +52,7 @@ extension Coordinator: GoToCoordinatorProtocol {
     
     // MARK: - Public methods
     
-    func goToChannelDetailViewController(coreDataStack: CoreDataStack, channel: Channel) {
+    func goToChannelDetailViewController(coreDataStack: CoreDataStackProtocol, channel: Channel) {
         
         if let viewController = storyboard.instantiateViewController(
             withIdentifier: "ConversationViewController") as? ConversationViewController {

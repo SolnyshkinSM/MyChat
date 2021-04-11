@@ -18,7 +18,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
     
     private let sortDescriptors: [NSSortDescriptor]
     
-    private let coreDataStack: CoreDataStack?
+    private let coreDataStack: CoreDataStackProtocol?
     
     private let fetchRequest: NSFetchRequest<Model>
     
@@ -66,7 +66,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
          sortDescriptors: [NSSortDescriptor],
          fetchRequest: NSFetchRequest<Model>,
          predicate: NSPredicate? = nil,
-         coreDataStack: CoreDataStack?) {
+         coreDataStack: CoreDataStackProtocol?) {
         self.tableView = tableView
         self.sortDescriptors = sortDescriptors
         self.fetchRequest = fetchRequest
