@@ -47,6 +47,8 @@
 		C3B04F922622E2050044632B /* ThemeManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04F912622E2050044632B /* ThemeManagerProtocol.swift */; };
 		C3B04FA82622E5DA0044632B /* PrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FA72622E5DA0044632B /* PrintManager.swift */; };
 		C3B04FAB2622E5F60044632B /* PrintManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FAA2622E5F60044632B /* PrintManagerProtocol.swift */; };
+		C3B04FC42622F7C60044632B /* TableViewDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FC32622F7C60044632B /* TableViewDataSourceProtocol.swift */; };
+		C3B04FC92622FB550044632B /* TableViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FC82622FB550044632B /* TableViewDelegateProtocol.swift */; };
 		C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */; };
 		C3B4167425F4FF3900A486BE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4167325F4FF3900A486BE /* UITextField.swift */; };
 		C3CC03A626203B690003CF0E /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC03A526203B690003CF0E /* CoordinatorProtocol.swift */; };
@@ -105,6 +107,8 @@
 		C3B04F912622E2050044632B /* ThemeManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManagerProtocol.swift; sourceTree = "<group>"; };
 		C3B04FA72622E5DA0044632B /* PrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintManager.swift; sourceTree = "<group>"; };
 		C3B04FAA2622E5F60044632B /* PrintManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintManagerProtocol.swift; sourceTree = "<group>"; };
+		C3B04FC32622F7C60044632B /* TableViewDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceProtocol.swift; sourceTree = "<group>"; };
+		C3B04FC82622FB550044632B /* TableViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegateProtocol.swift; sourceTree = "<group>"; };
 		C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		C3B4167325F4FF3900A486BE /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		C3CC03A526203B690003CF0E /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -282,8 +286,8 @@
 		C36EF9AD26208BBE00F1DF87 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				C36EF9AE26208BDF00F1DF87 /* TableViewDataSource.swift */,
-				C36EF9B226208C7800F1DF87 /* TableViewDelegate.swift */,
+				C3B04FC12622F7780044632B /* TableViewDataSource */,
+				C3B04FC22622F78B0044632B /* TableViewDelegate */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -352,6 +356,24 @@
 				C3B04FA72622E5DA0044632B /* PrintManager.swift */,
 			);
 			path = PrintManager;
+			sourceTree = "<group>";
+		};
+		C3B04FC12622F7780044632B /* TableViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				C3B04FC32622F7C60044632B /* TableViewDataSourceProtocol.swift */,
+				C36EF9AE26208BDF00F1DF87 /* TableViewDataSource.swift */,
+			);
+			path = TableViewDataSource;
+			sourceTree = "<group>";
+		};
+		C3B04FC22622F78B0044632B /* TableViewDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C3B04FC82622FB550044632B /* TableViewDelegateProtocol.swift */,
+				C36EF9B226208C7800F1DF87 /* TableViewDelegate.swift */,
+			);
+			path = TableViewDelegate;
 			sourceTree = "<group>";
 		};
 		C3CC03A326203B330003CF0E /* Core */ = {
@@ -578,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B04FC42622F7C60044632B /* TableViewDataSourceProtocol.swift in Sources */,
 				C3B04FAB2622E5F60044632B /* PrintManagerProtocol.swift in Sources */,
 				C366505B25D93FB600335208 /* ViewController.swift in Sources */,
 				C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */,
@@ -587,6 +610,7 @@
 				C3B04FA82622E5DA0044632B /* PrintManager.swift in Sources */,
 				C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */,
 				C30A65BC25F6737B00962C9C /* UIWindow.swift in Sources */,
+				C3B04FC92622FB550044632B /* TableViewDelegateProtocol.swift in Sources */,
 				C39475A3262223F5009FB796 /* ImageSelectionManager.swift in Sources */,
 				C3AD54DF261A43ED004CB375 /* String.swift in Sources */,
 				C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */,

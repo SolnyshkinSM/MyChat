@@ -11,7 +11,7 @@ import CoreData
 
 // MARK: - TableViewDataSource
 
-class TableViewDataSource<Model: NSFetchRequestResult>: NSObject, UITableViewDataSource {
+class TableViewDataSource<Model: NSFetchRequestResult>: NSObject, TableViewDataSourceProtocol {
     
     // MARK: - Private properties
     

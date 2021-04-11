@@ -25,7 +25,7 @@ class ConversationViewController: UIViewController {
     
     // MARK: - Private properties
         
-    lazy private var tableViewDataSource: TableViewDataSource<Message> = {
+    lazy private var tableViewDataSource: TableViewDataSourceProtocol = {
         let tableViewDataSource = TableViewDataSource(
             database: db,
             coreDataStack: coreDataStack,
@@ -33,10 +33,10 @@ class ConversationViewController: UIViewController {
         return tableViewDataSource
     }()
     
-    lazy private var tableViewDelegate: TableViewDelegate<Message> = {
+    lazy private var tableViewDelegate: TableViewDelegateProtocol = {
         let tableViewDelegate = TableViewDelegate(
             coordinator: nil,
-            coreDataStack: nil,
+            coreDataStack: coreDataStack,
             listener: listener,
             fetchedResultsController: fetchedResultsController)
         return tableViewDelegate

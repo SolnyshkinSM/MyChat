@@ -11,7 +11,7 @@ import CoreData
 
 // MARK: - TableViewDelegate
 
-class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, UITableViewDelegate {
+class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, TableViewDelegateProtocol {
     
     // MARK: - Private properties
     
