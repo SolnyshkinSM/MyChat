@@ -11,7 +11,7 @@ import CoreData
 
 // MARK: - FirebaseManager
 
-class FirebaseManager<Model: NSFetchRequestResult> {
+class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
     
     // MARK: - Private properties
     

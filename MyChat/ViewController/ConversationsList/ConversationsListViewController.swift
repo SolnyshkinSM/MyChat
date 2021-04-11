@@ -42,7 +42,7 @@ class ConversationsListViewController: UIViewController {
     
     lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
    
-    lazy private var firebaseManager = FirebaseManager(
+    lazy private var firebaseManager: FirebaseManagerProtocol = FirebaseManager(
         coreDataStack: coreDataStack, reference: reference, fetchRequest: Channel.fetchRequest())
         
     lazy private var channelsManager = ChannelsManager(viewController: self) { [weak self] alert in
