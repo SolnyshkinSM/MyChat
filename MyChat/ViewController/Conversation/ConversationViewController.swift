@@ -13,11 +13,13 @@ import CoreData
 
 class ConversationViewController: UIViewController {
 
-    // MARK: - Public properties
+    // MARK: - IBOutlet properties    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!
     @IBOutlet weak var vaultView: UIView!
+    
+    // MARK: - Public properties
     
     var coreDataStack: CoreDataStack?
     

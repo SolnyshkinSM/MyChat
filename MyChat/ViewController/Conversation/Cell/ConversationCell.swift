@@ -9,7 +9,7 @@ import UIKit
 
 class ConversationCell: UITableViewCell {
 
-    // MARK: - Public properties
+    // MARK: - IBOutlet properties
 
     @IBOutlet weak var bubbleView: BubbleView!
     @IBOutlet weak var messageLabel: UILabel!

@@ -19,7 +19,7 @@ class ConversationsListViewController: UIViewController {
     
     // MARK: - Public properties
     
-    public var coordinator: ChannelCoordinatorProtocol?
+    public var coordinator: GoToCoordinatorProtocol?
 
     // MARK: - Private properties
     

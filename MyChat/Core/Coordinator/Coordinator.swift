@@ -48,7 +48,7 @@ final class Coordinator: CoordinatorProtocol {
 
 // MARK: - IMoviesCoordinator
 
-extension Coordinator: ChannelCoordinatorProtocol {
+extension Coordinator: GoToCoordinatorProtocol {
     
     // MARK: - Public methods
     

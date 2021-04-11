@@ -11,7 +11,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    // MARK: - Public properties
+    // MARK: - IBOutlet properties
 
     @IBOutlet weak var barView: UIView!
 

@@ -11,7 +11,7 @@ import UIKit
 
 class ThemesViewController: UIViewController {
 
-    // MARK: - Public properties
+    // MARK: - IBOutlet properties
 
     @IBOutlet var collectionButtons: [UIButton]!
 
@@ -28,6 +28,8 @@ class ThemesViewController: UIViewController {
     @IBOutlet weak var dayLabel: UILabel!
 
     @IBOutlet weak var nightLabel: UILabel!
+    
+    // MARK: - Public properties
 
     var themeManager: ThemeManagerProtocol = ThemeManager()
 

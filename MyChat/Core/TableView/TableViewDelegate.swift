@@ -15,7 +15,7 @@ class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, UITableViewDeleg
     
     // MARK: - Private properties
     
-    private let coordinator: ChannelCoordinatorProtocol?
+    private let coordinator: GoToCoordinatorProtocol?
     
     private let coreDataStack: CoreDataStack?
     
@@ -25,7 +25,7 @@ class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, UITableViewDeleg
     
     // MARK: - Initialization
     
-    init(coordinator: ChannelCoordinatorProtocol?,
+    init(coordinator: GoToCoordinatorProtocol?,
          coreDataStack: CoreDataStack?,
          listener: ListenerRegistration?,
          fetchedResultsController: NSFetchedResultsController<Model>) {
