@@ -19,6 +19,7 @@
 		C34551DF25E63919004F13ED /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34551DE25E63918004F13ED /* UIButton.swift */; };
 		C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */; };
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
+		C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */; };
 		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
 		C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14872620996700716EDA /* TextFieldDelegate.swift */; };
 		C35F135825FA2F280028A796 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135725FA2F280028A796 /* Section.swift */; };
@@ -79,6 +80,7 @@
 		C34551DE25E63918004F13ED /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManagerProtocol.swift; sourceTree = "<group>"; };
 		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C35C14872620996700716EDA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		C35F135725FA2F280028A796 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 		C3A9A7182621C98E000682CF /* ChannelsManager */ = {
 			isa = PBXGroup;
 			children = (
+				C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */,
 				C3A9A7192621C9BE000682CF /* ChannelsManager.swift */,
 			);
 			path = ChannelsManager;
@@ -389,10 +392,10 @@
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
 				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
+				C3A9A7182621C98E000682CF /* ChannelsManager */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C35C14862620994300716EDA /* TextField */,
 				C3A9A7142621C124000682CF /* PickerController */,
-				C3A9A7182621C98E000682CF /* ChannelsManager */,
 				C39475A1262223D2009FB796 /* ImageSelectionManager */,
 				C39475A626222668009FB796 /* GraphicsImageRenderer */,
 			);
@@ -649,6 +652,7 @@
 				C36EF9AF26208BDF00F1DF87 /* TableViewDataSource.swift in Sources */,
 				C3B04FCD2622FCD10044632B /* ScreenSaverProtocol.swift in Sources */,
 				C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */,
+				C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */,
 				C3F15156262186410021CE85 /* ScreenSaver.swift in Sources */,
 				C3B04F922622E2050044632B /* ThemeManagerProtocol.swift in Sources */,
 				C32E748425FE74CF0063AB24 /* GCDFileLoader.swift in Sources */,

@@ -45,7 +45,7 @@ class ConversationsListViewController: UIViewController {
     lazy private var firebaseManager: FirebaseManagerProtocol = FirebaseManager(
         coreDataStack: coreDataStack, reference: reference, fetchRequest: Channel.fetchRequest())
         
-    lazy private var channelsManager = ChannelsManager(viewController: self) { [weak self] alert in
+    lazy private var channelsManager: ChannelsManagerProtocol = ChannelsManager(viewController: self) { [weak self] alert in
         if let answer = alert.textFields?.first,
            let name = answer.text, !name.isEmpty {
             self?.reference.addDocument(data: ["name": name])
