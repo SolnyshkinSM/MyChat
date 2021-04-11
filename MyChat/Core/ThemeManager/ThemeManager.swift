@@ -126,18 +126,18 @@ enum Theme: Int {
 
 // MARK: - ThemeManager
 
-class ThemeManager {
+class ThemeManager: ThemeManagerProtocol {
+    
+    // MARK: - Static properties
 
     static let shared = ThemeManager()
-
-    static let selectedTheme = "SelectedTheme"
-
-    var currentViewController: UIViewController?
-
+    
+    // MARK: - Public properties
+    
     var currentTheme: Theme {
 
         // UserDefaults
-        // let storedTheme = UserDefaults.standard.integer(forKey: ThemeManager.selectedTheme)
+        // let storedTheme = UserDefaults.standard.integer(forKey: "SelectedTheme")
         // return Theme(rawValue: storedTheme) ?? .default
 
         // FileWorkManager
@@ -152,11 +152,13 @@ class ThemeManager {
         }
         return theme
     }
+    
+    // MARK: - Public methods
 
-    let closureApplyTheme = { (theme: Theme) in
+    func applyTheme(_ theme: Theme = shared.currentTheme) {
         
         // UserDefaults
-        // UserDefaults.standard.set(theme.rawValue, forKey: ThemeManager.selectedTheme)
+        // UserDefaults.standard.set(theme.rawValue, forKey: "SelectedTheme")
         // UserDefaults.standard.synchronize()
 
         // GCDFileLoader
@@ -187,13 +189,5 @@ class ThemeManager {
                             [ProfileViewController.self]).backgroundColor = theme.backgroundColor
         UILabel.appearance(whenContainedInInstancesOf:
                             [ProfileViewController.self]).textColor = theme.textColor
-    }
-
-    lazy var closureRetainCycle = { [self] in
-        print(self)
-    }
-
-    func applyTheme(_ theme: Theme = shared.currentTheme) {
-        closureApplyTheme(theme)
     }
 }

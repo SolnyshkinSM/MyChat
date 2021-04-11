@@ -29,7 +29,7 @@ class ThemesViewController: UIViewController {
 
     @IBOutlet weak var nightLabel: UILabel!
 
-    var themeManager: ThemeManager?
+    var themeManager: ThemeManagerProtocol = ThemeManager()
 
     var closure: ((Theme) -> Void)?
 
@@ -42,7 +42,7 @@ class ThemesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        currentTheme = themeManager?.currentTheme
+        currentTheme = themeManager.currentTheme
 
         configureView()
         updateButtons()
@@ -63,22 +63,10 @@ class ThemesViewController: UIViewController {
             : (sender as? UIButton)?.tag
 
         if let selectedTheme = Theme(rawValue: rawValue ?? 0) {
-
-            // Изменение темы приложения
-            // themeManager?.applyTheme(selectedTheme)
-            closure?(selectedTheme)
-
-            // retain cycle может возникнуть:
-
-            // 1. Если установить текущий ViewController в качестве свойства themeManager
-            // themeManager?.currentViewController = self
-
-            // 2. Если в closure использовать strong захват
-            // themeManager?.closureRetainCycle()
-
+            themeManager.applyTheme(selectedTheme)
             updateButtons(theme: selectedTheme)
         }
-
+        
         reloadView()
     }
 
@@ -108,7 +96,7 @@ class ThemesViewController: UIViewController {
             button.layer.borderColor = UIColor.lightGray.cgColor
         }
 
-        let rawValue = theme != nil ? theme?.rawValue : themeManager?.currentTheme.rawValue
+        let rawValue = theme != nil ? theme?.rawValue : themeManager.currentTheme.rawValue
         collectionButtons[rawValue ?? 0].layer.borderWidth = 2
         collectionButtons[rawValue ?? 0].layer.borderColor = UIColor.blue.cgColor
     }
@@ -116,8 +104,8 @@ class ThemesViewController: UIViewController {
     @objc
     private func cancelButoonPressing(_ sender: UIBarItem) {
 
-        if currentTheme != themeManager?.currentTheme {
-            themeManager?.applyTheme(currentTheme ?? .default)
+        if currentTheme != themeManager.currentTheme {
+            themeManager.applyTheme(currentTheme ?? .default)
             reloadView()
         }
         navigationController?.popViewController(animated: true)

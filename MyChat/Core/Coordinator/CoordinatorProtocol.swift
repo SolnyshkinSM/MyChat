@@ -1,5 +1,5 @@
 //
-//  ICoordinator.swift
+//  CoordinatorProtocol.swift
 //  MyChat
 //
 //  Created by Administrator on 09.04.2021.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-// MARK: - ICoordinator
+// MARK: - CoordinatorProtocol
 
-protocol ICoordinator {
+protocol CoordinatorProtocol {
     var navigationController: UINavigationController { get }
     func start()
 }

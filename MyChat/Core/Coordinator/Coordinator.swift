@@ -13,7 +13,7 @@ import UIKit
  Coordinator pattern
  */
 
-final class Coordinator: ICoordinator {
+final class Coordinator: CoordinatorProtocol {
     
     // MARK: - Public properties
     
@@ -50,7 +50,7 @@ final class Coordinator: ICoordinator {
 
 // MARK: - IMoviesCoordinator
 
-extension Coordinator: IChannelsCoordinator {
+extension Coordinator: ChannelCoordinatorProtocol {
     
     func goToChannelDetailViewController(coreDataStack: CoreDataStack, channel: Channel) {
         
@@ -73,9 +73,6 @@ extension Coordinator: IChannelsCoordinator {
         
         if let controller = storyboard.instantiateViewController(
             withIdentifier: "ThemesViewController") as? ThemesViewController {
-            let themeManager = ThemeManager()
-            controller.themeManager = themeManager
-            controller.closure = themeManager.closureApplyTheme
             navigationController.pushViewController(controller, animated: true)
         }
     }

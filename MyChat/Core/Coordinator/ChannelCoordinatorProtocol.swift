@@ -1,5 +1,5 @@
 //
-//  IChannelsCoordinator.swift
+//  ChannelCoordinatorProtocol.swift
 //  MyChat
 //
 //  Created by Administrator on 09.04.2021.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - IChannelsCoordinator
+// MARK: - ChannelCoordinatorProtocol
 
-protocol IChannelsCoordinator {
+protocol ChannelCoordinatorProtocol {
     func goToChannelDetailViewController(coreDataStack: CoreDataStack, channel: Channel)
     func goToProfileViewController()
     func goToThemesViewController()

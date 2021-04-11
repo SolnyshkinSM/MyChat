@@ -17,7 +17,7 @@ class ConversationsListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    public var coordinator: IChannelsCoordinator?
+    public var coordinator: ChannelCoordinatorProtocol?
 
     // MARK: - Private properties
     
