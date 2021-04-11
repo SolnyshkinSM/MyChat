@@ -183,8 +183,8 @@
 		C35C14822620914A00716EDA /* FetchedResultsController */ = {
 			isa = PBXGroup;
 			children = (
-				C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */,
 				C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */,
+				C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */,
 			);
 			path = FetchedResultsController;
 			sourceTree = "<group>";
