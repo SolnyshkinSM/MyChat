@@ -15,11 +15,9 @@ import UIKit
 
 final class Coordinator: CoordinatorProtocol {
     
-    // MARK: - Public properties
-    
-    var navigationController: UINavigationController
-    
     // MARK: - Private properties
+    
+    private var navigationController: UINavigationController
     
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
     
@@ -51,6 +49,8 @@ final class Coordinator: CoordinatorProtocol {
 // MARK: - IMoviesCoordinator
 
 extension Coordinator: ChannelCoordinatorProtocol {
+    
+    // MARK: - Public methods
     
     func goToChannelDetailViewController(coreDataStack: CoreDataStack, channel: Channel) {
         

@@ -10,6 +10,5 @@ import UIKit
 // MARK: - CoordinatorProtocol
 
 protocol CoordinatorProtocol {
-    var navigationController: UINavigationController { get }
     func start()
 }
