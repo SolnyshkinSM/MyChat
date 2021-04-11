@@ -11,7 +11,7 @@ import UIKit
 
 class ConversationsListCell: UITableViewCell {
 
-    // MARK: - Public properties
+    // MARK: - IBOutlet properties
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

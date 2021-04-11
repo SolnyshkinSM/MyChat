@@ -13,9 +13,11 @@ import CoreData
 
 class ConversationsListViewController: UIViewController {
 
-    // MARK: - Public properties
+    // MARK: - IBOutlet properties
 
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Public properties
     
     public var coordinator: ChannelCoordinatorProtocol?
 
