@@ -40,7 +40,7 @@ class ConversationsListViewController: UIViewController {
         return tableViewDelegate
     }()
     
-    lazy private var screenSaver = ScreenSaver(viewController: self)
+    lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
    
     lazy private var firebaseManager = FirebaseManager(
         coreDataStack: coreDataStack, reference: reference, fetchRequest: Channel.fetchRequest())

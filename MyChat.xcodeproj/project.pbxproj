@@ -49,6 +49,7 @@
 		C3B04FAB2622E5F60044632B /* PrintManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FAA2622E5F60044632B /* PrintManagerProtocol.swift */; };
 		C3B04FC42622F7C60044632B /* TableViewDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FC32622F7C60044632B /* TableViewDataSourceProtocol.swift */; };
 		C3B04FC92622FB550044632B /* TableViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FC82622FB550044632B /* TableViewDelegateProtocol.swift */; };
+		C3B04FCD2622FCD10044632B /* ScreenSaverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B04FCC2622FCD10044632B /* ScreenSaverProtocol.swift */; };
 		C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */; };
 		C3B4167425F4FF3900A486BE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B4167325F4FF3900A486BE /* UITextField.swift */; };
 		C3CC03A626203B690003CF0E /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC03A526203B690003CF0E /* CoordinatorProtocol.swift */; };
@@ -109,6 +110,7 @@
 		C3B04FAA2622E5F60044632B /* PrintManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintManagerProtocol.swift; sourceTree = "<group>"; };
 		C3B04FC32622F7C60044632B /* TableViewDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceProtocol.swift; sourceTree = "<group>"; };
 		C3B04FC82622FB550044632B /* TableViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegateProtocol.swift; sourceTree = "<group>"; };
+		C3B04FCC2622FCD10044632B /* ScreenSaverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverProtocol.swift; sourceTree = "<group>"; };
 		C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		C3B4167325F4FF3900A486BE /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		C3CC03A526203B690003CF0E /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -383,9 +385,9 @@
 				C3B04F902622E1EA0044632B /* ThemeManager */,
 				C3B04FA62622E5C00044632B /* PrintManager */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
+				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C35C14862620994300716EDA /* TextField */,
-				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C3A9A7142621C124000682CF /* PickerController */,
 				C3A9A7182621C98E000682CF /* ChannelsManager */,
@@ -435,6 +437,7 @@
 		C3F151542621861A0021CE85 /* ScreenSaver */ = {
 			isa = PBXGroup;
 			children = (
+				C3B04FCC2622FCD10044632B /* ScreenSaverProtocol.swift */,
 				C3F15155262186410021CE85 /* ScreenSaver.swift */,
 			);
 			path = ScreenSaver;
@@ -640,6 +643,7 @@
 				C325085F25F0179100A92D9C /* BubbleView.swift in Sources */,
 				C36EEE9425E2582600A60E66 /* ProfileViewController.swift in Sources */,
 				C36EF9AF26208BDF00F1DF87 /* TableViewDataSource.swift in Sources */,
+				C3B04FCD2622FCD10044632B /* ScreenSaverProtocol.swift in Sources */,
 				C3F5E72C25E6A89500633D0D /* Profile.swift in Sources */,
 				C3F15156262186410021CE85 /* ScreenSaver.swift in Sources */,
 				C3B04F922622E2050044632B /* ThemeManagerProtocol.swift in Sources */,

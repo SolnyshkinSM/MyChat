@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - ScreenSaver
 
-class ScreenSaver {
+class ScreenSaver: ScreenSaverProtocol {
     
     // MARK: - Private properties
     
