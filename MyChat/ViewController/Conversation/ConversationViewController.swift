@@ -86,7 +86,7 @@ class ConversationViewController: UIViewController {
     
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
     
-    lazy private var fetchedResultsControllerDelegate = fetchedResultsManager.fetchedResultsControllerDelegate
+    lazy private var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol = fetchedResultsManager.fetchedResultsControllerDelegate
     
     // MARK: - Lifecycle
 

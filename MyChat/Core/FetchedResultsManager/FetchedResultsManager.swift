@@ -28,7 +28,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
     
     // MARK: - Public properties
     
-    lazy var fetchedResultsControllerDelegate =
+    lazy var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol =
         FetchedResultsControllerDelegate<Model>(tableView: tableView)
     
     var fetchedResultsController: NSFetchedResultsController<Model> {

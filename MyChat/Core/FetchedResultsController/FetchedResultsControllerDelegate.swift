@@ -10,7 +10,7 @@ import CoreData
 
 // MARK: - FetchedResultsControllerDelegate
 
-class FetchedResultsControllerDelegate<Model: NSFetchRequestResult>: NSObject, NSFetchedResultsControllerDelegate {
+class FetchedResultsControllerDelegate<Model: NSFetchRequestResult>: NSObject, FetchedResultsControllerProtocol {
     
     // MARK: - Private properties
     

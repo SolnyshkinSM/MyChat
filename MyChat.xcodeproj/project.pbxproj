@@ -21,6 +21,7 @@
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
 		C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */; };
 		C355D7D72623540700028130 /* CoreDataStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D62623540700028130 /* CoreDataStackProtocol.swift */; };
+		C355D7FA262371DE00028130 /* FetchedResultsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */; };
 		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
 		C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14872620996700716EDA /* TextFieldDelegate.swift */; };
 		C35F135825FA2F280028A796 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135725FA2F280028A796 /* Section.swift */; };
@@ -83,6 +84,7 @@
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManagerProtocol.swift; sourceTree = "<group>"; };
 		C355D7D62623540700028130 /* CoreDataStackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackProtocol.swift; sourceTree = "<group>"; };
+		C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerProtocol.swift; sourceTree = "<group>"; };
 		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C35C14872620996700716EDA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		C35F135725FA2F280028A796 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -180,10 +182,18 @@
 			path = CoreDataStack;
 			sourceTree = "<group>";
 		};
-		C35C14822620914A00716EDA /* FetchedResultsController */ = {
+		C355D7FD2623729E00028130 /* FetchedResultsManager */ = {
 			isa = PBXGroup;
 			children = (
 				C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */,
+			);
+			path = FetchedResultsManager;
+			sourceTree = "<group>";
+		};
+		C35C14822620914A00716EDA /* FetchedResultsController */ = {
+			isa = PBXGroup;
+			children = (
+				C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */,
 				C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */,
 			);
 			path = FetchedResultsController;
@@ -404,6 +414,7 @@
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C3A9A7182621C98E000682CF /* ChannelsManager */,
 				C355D7D5262353F200028130 /* CoreDataStack */,
+				C355D7FD2623729E00028130 /* FetchedResultsManager */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C35C14862620994300716EDA /* TextField */,
 				C3A9A7142621C124000682CF /* PickerController */,
@@ -672,6 +683,7 @@
 				C3CC03A626203B690003CF0E /* CoordinatorProtocol.swift in Sources */,
 				C34551DF25E63919004F13ED /* UIButton.swift in Sources */,
 				C366505925D93FB600335208 /* SceneDelegate.swift in Sources */,
+				C355D7FA262371DE00028130 /* FetchedResultsControllerProtocol.swift in Sources */,
 				C3B4167425F4FF3900A486BE /* UITextField.swift in Sources */,
 				C32247302601F55A00F5F639 /* OperationFileLoader.swift in Sources */,
 			);
