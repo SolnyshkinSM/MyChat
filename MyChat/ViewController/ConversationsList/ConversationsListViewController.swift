@@ -17,6 +17,8 @@ class ConversationsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: - Private properties
+    
+    private let coreDataStack = CoreDataStack()
 
     private let refreshControl = UIRefreshControl()
 
@@ -34,8 +36,9 @@ class ConversationsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupScreenSaver()
+        setupCoreDataStack()
         loadData()
 
         navigationItem.largeTitleDisplayMode = .always
@@ -101,11 +104,19 @@ class ConversationsListViewController: UIViewController {
     }
 
     // MARK: - Private methods
+    
+    private func setupCoreDataStack() {
+        
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDatabaseStatistice()
+        }
+        coreDataStack.enableObservers()
+    }
 
     private func setupScreenSaver() {
 
         let screensaver = UIImageView(frame: view.bounds)
-        screensaver.backgroundColor = .white
+        screensaver.backgroundColor = theme.backgroundColor
         screensaver.contentMode = .center
         screensaver.image = UIImage(named: "logo")
         screensaver.clipsToBounds = true
@@ -120,14 +131,37 @@ class ConversationsListViewController: UIViewController {
     private func loadData() {
 
         listener = reference.addSnapshotListener { [weak self] snapshot, _ in
-
-            self?.channels.removeAll()
-            snapshot?.documents.forEach({ document in
-
-                let channel = Channel(identifier: document.documentID, with: document.data())
-                self?.channels.append(channel)
-            })
+            
+            let models = snapshot?.documents.map { document -> Channel in
+                return Channel(identifier: document.documentID, with: document.data())
+            }
+            
+            guard let channels = models else { return }
+            
+            self?.channels = channels
             self?.tableView.reloadData()
+        }
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.saveDataStorage()
+            // self?.coreDataStack.printDatabaseStatistice()
+        }
+    }
+    
+    private func saveDataStorage() {
+        
+        self.coreDataStack.performSave { [weak self] context in
+            
+            // TODO: sleep
+            // sleep(10)
+            
+            self?.channels.forEach { channel in
+                let channel_db = Channel_db(channel: channel, in: context)
+                channel.messages.forEach { message in
+                    let message_db = Message_db(message: message, in: context)
+                    channel_db.addToMessages(message_db)
+                }
+            }
         }
     }
 }

@@ -105,7 +105,8 @@ class ConversationViewController: UIViewController {
             self?.messages.removeAll()
             snapshot?.documents.forEach({ document in
 
-                let message = Message(document.data())
+                let message = Message(identifier: document.documentID,
+                                      with: document.data())
                 self?.messages.append(message)
             })
 
@@ -199,17 +200,18 @@ extension ConversationViewController: UITextFieldDelegate {
 
         if let text = textField.text, !text.isEmpty, !text.blank {
 
-            let message: [String: Any] = [
+            let messageData: [String: Any] = [
                 "content": text,
                 "created": Date(),
                 "senderId": deviceID ?? "",
                 "senderName": profile?.fullname ?? ""
             ]
 
-            messages.append(Message(message))
-
-            reference?.addDocument(data: message)
-
+            let messageRef = reference?.addDocument(data: messageData)
+            if let messageRef = messageRef {
+                messages.append(Message(identifier: messageRef.documentID, with: messageData))
+            }
+            
             textField.text = .none
             tableView.reloadData()
 
