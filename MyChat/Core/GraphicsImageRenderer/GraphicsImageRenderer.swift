@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - GraphicsImageRenderer
 
-class GraphicsImageRenderer {
+class GraphicsImageRenderer: GraphicsImageRendererProtocol {
     
     func drawSymbolsOnButton(button: UIButton, of text: String) {
         

@@ -97,7 +97,7 @@ class ProfileViewController: UIViewController {
     lazy private var imageSelectionManager: ImageSelectionManagerProtocol = ImageSelectionManager(
         viewController: self, pickerController: pickerController)
     
-    lazy private var graphicsImageRenderer = GraphicsImageRenderer()
+    lazy private var graphicsImageRenderer: GraphicsImageRendererProtocol = GraphicsImageRenderer()
     
     lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
     
