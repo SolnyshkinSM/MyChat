@@ -28,9 +28,8 @@ class ConversationCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        nameLabel.backgroundColor = .none
-        messageLabel.backgroundColor = .none
-
+        [nameLabel, messageLabel].forEach { $0.backgroundColor = .none }
+        
         nameLabel.textColor = theme.buttonTintColor
 
         self.removeBottomSeparator()

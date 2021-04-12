@@ -42,7 +42,7 @@ class ConversationViewController: UIViewController {
         return tableViewDelegate
     }()
     
-    lazy private var textFieldDelegate = TextFieldDelegate { [weak self] textField in
+    lazy private var textFieldDelegate: UITextFieldDelegate = TextFieldDelegate { [weak self] textField in
         
         if let text = textField.text, !text.isEmpty, !text.blank {
 

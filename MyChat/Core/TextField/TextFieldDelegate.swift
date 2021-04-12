@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - TextFieldDelegate
 
-class TextFieldDelegate: NSObject, UITextFieldDelegate {
+class TextFieldDelegate: NSObject, TextFieldDelegateProtocol {
     
     // MARK: - Private properties
     
