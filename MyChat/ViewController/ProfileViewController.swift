@@ -94,7 +94,7 @@ class ProfileViewController: UIViewController {
         self?.dismiss(animated: true)
     }
     
-    lazy private var imageSelectionManager = ImageSelectionManager(
+    lazy private var imageSelectionManager: ImageSelectionManagerProtocol = ImageSelectionManager(
         viewController: self, pickerController: pickerController)
     
     lazy private var graphicsImageRenderer = GraphicsImageRenderer()
