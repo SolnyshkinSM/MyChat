@@ -42,7 +42,7 @@ class ConversationViewController: UIViewController {
         return tableViewDelegate
     }()
     
-    lazy private var textFieldDelegate: UITextFieldDelegate = TextFieldDelegate { [weak self] textField in
+    lazy private var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
         
         if let text = textField.text, !text.isEmpty, !text.blank {
 
@@ -55,7 +55,7 @@ class ConversationViewController: UIViewController {
         }
     }
     
-    lazy private var firebaseManager = FirebaseManager<Message>(
+    lazy private var firebaseManager: FirebaseManagerProtocol = FirebaseManager<Message>(
         coreDataStack: coreDataStack, reference: reference,
         fetchRequest: Message.fetchRequest(), channel: channel)
 
