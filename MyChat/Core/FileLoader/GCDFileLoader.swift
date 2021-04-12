@@ -10,13 +10,19 @@ import Foundation
 // MARK: - GCDFileLoader
 
 class GCDFileLoader: FileLoaderProtocol {
+    
+    // MARK: - Public properties
 
     static var shared: FileLoaderProtocol = GCDFileLoader()
 
     var state: StateLoader = .ready
+    
+    // MARK: - Private properties
 
     private let queue = DispatchQueue(label: "ru.queue.isolation", attributes: .concurrent)
 
+    // MARK: - Public methods
+    
     func writeFile<T: Codable>(object: T, completion: @escaping (Result<Bool, Error>) -> Void) {
 
         state = .executing

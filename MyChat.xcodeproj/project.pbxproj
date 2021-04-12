@@ -254,10 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */,
-				C32247322601F59600F5F639 /* FileLoaderProtocol.swift */,
 				C3648F79260347BA000D75C8 /* StateLoader.swift */,
-				C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */,
-				C322472F2601F55A00F5F639 /* OperationFileLoader.swift */,
 				C394759E26221F9D009FB796 /* ProfileButton.swift */,
 			);
 			path = Helper;
@@ -350,6 +347,16 @@
 			path = MoveTextFieldManager;
 			sourceTree = "<group>";
 		};
+		C38DB96D2624427C00F602E3 /* FileLoader */ = {
+			isa = PBXGroup;
+			children = (
+				C32247322601F59600F5F639 /* FileLoaderProtocol.swift */,
+				C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */,
+				C322472F2601F55A00F5F639 /* OperationFileLoader.swift */,
+			);
+			path = FileLoader;
+			sourceTree = "<group>";
+		};
 		C39475A1262223D2009FB796 /* ImageSelectionManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +440,7 @@
 				C355D7FD2623729E00028130 /* FetchedResultsManager */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C38DB96626243CE000F602E3 /* MoveTextFieldManager */,
+				C38DB96D2624427C00F602E3 /* FileLoader */,
 				C35C14862620994300716EDA /* TextField */,
 				C3A9A7142621C124000682CF /* PickerController */,
 				C39475A1262223D2009FB796 /* ImageSelectionManager */,

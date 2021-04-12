@@ -10,15 +10,23 @@ import Foundation
 // MARK: - OperationFileLoader
 
 class OperationFileLoader: FileLoaderProtocol {
+    
+    // MARK: - Public properties
 
     static var shared: FileLoaderProtocol = OperationFileLoader()
 
     var state: StateLoader = .ready
+    
+    // MARK: - Private properties
 
     private let queue = OperationQueue()
+    
+    // MARK: - Initialization
 
     init() { queue.maxConcurrentOperationCount = 1 }
 
+    // MARK: - Public methods
+    
     func writeFile<T: Codable>(object: T, completion: @escaping (Result<Bool, Error>) -> Void) {
 
         let fileWriteOperation = FileWriteOperation(object: object, loader: self)
@@ -65,6 +73,8 @@ class OperationFileLoader: FileLoaderProtocol {
 // MARK: AsyncOperation
 
 class AsyncOperation: Operation {
+    
+    // MARK: - Enums
 
     enum State: String {
         case ready, executing, finished, cancelled
@@ -73,6 +83,8 @@ class AsyncOperation: Operation {
             return "is" + rawValue.capitalized
         }
     }
+    
+    // MARK: - Public properties
 
     var state = State.ready {
         willSet {
@@ -85,6 +97,8 @@ class AsyncOperation: Operation {
         }
     }
 }
+
+// MARK: - AsyncOperation public properties
 
 extension AsyncOperation {
 
@@ -132,15 +146,21 @@ protocol FileWriteOperationProtocol {
 
 class FileWriteOperation<T: Codable>: AsyncOperation, FileWriteOperationProtocol {
 
+    // MARK: - Private properties
+    
     private let object: T
     private var loader: FileLoaderProtocol
     private(set) var result: Result<Bool, Error>?
 
+    // MARK: - Initialization
+    
     init(object: T, loader: FileLoaderProtocol) {
         self.object = object
         self.loader = loader
         super.init()
     }
+    
+    // MARK: - Public methods
 
     override func main() {
 
@@ -170,8 +190,12 @@ protocol FileReadOperationProtocol {
 
 class FileReadOperation<T: Codable>: AsyncOperation, FileReadOperationProtocol {
 
+    // MARK: - Private properties
+    
     private(set) var result: Result<T, Error>?
 
+    // MARK: - Public methods
+    
     override func main() {
 
         // TODO: sleep
