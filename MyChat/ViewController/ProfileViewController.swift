@@ -43,8 +43,6 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Private properties
 
-    private var keyboardHeight: CGFloat = 0
-
     private var profile: Profile?
 
     private let theme = ThemeManager.shared.currentTheme
@@ -101,6 +99,8 @@ class ProfileViewController: UIViewController {
     
     lazy private var graphicsImageRenderer = GraphicsImageRenderer()
     
+    lazy private var moveTextFieldManager: MoveTextFieldManagerDelegate = MoveTextFieldManager(view: self.view)
+    
     // MARK: - Lifecycle
     
     required init?(coder: NSCoder) {
@@ -121,13 +121,13 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
 
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow(notification:)),
+            moveTextFieldManager,
+            selector: #selector(moveTextFieldManager.keyboardWillShow(notification:)),
             name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide(notification:)),
+            moveTextFieldManager,
+            selector: #selector(moveTextFieldManager.keyboardWillHide(notification:)),
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
@@ -308,40 +308,11 @@ class ProfileViewController: UIViewController {
     }
 
     @objc
-    private func keyboardWillShow(notification: Notification) {
-
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-
-            if keyboardHeight != keyboardRectangle.height {
-                keyboardHeight = keyboardRectangle.height
-                moveTextField(moveDistance: keyboardHeight, moveUp: false)
-            }
-        }
-    }
-
-    @objc
-    private func keyboardWillHide(notification: Notification) {
-
-        moveTextField(moveDistance: keyboardHeight, moveUp: true)
-        keyboardHeight = 0
-    }
-    
-    @objc
     private func changedNameField() {
 
         [saveGCDButton, saveOperationsButton].forEach {
             $0.isEnabled =
                 nameTextField.text?.isEmpty == false || detailsTextField.text?.isEmpty == false
-        }
-    }
-
-    private func moveTextField(moveDistance: CGFloat, moveUp: Bool) {
-
-        let movement: CGFloat = CGFloat(moveUp ? moveDistance: -moveDistance)
-
-        UIView.animate(withDuration: 0.3) {
-            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
 

@@ -59,8 +59,6 @@ class ConversationViewController: UIViewController {
         coreDataStack: coreDataStack, reference: reference,
         fetchRequest: Message.fetchRequest(), channel: channel)
 
-    private var keyboardHeight: CGFloat = 0
-
     private lazy var deviceID = UIDevice.current.identifierForVendor?.uuidString
 
     private var fileLoader: FileLoaderProtocol = GCDFileLoader.shared
@@ -87,6 +85,8 @@ class ConversationViewController: UIViewController {
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
     
     lazy private var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol = fetchedResultsManager.fetchedResultsControllerDelegate
+    
+    lazy private var moveTextFieldManager: MoveTextFieldManagerDelegate = MoveTextFieldManager(view: self.view)
     
     // MARK: - Lifecycle
 
@@ -129,13 +129,13 @@ class ConversationViewController: UIViewController {
         super.viewWillAppear(animated)
 
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow(notification:)),
+            moveTextFieldManager,
+            selector: #selector(moveTextFieldManager.keyboardWillShow(notification:)),
             name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide(notification:)),
+            moveTextFieldManager,
+            selector: #selector(moveTextFieldManager.keyboardWillHide(notification:)),
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
         }
@@ -159,35 +159,6 @@ class ConversationViewController: UIViewController {
             predicate = NSPredicate(format: "channel.identifier = %@", identifier)
             reference = database.collection("channels").document(identifier).collection("messages")
             listener = firebaseManager.addSnapshotListener()
-        }
-    }
-
-    // MARK: - Private methods
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-
-            if keyboardHeight != keyboardRectangle.height {
-                keyboardHeight = keyboardRectangle.height
-                moveTextField(moveDistance: keyboardHeight, moveUp: false)
-            }
-        }
-    }
-
-    @objc private func keyboardWillHide(notification: Notification) {
-
-        moveTextField(moveDistance: keyboardHeight, moveUp: true)
-        keyboardHeight = 0
-    }
-
-    private func moveTextField(moveDistance: CGFloat, moveUp: Bool) {
-
-        let movement: CGFloat = CGFloat(moveUp ? moveDistance: -moveDistance)
-
-        UIView.animate(withDuration: 0.3) {
-            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
 
