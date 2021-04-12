@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController {
         self?.activityIndicator.stopAnimating()
     }
     
-    lazy private var textFieldDelegate = TextFieldDelegate { [weak self] textField in
+    lazy private var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
         
         if textField == self?.collectionField.last {
             textField.resignFirstResponder()
