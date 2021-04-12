@@ -259,8 +259,6 @@
 		C366507325D9483000335208 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */,
-				C3648F79260347BA000D75C8 /* StateLoader.swift */,
 				C394759E26221F9D009FB796 /* ProfileButton.swift */,
 			);
 			path = Helper;
@@ -356,9 +354,11 @@
 		C38DB96D2624427C00F602E3 /* FileLoader */ = {
 			isa = PBXGroup;
 			children = (
+				C3648F79260347BA000D75C8 /* StateLoader.swift */,
 				C32247322601F59600F5F639 /* FileLoaderProtocol.swift */,
 				C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */,
 				C322472F2601F55A00F5F639 /* OperationFileLoader.swift */,
+				C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */,
 			);
 			path = FileLoader;
 			sourceTree = "<group>";

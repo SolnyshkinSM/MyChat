@@ -105,8 +105,6 @@ class ProfileViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        // print(editButoon.frame)
-        // На данном этапе создания View еще нет ни самой View, ни ее свойств.
     }
 
     deinit { NotificationCenter.default.removeObserver(self) }
