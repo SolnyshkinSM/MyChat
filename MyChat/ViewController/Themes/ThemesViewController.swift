@@ -35,14 +35,12 @@ class ThemesViewController: UIViewController {
 
     // MARK: - Private properties
 
-    private var currentTheme: Theme?
+    lazy private var currentTheme = themeManager.currentTheme
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        currentTheme = themeManager.currentTheme
 
         configureView()
         updateButtons()
@@ -105,7 +103,7 @@ class ThemesViewController: UIViewController {
     private func cancelButoonPressing(_ sender: UIBarItem) {
 
         if currentTheme != themeManager.currentTheme {
-            themeManager.applyTheme(currentTheme ?? .default)
+            themeManager.applyTheme(currentTheme)
             reloadView()
         }
         navigationController?.popViewController(animated: true)
