@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - MoveTextFieldManager
 
-class MoveTextFieldManager: MoveTextFieldManagerDelegate {
+class MoveTextFieldManager: MoveTextFieldProtocol {
     
     // MARK: - Private properties
     

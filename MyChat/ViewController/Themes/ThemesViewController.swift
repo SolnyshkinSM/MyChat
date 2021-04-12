@@ -33,8 +33,6 @@ class ThemesViewController: UIViewController {
 
     var themeManager: ThemeManagerProtocol = ThemeManager()
 
-    var closure: ((Theme) -> Void)?
-
     // MARK: - Private properties
 
     private var currentTheme: Theme?

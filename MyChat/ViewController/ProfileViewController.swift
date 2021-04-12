@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController {
     
     lazy private var graphicsImageRenderer = GraphicsImageRenderer()
     
-    lazy private var moveTextFieldManager: MoveTextFieldManagerProtocol = MoveTextFieldManager(view: self.view)
+    lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
     
     // MARK: - Lifecycle
     

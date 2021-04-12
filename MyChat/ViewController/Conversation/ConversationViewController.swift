@@ -86,7 +86,7 @@ class ConversationViewController: UIViewController {
     
     lazy private var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol = fetchedResultsManager.fetchedResultsControllerDelegate
     
-    lazy private var moveTextFieldManager: MoveTextFieldManagerProtocol = MoveTextFieldManager(view: self.view)
+    lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
     
     // MARK: - Lifecycle
 
