@@ -535,9 +535,7 @@
 		C3F8DBB22624C03200E4C11D /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C3F8DBB72624C39A00E4C11D /* ConversationsList */,
-				C3F8DBBB2624C4F800E4C11D /* Conversation */,
-				C3F8DBC62624C96200E4C11D /* Themes */,
+				C3F8DBCF2624CBCE00E4C11D /* Modules */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -545,8 +543,8 @@
 		C3F8DBB32624C07E00E4C11D /* BusinessLogicLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C3F8DBB52624C1F200E4C11D /* Services */,
 				C3F8DBB62624C1FE00E4C11D /* Entities */,
+				C3F8DBB52624C1F200E4C11D /* Services */,
 			);
 			path = BusinessLogicLayer;
 			sourceTree = "<group>";
@@ -672,6 +670,16 @@
 				C3F8DBCA2624CA1000E4C11D /* Theme.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C3F8DBCF2624CBCE00E4C11D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C3F8DBB72624C39A00E4C11D /* ConversationsList */,
+				C3F8DBBB2624C4F800E4C11D /* Conversation */,
+				C3F8DBC62624C96200E4C11D /* Themes */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
