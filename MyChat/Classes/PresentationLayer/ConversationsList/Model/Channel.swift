@@ -1,8 +1,8 @@
 //
-//  ChatsDataModel.swift
+//  Channel.swift
 //  MyChat
 //
-//  Created by Administrator on 27.03.2021.
+//  Created by Administrator on 12.04.2021.
 //
 
 import Foundation
@@ -13,11 +13,15 @@ import Firebase
 
 extension Channel {
     
+    // MARK: - Enums
+    
     enum CodingKeys: String, CodingKey {
         case name
         case lastMessage
         case lastActivity
     }
+    
+    // MARK: - Initialization
     
     convenience init(identifier: String,
                      with data: [String: Any],
@@ -32,6 +36,8 @@ extension Channel {
         lastActivity = timestamp?.dateValue()
     }
     
+    // MARK: - Public properties
+    
     var about: String {
         let description = "\(String(describing: name)), identifier: \(String(describing: identifier)) \n"
         let messages = self.messages?.allObjects
@@ -40,35 +46,5 @@ extension Channel {
             .joined(separator: "\n") ?? ""
         
         return description + messages
-    }
-}
-
-// MARK: - Message
-
-extension Message {
-    
-    enum CodingKeys: String, CodingKey {
-        case content
-        case created
-        case senderId
-        case senderName
-    }
-    
-    convenience init(identifier: String,
-                     with data: [String: Any],
-                     in context: NSManagedObjectContext) {
-        self.init(context: context)
-        
-        self.identifier = identifier
-        content = data[CodingKeys.content.rawValue] as? String ?? ""
-        senderId = data[CodingKeys.senderId.rawValue] as? String ?? ""
-        senderName = data[CodingKeys.senderName.rawValue] as? String ?? ""
-
-        let timestamp = data[CodingKeys.created.rawValue] as? Timestamp
-        created = timestamp?.dateValue() ?? Date()
-    }
-    
-    var about: String {
-        return "message: \(String(describing: content)), created: \(String(describing: created))"
     }
 }
