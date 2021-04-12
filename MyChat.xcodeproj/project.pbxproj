@@ -24,8 +24,6 @@
 		C355D7FA262371DE00028130 /* FetchedResultsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */; };
 		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
 		C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14872620996700716EDA /* TextFieldDelegate.swift */; };
-		C35F135825FA2F280028A796 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135725FA2F280028A796 /* Section.swift */; };
-		C35F135B25FA2FE90028A796 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F135A25FA2FE90028A796 /* User.swift */; };
 		C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3648F79260347BA000D75C8 /* StateLoader.swift */; };
 		C366505725D93FB600335208 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366505625D93FB600335208 /* AppDelegate.swift */; };
 		C366505925D93FB600335208 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366505825D93FB600335208 /* SceneDelegate.swift */; };
@@ -95,8 +93,6 @@
 		C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerProtocol.swift; sourceTree = "<group>"; };
 		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C35C14872620996700716EDA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
-		C35F135725FA2F280028A796 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		C35F135A25FA2FE90028A796 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C3648F79260347BA000D75C8 /* StateLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoader.swift; sourceTree = "<group>"; };
 		C366505325D93FB600335208 /* MyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C366505625D93FB600335208 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,7 +239,6 @@
 				C3F8DBA92624BD8000E4C11D /* --------------------------------------- */,
 				C3F8DBA42624BCA800E4C11D /* Application */,
 				C366507825D948F400335208 /* ViewController */,
-				C3F5E72A25E6A87B00633D0D /* Model */,
 				C36EEE9825E27E1D00A60E66 /* Common */,
 				C3CC03A326203B330003CF0E /* Core */,
 				C366507325D9483000335208 /* Helper */,
@@ -264,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				C366505A25D93FB600335208 /* ViewController.swift */,
-				C36EEE9325E2582600A60E66 /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -452,17 +446,6 @@
 			path = FirebaseManager;
 			sourceTree = "<group>";
 		};
-		C3F5E72A25E6A87B00633D0D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C3F5E72B25E6A89500633D0D /* Profile.swift */,
-				C35F135725FA2F280028A796 /* Section.swift */,
-				C35F135A25FA2FE90028A796 /* User.swift */,
-				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		C3F8DBA42624BCA800E4C11D /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				C3FFDE21260F481400974C5C /* Chats.xcdatamodeld */,
+				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -678,8 +662,42 @@
 				C3F8DBB72624C39A00E4C11D /* ConversationsList */,
 				C3F8DBBB2624C4F800E4C11D /* Conversation */,
 				C3F8DBC62624C96200E4C11D /* Themes */,
+				C3F8DBD12624D1B800E4C11D /* Profile */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		C3F8DBD12624D1B800E4C11D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C3F8DBD42624D1D300E4C11D /* Model */,
+				C3F8DBD32624D1CD00E4C11D /* View */,
+				C3F8DBD22624D1C500E4C11D /* Controller */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C3F8DBD22624D1C500E4C11D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C36EEE9325E2582600A60E66 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C3F8DBD32624D1CD00E4C11D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3F8DBD42624D1D300E4C11D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3F5E72B25E6A89500633D0D /* Profile.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -833,7 +851,6 @@
 				C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */,
 				C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */,
 				C355D7D72623540700028130 /* CoreDataStackProtocol.swift in Sources */,
-				C35F135825FA2F280028A796 /* Section.swift in Sources */,
 				C3B04FD22622FD5C0044632B /* FirebaseManagerProtocol.swift in Sources */,
 				C38DB978262456D300F602E3 /* GraphicsImageRendererProtocol.swift in Sources */,
 				C38DB9742624565100F602E3 /* ImageSelectionManagerProtocol.swift in Sources */,
@@ -843,7 +860,6 @@
 				C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */,
 				C38DB9702624555200F602E3 /* PickerControllerProtocol.swift in Sources */,
 				C3F8DBCB2624CA1000E4C11D /* Theme.swift in Sources */,
-				C35F135B25FA2FE90028A796 /* User.swift in Sources */,
 				C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */,
 				C38DB96826243CF400F602E3 /* MoveTextFieldProtocol.swift in Sources */,
 				C36EF9B326208C7800F1DF87 /* TableViewDelegate.swift in Sources */,
