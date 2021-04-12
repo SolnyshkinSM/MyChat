@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - PickerController
 
-class PickerController: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PickerController: NSObject, PickerControllerProtocol {
     
     // MARK: - Private properties
     

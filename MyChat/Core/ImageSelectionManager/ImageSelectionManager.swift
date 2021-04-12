@@ -17,12 +17,12 @@ class ImageSelectionManager {
     
     private let theme = ThemeManager.shared.currentTheme
     
-    private let pickerController: PickerController
+    private let pickerController: PickerControllerProtocol
     
     // MARK: - Initialization
     
     init(viewController: UIViewController,
-         pickerController: PickerController) {
+         pickerController: PickerControllerProtocol) {
         self.viewController = viewController
         self.pickerController = pickerController
     }

@@ -42,6 +42,7 @@
 		C38DB9602624261300F602E3 /* TextFieldDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB95F2624261300F602E3 /* TextFieldDelegateProtocol.swift */; };
 		C38DB9642624394F00F602E3 /* MoveTextFieldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB9632624394F00F602E3 /* MoveTextFieldManager.swift */; };
 		C38DB96826243CF400F602E3 /* MoveTextFieldProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB96726243CF400F602E3 /* MoveTextFieldProtocol.swift */; };
+		C38DB9702624555200F602E3 /* PickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB96F2624555200F602E3 /* PickerControllerProtocol.swift */; };
 		C394759F26221F9D009FB796 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394759E26221F9D009FB796 /* ProfileButton.swift */; };
 		C39475A3262223F5009FB796 /* ImageSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A2262223F5009FB796 /* ImageSelectionManager.swift */; };
 		C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A726222677009FB796 /* GraphicsImageRenderer.swift */; };
@@ -110,6 +111,7 @@
 		C38DB95F2624261300F602E3 /* TextFieldDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegateProtocol.swift; sourceTree = "<group>"; };
 		C38DB9632624394F00F602E3 /* MoveTextFieldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTextFieldManager.swift; sourceTree = "<group>"; };
 		C38DB96726243CF400F602E3 /* MoveTextFieldProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTextFieldProtocol.swift; sourceTree = "<group>"; };
+		C38DB96F2624555200F602E3 /* PickerControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerControllerProtocol.swift; sourceTree = "<group>"; };
 		C394759E26221F9D009FB796 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		C39475A2262223F5009FB796 /* ImageSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionManager.swift; sourceTree = "<group>"; };
 		C39475A726222677009FB796 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 		C3A9A7142621C124000682CF /* PickerController */ = {
 			isa = PBXGroup;
 			children = (
+				C38DB96F2624555200F602E3 /* PickerControllerProtocol.swift */,
 				C3A9A7152621C136000682CF /* PickerController.swift */,
 			);
 			path = PickerController;
@@ -681,6 +684,7 @@
 				C304FFFC25FCEBAC005A3A14 /* Settings.swift in Sources */,
 				C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */,
 				C3FFDE4C260F5AF700974C5C /* ChatsDataModel.swift in Sources */,
+				C38DB9702624555200F602E3 /* PickerControllerProtocol.swift in Sources */,
 				C35F135B25FA2FE90028A796 /* User.swift in Sources */,
 				C3CEF75C25EAD81200C1C933 /* ConversationsListCell.swift in Sources */,
 				C38DB96826243CF400F602E3 /* MoveTextFieldProtocol.swift in Sources */,

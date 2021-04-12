@@ -82,7 +82,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    lazy private var pickerController = PickerController(viewController: self) { [weak self] info in
+    lazy private var pickerController: PickerControllerProtocol = PickerController(viewController: self) { [weak self] info in
         
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self?.profileImageButton.setBackgroundImage(image, for: .normal)
