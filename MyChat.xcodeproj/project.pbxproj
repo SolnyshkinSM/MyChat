@@ -207,6 +207,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C306D4622625EBB0002657D9 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C366505C25D93FB600335208 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		C355D7D5262353F200028130 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +275,6 @@
 				C3F8DBAC2624BE9300E4C11D /* Resources */,
 				C3F8DBAD2624BEA800E4C11D /* Supporting Files */,
 				C3F8DBA92624BD8000E4C11D /* --------------------------------------- */,
-				C3F8DBA42624BCA800E4C11D /* Application */,
 				C36EEE9825E27E1D00A60E66 /* Common */,
 				C3CC03A326203B330003CF0E /* Core */,
 			);
@@ -447,32 +454,6 @@
 			path = FirebaseManager;
 			sourceTree = "<group>";
 		};
-		C3F8DBA42624BCA800E4C11D /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				C3F8DBA52624BCC100E4C11D /* Model */,
-				C3F8DBA62624BCCB00E4C11D /* View */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		C3F8DBA52624BCC100E4C11D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C3FFDE21260F481400974C5C /* Chats.xcdatamodeld */,
-				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C3F8DBA62624BCCB00E4C11D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C366505C25D93FB600335208 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		C3F8DBA92624BD8000E4C11D /* --------------------------------------- */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				C3F8DBCF2624CBCE00E4C11D /* Modules */,
+				C306D4622625EBB0002657D9 /* Storyboard */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -554,6 +536,7 @@
 		C3F8DBB62624C1FE00E4C11D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C3FFDE21260F481400974C5C /* Chats.xcdatamodeld */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -656,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				C3F8DBCA2624CA1000E4C11D /* Theme.swift */,
+				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
