@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK: - Coordinator
 
@@ -52,10 +53,11 @@ extension Coordinator: GoToCoordinatorProtocol {
     
     // MARK: - Public methods
     
-    func goToChannelDetailViewController(coreDataStack: CoreDataStackProtocol, channel: Channel) {
+    func goToChannelDetailViewController(coreDataStack: CoreDataStackProtocol, channel: NSManagedObject) {
         
         if let viewController = storyboard.instantiateViewController(
-            withIdentifier: "ConversationViewController") as? ConversationViewController {
+            withIdentifier: "ConversationViewController") as? ConversationViewController,
+           let channel = channel as? Channel {
             viewController.coreDataStack = coreDataStack
             viewController.configure(with: channel)
             navigationController.pushViewController(viewController, animated: true)

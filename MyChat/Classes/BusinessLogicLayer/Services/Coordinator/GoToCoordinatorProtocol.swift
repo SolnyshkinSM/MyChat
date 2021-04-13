@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import CoreData
 
 // MARK: - GoToCoordinatorProtocol
 
 protocol GoToCoordinatorProtocol {
-    func goToChannelDetailViewController(coreDataStack: CoreDataStackProtocol, channel: Channel)
+    func goToChannelDetailViewController(coreDataStack: CoreDataStackProtocol, channel: NSManagedObject)
     func goToProfileViewController()
     func goToThemesViewController()
 }
