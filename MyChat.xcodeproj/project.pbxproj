@@ -218,6 +218,7 @@
 		C306D4642625ECAD002657D9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C306D4682625EFEB002657D9 /* Extensions */,
 				C3D02F052625DFBB008E8A9D /* ScreenSaver */,
 				C306D4622625EBB0002657D9 /* Storyboard */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
@@ -233,6 +234,18 @@
 				C39475A626222668009FB796 /* GraphicsImageRenderer */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		C306D4682625EFEB002657D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C34551DE25E63918004F13ED /* UIButton.swift */,
+				C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */,
+				C3B4167325F4FF3900A486BE /* UITextField.swift */,
+				C30A65B825F66F0A00962C9C /* UIAlertController.swift */,
+				C30A65BB25F6737B00962C9C /* UIWindow.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C355D7D5262353F200028130 /* CoreDataStack */ = {
@@ -312,11 +325,6 @@
 		C36EEE9925E27E2700A60E66 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C34551DE25E63918004F13ED /* UIButton.swift */,
-				C3B2AB1725F4EC06005A4560 /* UITableViewCell.swift */,
-				C3B4167325F4FF3900A486BE /* UITextField.swift */,
-				C30A65B825F66F0A00962C9C /* UIAlertController.swift */,
-				C30A65BB25F6737B00962C9C /* UIWindow.swift */,
 				C3AD54D8261A410E004CB375 /* NSManagedObject.swift */,
 				C3AD54DE261A43ED004CB375 /* String.swift */,
 			);
