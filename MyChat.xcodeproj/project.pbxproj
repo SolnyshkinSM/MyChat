@@ -308,27 +308,9 @@
 				C3F8DBAC2624BE9300E4C11D /* Resources */,
 				C3F8DBAD2624BEA800E4C11D /* Supporting Files */,
 				C3F8DBA92624BD8000E4C11D /* --------------------------------------- */,
-				C36EEE9825E27E1D00A60E66 /* Common */,
 				C3CC03A326203B330003CF0E /* Core */,
 			);
 			path = MyChat;
-			sourceTree = "<group>";
-		};
-		C36EEE9825E27E1D00A60E66 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				C36EEE9925E27E2700A60E66 /* Extensions */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		C36EEE9925E27E2700A60E66 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C3AD54D8261A410E004CB375 /* NSManagedObject.swift */,
-				C3AD54DE261A43ED004CB375 /* String.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C36EF9AD26208BBE00F1DF87 /* TableView */ = {
@@ -437,7 +419,6 @@
 			isa = PBXGroup;
 			children = (
 				C3F15159262189660021CE85 /* FirebaseManager */,
-				C355D7D5262353F200028130 /* CoreDataStack */,
 				C38DB96D2624427C00F602E3 /* FileLoader */,
 			);
 			path = Core;
@@ -545,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				C3CC03A426203B520003CF0E /* Coordinator */,
+				C355D7D5262353F200028130 /* CoreDataStack */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -553,10 +535,12 @@
 			isa = PBXGroup;
 			children = (
 				C3FFDE21260F481400974C5C /* Chats.xcdatamodeld */,
+				C3AD54D8261A410E004CB375 /* NSManagedObject.swift */,
 				C3F8DBBF2624C58400E4C11D /* Channel.swift */,
 				C3F8DBC22624C5EB00E4C11D /* Message.swift */,
 				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
 				C3F5E72B25E6A89500633D0D /* Profile.swift */,
+				C3AD54DE261A43ED004CB375 /* String.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
