@@ -25,12 +25,12 @@ class ScreenSaver: ScreenSaverProtocol {
     
     // MARK: - Public methods
     
-    func loadScreenSaver() {
+    func loadScreenSaver(by name: String) {
 
         let screensaver = UIImageView(frame: viewController.view.bounds)
         screensaver.backgroundColor = theme.backgroundColor
         screensaver.contentMode = .center
-        screensaver.image = UIImage(named: "logo")
+        screensaver.image = UIImage(named: name)
         screensaver.clipsToBounds = true
         viewController.view.addSubview(screensaver)
 

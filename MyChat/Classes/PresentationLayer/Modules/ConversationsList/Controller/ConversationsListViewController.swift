@@ -77,7 +77,7 @@ class ConversationsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        screenSaver.loadScreenSaver()
+        screenSaver.loadScreenSaver(by: "logo")
 
         navigationItem.largeTitleDisplayMode = .always
         

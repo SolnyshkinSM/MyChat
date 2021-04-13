@@ -402,7 +402,6 @@
 				C3B04F902622E1EA0044632B /* ThemeManager */,
 				C3B04FA62622E5C00044632B /* PrintManager */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
-				C3F151542621861A0021CE85 /* ScreenSaver */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C3A9A7182621C98E000682CF /* ChannelsManager */,
 				C355D7D5262353F200028130 /* CoreDataStack */,
@@ -428,7 +427,7 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		C3F151542621861A0021CE85 /* ScreenSaver */ = {
+		C3D02F052625DFBB008E8A9D /* ScreenSaver */ = {
 			isa = PBXGroup;
 			children = (
 				C3B04FCC2622FCD10044632B /* ScreenSaverProtocol.swift */,
@@ -543,6 +542,7 @@
 		C3F8DBB52624C1F200E4C11D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C3D02F052625DFBB008E8A9D /* ScreenSaver */,
 			);
 			path = Services;
 			sourceTree = "<group>";

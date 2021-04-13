@@ -10,5 +10,5 @@ import Foundation
 // MARK: - ScreenSaverProtocol
 
 protocol ScreenSaverProtocol {
-    func loadScreenSaver()
+    func loadScreenSaver(by name: String)
 }
