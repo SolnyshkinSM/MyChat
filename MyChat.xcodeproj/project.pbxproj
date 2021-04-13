@@ -398,7 +398,6 @@
 		C3CC03A326203B330003CF0E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C3CC03A426203B520003CF0E /* Coordinator */,
 				C3B04F902622E1EA0044632B /* ThemeManager */,
 				C3B04FA62622E5C00044632B /* PrintManager */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
@@ -542,6 +541,7 @@
 		C3F8DBB52624C1F200E4C11D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC03A426203B520003CF0E /* Coordinator */,
 				C3D02F052625DFBB008E8A9D /* ScreenSaver */,
 			);
 			path = Services;
