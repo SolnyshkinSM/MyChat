@@ -43,7 +43,6 @@
 		C38DB9702624555200F602E3 /* PickerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB96F2624555200F602E3 /* PickerControllerProtocol.swift */; };
 		C38DB9742624565100F602E3 /* ImageSelectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB9732624565100F602E3 /* ImageSelectionManagerProtocol.swift */; };
 		C38DB978262456D300F602E3 /* GraphicsImageRendererProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB977262456D300F602E3 /* GraphicsImageRendererProtocol.swift */; };
-		C394759F26221F9D009FB796 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394759E26221F9D009FB796 /* ProfileButton.swift */; };
 		C39475A3262223F5009FB796 /* ImageSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A2262223F5009FB796 /* ImageSelectionManager.swift */; };
 		C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A726222677009FB796 /* GraphicsImageRenderer.swift */; };
 		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
@@ -114,7 +113,6 @@
 		C38DB96F2624555200F602E3 /* PickerControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerControllerProtocol.swift; sourceTree = "<group>"; };
 		C38DB9732624565100F602E3 /* ImageSelectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionManagerProtocol.swift; sourceTree = "<group>"; };
 		C38DB977262456D300F602E3 /* GraphicsImageRendererProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRendererProtocol.swift; sourceTree = "<group>"; };
-		C394759E26221F9D009FB796 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		C39475A2262223F5009FB796 /* ImageSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionManager.swift; sourceTree = "<group>"; };
 		C39475A726222677009FB796 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
@@ -272,18 +270,8 @@
 				C3F8DBA42624BCA800E4C11D /* Application */,
 				C36EEE9825E27E1D00A60E66 /* Common */,
 				C3CC03A326203B330003CF0E /* Core */,
-				C366507325D9483000335208 /* Helper */,
-				C3725D202605D59D00A49989 /* File */,
 			);
 			path = MyChat;
-			sourceTree = "<group>";
-		};
-		C366507325D9483000335208 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				C394759E26221F9D009FB796 /* ProfileButton.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		C36EEE9825E27E1D00A60E66 /* Common */ = {
@@ -315,14 +303,6 @@
 				C3B04FC22622F78B0044632B /* TableViewDelegate */,
 			);
 			path = TableView;
-			sourceTree = "<group>";
-		};
-		C3725D202605D59D00A49989 /* File */ = {
-			isa = PBXGroup;
-			children = (
-				C3725D242605D5C000A49989 /* GoogleService-Info.plist */,
-			);
-			path = File;
 			sourceTree = "<group>";
 		};
 		C38DB96626243CE000F602E3 /* MoveTextFieldManager */ = {
@@ -524,6 +504,7 @@
 			children = (
 				C366506125D93FB700335208 /* LaunchScreen.storyboard */,
 				C366506425D93FB700335208 /* Info.plist */,
+				C3725D242605D5C000A49989 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -862,7 +843,6 @@
 				C366505B25D93FB600335208 /* ViewController.swift in Sources */,
 				C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */,
 				C3A9A7162621C136000682CF /* PickerController.swift in Sources */,
-				C394759F26221F9D009FB796 /* ProfileButton.swift in Sources */,
 				C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */,
 				C3B04FA82622E5DA0044632B /* PrintManager.swift in Sources */,
 				C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */,

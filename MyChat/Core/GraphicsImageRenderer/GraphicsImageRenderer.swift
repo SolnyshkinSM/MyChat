@@ -11,6 +11,8 @@ import UIKit
 
 class GraphicsImageRenderer: GraphicsImageRendererProtocol {
     
+    // MARK: - Public methods
+    
     func drawSymbolsOnButton(button: UIButton, of text: String) {
         
         let renderer = UIGraphicsImageRenderer(size: button.bounds.size)
