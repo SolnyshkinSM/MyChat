@@ -215,6 +215,26 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		C306D4642625ECAD002657D9 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C3D02F052625DFBB008E8A9D /* ScreenSaver */,
+				C306D4622625EBB0002657D9 /* Storyboard */,
+				C36EF9AD26208BBE00F1DF87 /* TableView */,
+				C35C14822620914A00716EDA /* FetchedResultsController */,
+				C355D7FD2623729E00028130 /* FetchedResultsManager */,
+				C3B04F902622E1EA0044632B /* ThemeManager */,
+				C3B04FA62622E5C00044632B /* PrintManager */,
+				C3A9A7182621C98E000682CF /* ChannelsManager */,
+				C38DB96626243CE000F602E3 /* MoveTextFieldManager */,
+				C35C14862620994300716EDA /* TextFieldDelegate */,
+				C3A9A7142621C124000682CF /* PickerControllerDelegate */,
+				C39475A1262223D2009FB796 /* ImageSelectionManager */,
+				C39475A626222668009FB796 /* GraphicsImageRenderer */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		C355D7D5262353F200028130 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,13 +261,13 @@
 			path = FetchedResultsController;
 			sourceTree = "<group>";
 		};
-		C35C14862620994300716EDA /* TextField */ = {
+		C35C14862620994300716EDA /* TextFieldDelegate */ = {
 			isa = PBXGroup;
 			children = (
 				C38DB95F2624261300F602E3 /* TextFieldDelegateProtocol.swift */,
 				C35C14872620996700716EDA /* TextFieldDelegate.swift */,
 			);
-			path = TextField;
+			path = TextFieldDelegate;
 			sourceTree = "<group>";
 		};
 		C366504A25D93FB600335208 = {
@@ -351,13 +371,13 @@
 			path = GraphicsImageRenderer;
 			sourceTree = "<group>";
 		};
-		C3A9A7142621C124000682CF /* PickerController */ = {
+		C3A9A7142621C124000682CF /* PickerControllerDelegate */ = {
 			isa = PBXGroup;
 			children = (
 				C38DB96F2624555200F602E3 /* PickerControllerProtocol.swift */,
 				C3A9A7152621C136000682CF /* PickerController.swift */,
 			);
-			path = PickerController;
+			path = PickerControllerDelegate;
 			sourceTree = "<group>";
 		};
 		C3A9A7182621C98E000682CF /* ChannelsManager */ = {
@@ -408,20 +428,9 @@
 		C3CC03A326203B330003CF0E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C3B04F902622E1EA0044632B /* ThemeManager */,
-				C3B04FA62622E5C00044632B /* PrintManager */,
-				C36EF9AD26208BBE00F1DF87 /* TableView */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
-				C3A9A7182621C98E000682CF /* ChannelsManager */,
 				C355D7D5262353F200028130 /* CoreDataStack */,
-				C355D7FD2623729E00028130 /* FetchedResultsManager */,
-				C35C14822620914A00716EDA /* FetchedResultsController */,
-				C38DB96626243CE000F602E3 /* MoveTextFieldManager */,
 				C38DB96D2624427C00F602E3 /* FileLoader */,
-				C35C14862620994300716EDA /* TextField */,
-				C3A9A7142621C124000682CF /* PickerController */,
-				C39475A1262223D2009FB796 /* ImageSelectionManager */,
-				C39475A626222668009FB796 /* GraphicsImageRenderer */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -503,7 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				C3F8DBCF2624CBCE00E4C11D /* Modules */,
-				C306D4622625EBB0002657D9 /* Storyboard */,
+				C306D4642625ECAD002657D9 /* Shared */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -528,7 +537,6 @@
 			isa = PBXGroup;
 			children = (
 				C3CC03A426203B520003CF0E /* Coordinator */,
-				C3D02F052625DFBB008E8A9D /* ScreenSaver */,
 			);
 			path = Services;
 			sourceTree = "<group>";

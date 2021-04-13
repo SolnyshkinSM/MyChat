@@ -5,7 +5,7 @@
 //  Created by Administrator on 27.03.2021.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
 // MARK: - CoreDataStack
