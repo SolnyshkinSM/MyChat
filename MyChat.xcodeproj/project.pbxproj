@@ -307,8 +307,6 @@
 				C3F8DBAB2624BE7F00E4C11D /* Classes */,
 				C3F8DBAC2624BE9300E4C11D /* Resources */,
 				C3F8DBAD2624BEA800E4C11D /* Supporting Files */,
-				C3F8DBA92624BD8000E4C11D /* --------------------------------------- */,
-				C3CC03A326203B330003CF0E /* Core */,
 			);
 			path = MyChat;
 			sourceTree = "<group>";
@@ -415,15 +413,6 @@
 			path = TableViewDelegate;
 			sourceTree = "<group>";
 		};
-		C3CC03A326203B330003CF0E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				C3F15159262189660021CE85 /* FirebaseManager */,
-				C38DB96D2624427C00F602E3 /* FileLoader */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		C3CC03A426203B520003CF0E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,13 +439,6 @@
 				C3F1515A2621897E0021CE85 /* FirebaseManager.swift */,
 			);
 			path = FirebaseManager;
-			sourceTree = "<group>";
-		};
-		C3F8DBA92624BD8000E4C11D /* --------------------------------------- */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "---------------------------------------";
 			sourceTree = "<group>";
 		};
 		C3F8DBAB2624BE7F00E4C11D /* Classes */ = {
@@ -527,6 +509,8 @@
 			children = (
 				C3CC03A426203B520003CF0E /* Coordinator */,
 				C355D7D5262353F200028130 /* CoreDataStack */,
+				C3F15159262189660021CE85 /* FirebaseManager */,
+				C38DB96D2624427C00F602E3 /* FileLoader */,
 			);
 			path = Services;
 			sourceTree = "<group>";
