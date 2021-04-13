@@ -218,9 +218,9 @@
 		C306D4642625ECAD002657D9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C306D4622625EBB0002657D9 /* Storyboard */,
 				C306D4682625EFEB002657D9 /* Extensions */,
 				C3D02F052625DFBB008E8A9D /* ScreenSaver */,
-				C306D4622625EBB0002657D9 /* Storyboard */,
 				C36EF9AD26208BBE00F1DF87 /* TableView */,
 				C35C14822620914A00716EDA /* FetchedResultsController */,
 				C355D7FD2623729E00028130 /* FetchedResultsManager */,
@@ -553,6 +553,10 @@
 			isa = PBXGroup;
 			children = (
 				C3FFDE21260F481400974C5C /* Chats.xcdatamodeld */,
+				C3F8DBBF2624C58400E4C11D /* Channel.swift */,
+				C3F8DBC22624C5EB00E4C11D /* Message.swift */,
+				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
+				C3F5E72B25E6A89500633D0D /* Profile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -570,7 +574,6 @@
 		C3F8DBB82624C3B400E4C11D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C3F8DBBF2624C58400E4C11D /* Channel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -621,7 +624,6 @@
 		C3F8DBBE2624C51500E4C11D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C3F8DBC22624C5EB00E4C11D /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -655,7 +657,6 @@
 			isa = PBXGroup;
 			children = (
 				C3F8DBCA2624CA1000E4C11D /* Theme.swift */,
-				C304FFFB25FCEBAC005A3A14 /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -700,7 +701,6 @@
 		C3F8DBD42624D1D300E4C11D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C3F5E72B25E6A89500633D0D /* Profile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
