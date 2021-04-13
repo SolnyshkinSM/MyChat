@@ -177,6 +177,38 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C306D45C2625E52A002657D9 /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				C306D45F2625E549002657D9 /* Model */,
+				C306D45E2625E543002657D9 /* View */,
+				C306D45D2625E53B002657D9 /* Controller */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
+		C306D45D2625E53B002657D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C366505A25D93FB600335208 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C306D45E2625E543002657D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C306D45F2625E549002657D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C355D7D5262353F200028130 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +270,6 @@
 				C3F8DBAD2624BEA800E4C11D /* Supporting Files */,
 				C3F8DBA92624BD8000E4C11D /* --------------------------------------- */,
 				C3F8DBA42624BCA800E4C11D /* Application */,
-				C366507825D948F400335208 /* ViewController */,
 				C36EEE9825E27E1D00A60E66 /* Common */,
 				C3CC03A326203B330003CF0E /* Core */,
 				C366507325D9483000335208 /* Helper */,
@@ -253,14 +284,6 @@
 				C394759E26221F9D009FB796 /* ProfileButton.swift */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		C366507825D948F400335208 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				C366505A25D93FB600335208 /* ViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C36EEE9825E27E1D00A60E66 /* Common */ = {
@@ -663,6 +686,7 @@
 				C3F8DBBB2624C4F800E4C11D /* Conversation */,
 				C3F8DBC62624C96200E4C11D /* Themes */,
 				C3F8DBD12624D1B800E4C11D /* Profile */,
+				C306D45C2625E52A002657D9 /* Lifecycle */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
