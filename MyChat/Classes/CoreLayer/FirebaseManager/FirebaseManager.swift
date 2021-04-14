@@ -38,43 +38,7 @@ class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
     // MARK: - Public methods
     
     func addSnapshotListener() -> ListenerRegistration? {
-        
-//        let firebaseManager = FirebaseManager(coreDataStack: coreDataStack, reference: reference, fetchRequest: fetchRequest)
-//
-//        let listener = firebaseManager.addSnapshotListener { [weak self] (diff, context, fetchResults) in
-//
-//            let document = diff.document
-//
-//            if fetchResults.isEmpty {
-//                self?.addNewObject(document, in: context)
-//            } else {
-//
-//                guard let object = fetchResults.first as? NSManagedObject else { return }
-//
-//                switch diff.type {
-//                case .modified:
-//
-//                    if let channel = object as? Channel,
-//                       channel.lastMessage != document.data()["lastMessage"] as? String {
-//                        self?.addNewObject(document, in: context)
-//                    }
-//
-//                    if let message = object as? Message,
-//                       message.content != document.data()["content"] as? String {
-//                        self?.addNewObject(document, in: context)
-//                    }
-//
-//                case .removed:
-//                    context.delete(object)
-//                default:
-//                    break
-//                }
-//            }
-//        }
-//
-//        return listener
-        
-        
+       
         guard let context = coreDataStack?.context else { return nil }
 
         fetchRequest.resultType = .managedObjectResultType

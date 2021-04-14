@@ -19,9 +19,18 @@ class ChatsFirebaseManager {
     
     // MARK: - Static methods
     
-    static func getFirebaseManager(coreDataStack: CoreDataStackProtocol?,
-                                   reference: CollectionReference?) -> FirebaseManagerProtocol {
+    static func getChannelFirebaseManager(
+        coreDataStack: CoreDataStackProtocol?,
+        reference: CollectionReference?) -> FirebaseManagerProtocol {
         return FirebaseManager(
             coreDataStack: coreDataStack, reference: reference, fetchRequest: Channel.fetchRequest())
+    }
+    
+    static func getMessageFirebaseManager(
+        coreDataStack: CoreDataStackProtocol?,
+        reference: CollectionReference?,
+        channel: Channel?) -> FirebaseManagerProtocol {
+        return FirebaseManager(
+            coreDataStack: coreDataStack, reference: reference, fetchRequest: Message.fetchRequest(), channel: channel)
     }
 }

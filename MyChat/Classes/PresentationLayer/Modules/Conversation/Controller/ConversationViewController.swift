@@ -55,9 +55,11 @@ class ConversationViewController: UIViewController {
         }
     }
     
-    lazy private var firebaseManager: FirebaseManagerProtocol = FirebaseManager<Message>(
-        coreDataStack: coreDataStack, reference: reference,
-        fetchRequest: Message.fetchRequest(), channel: channel)
+//    lazy private var firebaseManager: FirebaseManagerProtocol = FirebaseManager<Message>(
+//        coreDataStack: coreDataStack, reference: reference,
+//        fetchRequest: Message.fetchRequest(), channel: channel)
+        
+    lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getMessageFirebaseManager(coreDataStack: coreDataStack, reference: reference, channel: channel)
 
     private lazy var deviceID = UIDevice.current.identifierForVendor?.uuidString
 

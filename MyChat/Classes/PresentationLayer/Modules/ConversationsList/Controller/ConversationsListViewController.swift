@@ -42,10 +42,7 @@ class ConversationsListViewController: UIViewController {
     
     lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
    
-//    lazy private var firebaseManager: FirebaseManagerProtocol = FirebaseManager(
-//        coreDataStack: coreDataStack, reference: reference, fetchRequest: Channel.fetchRequest())
-    
-    lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getFirebaseManager(coreDataStack: coreDataStack, reference: reference)
+    lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getChannelFirebaseManager(coreDataStack: coreDataStack, reference: reference)
         
     lazy private var channelsManager: ChannelsManagerProtocol = ChannelsManager(viewController: self) { [weak self] alert in
         if let answer = alert.textFields?.first,
