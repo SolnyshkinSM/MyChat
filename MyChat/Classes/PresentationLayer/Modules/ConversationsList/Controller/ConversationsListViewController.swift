@@ -12,7 +12,7 @@ import CoreData
 // MARK: - ConversationsListViewController
 
 class ConversationsListViewController: UIViewController {
-
+    
     // MARK: - IBOutlet properties
 
     @IBOutlet weak var tableView: UITableView!
@@ -61,8 +61,8 @@ class ConversationsListViewController: UIViewController {
     private lazy var reference = database.collection("channels")
 
     private var listener: ListenerRegistration?
-
-    private let coreDataStack: CoreDataStackProtocol = CoreDataStack()
+        
+    private lazy var coreDataStack: CoreDataStackProtocol = ChatsCoreDataStack.getCoreDataStack()
     
     private lazy var fetchedResultsManager = FetchedResultsManager<Channel>(
         tableView: tableView,

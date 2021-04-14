@@ -45,6 +45,7 @@
 		C38DB978262456D300F602E3 /* GraphicsImageRendererProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38DB977262456D300F602E3 /* GraphicsImageRendererProtocol.swift */; };
 		C39475A3262223F5009FB796 /* ImageSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A2262223F5009FB796 /* ImageSelectionManager.swift */; };
 		C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A726222677009FB796 /* GraphicsImageRenderer.swift */; };
+		C3973CB72626F4BD00172966 /* ChatsCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3973CB62626F4BD00172966 /* ChatsCoreDataStack.swift */; };
 		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
 		C3A9A71A2621C9BE000682CF /* ChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7192621C9BE000682CF /* ChannelsManager.swift */; };
 		C3A9A7212621DCB5000682CF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */; };
@@ -115,6 +116,7 @@
 		C38DB977262456D300F602E3 /* GraphicsImageRendererProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRendererProtocol.swift; sourceTree = "<group>"; };
 		C39475A2262223F5009FB796 /* ImageSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionManager.swift; sourceTree = "<group>"; };
 		C39475A726222677009FB796 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
+		C3973CB62626F4BD00172966 /* ChatsCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCoreDataStack.swift; sourceTree = "<group>"; };
 		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
 		C3A9A7192621C9BE000682CF /* ChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManager.swift; sourceTree = "<group>"; };
 		C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
@@ -359,6 +361,14 @@
 			path = GraphicsImageRenderer;
 			sourceTree = "<group>";
 		};
+		C3973CB52626F47800172966 /* ChatsCoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				C3973CB62626F4BD00172966 /* ChatsCoreDataStack.swift */,
+			);
+			path = ChatsCoreDataStack;
+			sourceTree = "<group>";
+		};
 		C3A9A7142621C124000682CF /* PickerControllerDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +510,7 @@
 		C3F8DBB42624C09500E4C11D /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
+				C355D7D5262353F200028130 /* CoreDataStack */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -507,8 +518,8 @@
 		C3F8DBB52624C1F200E4C11D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C3973CB52626F47800172966 /* ChatsCoreDataStack */,
 				C3CC03A426203B520003CF0E /* Coordinator */,
-				C355D7D5262353F200028130 /* CoreDataStack */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C38DB96D2624427C00F602E3 /* FileLoader */,
 			);
@@ -856,6 +867,7 @@
 				C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */,
 				C3F15156262186410021CE85 /* ScreenSaver.swift in Sources */,
 				C3B04F922622E2050044632B /* ThemeManagerProtocol.swift in Sources */,
+				C3973CB72626F4BD00172966 /* ChatsCoreDataStack.swift in Sources */,
 				C32E748425FE74CF0063AB24 /* GCDFileLoader.swift in Sources */,
 				C3F8DBC02624C58400E4C11D /* Channel.swift in Sources */,
 				C38DB9602624261300F602E3 /* TextFieldDelegateProtocol.swift in Sources */,

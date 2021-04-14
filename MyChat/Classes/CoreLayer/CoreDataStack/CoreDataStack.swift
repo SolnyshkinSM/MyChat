@@ -14,7 +14,7 @@ class CoreDataStack: CoreDataStackProtocol {
         
     // MARK: - Private properties
     
-    private let dataBaseName = "Chats"
+    private let dataBaseName: String
     
     private lazy var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: dataBaseName)
@@ -33,6 +33,12 @@ class CoreDataStack: CoreDataStackProtocol {
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
+    
+    // MARK: - Initialization
+    
+    init(dataBaseName: String) {
+        self.dataBaseName = dataBaseName
+    }
     
     // MARK: - Public methods
     
