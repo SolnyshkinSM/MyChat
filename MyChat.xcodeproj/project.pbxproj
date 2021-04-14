@@ -24,7 +24,6 @@
 		C355D7FA262371DE00028130 /* FetchedResultsControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */; };
 		C35C14842620917200716EDA /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */; };
 		C35C14882620996700716EDA /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35C14872620996700716EDA /* TextFieldDelegate.swift */; };
-		C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3648F79260347BA000D75C8 /* StateLoader.swift */; };
 		C366505725D93FB600335208 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366505625D93FB600335208 /* AppDelegate.swift */; };
 		C366505925D93FB600335208 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366505825D93FB600335208 /* SceneDelegate.swift */; };
 		C366505B25D93FB600335208 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366505A25D93FB600335208 /* ViewController.swift */; };
@@ -94,7 +93,6 @@
 		C355D7F9262371DE00028130 /* FetchedResultsControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerProtocol.swift; sourceTree = "<group>"; };
 		C35C14832620917200716EDA /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C35C14872620996700716EDA /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
-		C3648F79260347BA000D75C8 /* StateLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoader.swift; sourceTree = "<group>"; };
 		C366505325D93FB600335208 /* MyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C366505625D93FB600335208 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C366505825D93FB600335208 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -336,11 +334,9 @@
 		C38DB96D2624427C00F602E3 /* FileLoader */ = {
 			isa = PBXGroup;
 			children = (
-				C3648F79260347BA000D75C8 /* StateLoader.swift */,
 				C32247322601F59600F5F639 /* FileLoaderProtocol.swift */,
 				C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */,
 				C322472F2601F55A00F5F639 /* OperationFileLoader.swift */,
-				C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */,
 			);
 			path = FileLoader;
 			sourceTree = "<group>";
@@ -377,6 +373,14 @@
 				C3973CD726270B9200172966 /* ChatsFirebaseManager.swift */,
 			);
 			path = ChatsFirebaseManager;
+			sourceTree = "<group>";
+		};
+		C3973CE12627121200172966 /* FileWorkManager */ = {
+			isa = PBXGroup;
+			children = (
+				C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */,
+			);
+			path = FileWorkManager;
 			sourceTree = "<group>";
 		};
 		C3A9A7142621C124000682CF /* PickerControllerDelegate */ = {
@@ -522,6 +526,7 @@
 			children = (
 				C355D7D5262353F200028130 /* CoreDataStack */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
+				C3973CE12627121200172966 /* FileWorkManager */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -842,7 +847,6 @@
 				C3AD54DF261A43ED004CB375 /* String.swift in Sources */,
 				C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */,
 				C3CEF76125EAD8A000C1C933 /* ConversationCell.swift in Sources */,
-				C3648F7A260347BA000D75C8 /* StateLoader.swift in Sources */,
 				C3724ACE25EA2C5E0039CD24 /* ConversationsListViewController.swift in Sources */,
 				C355D7D72623540700028130 /* CoreDataStackProtocol.swift in Sources */,
 				C3B04FD22622FD5C0044632B /* FirebaseManagerProtocol.swift in Sources */,
