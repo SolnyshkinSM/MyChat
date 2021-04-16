@@ -7,12 +7,15 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 // MARK: - ConversationViewController
 
 class ConversationViewController: UIViewController {
 
     // MARK: - Public properties
+    
+    var coreDataStack: CoreDataStack?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!
@@ -28,13 +31,53 @@ class ConversationViewController: UIViewController {
 
     private var profile: Profile?
 
-    lazy var db = Firestore.firestore()
+    private lazy var db = Firestore.firestore()
 
-    var reference: CollectionReference?
+    private var reference: CollectionReference?
 
-    var listener: ListenerRegistration?
-
-    private var messages: [Message] = []
+    private var listener: ListenerRegistration?
+    
+    private var channel: Channel?
+    
+    private var predicate: NSPredicate?
+    
+    private var _fetchedResultsController: NSFetchedResultsController<Message>?
+    
+    private var fetchedResultsController: NSFetchedResultsController<Message> {
+        
+        if let _fetchedResultsController = _fetchedResultsController {
+            return _fetchedResultsController
+        }
+        
+        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
+        fetchRequest.fetchBatchSize = 50
+        fetchRequest.predicate = predicate
+        
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+                
+        guard let context = coreDataStack?.context else {
+            return NSFetchedResultsController<Message>()
+        }
+        
+        let aFetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        aFetchedResultsController.delegate = self
+        _fetchedResultsController = aFetchedResultsController
+        
+        do {
+            try _fetchedResultsController?.performFetch()
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController ?? NSFetchedResultsController<Message>()
+    }
 
     // MARK: - Lifecycle
 
@@ -84,38 +127,84 @@ class ConversationViewController: UIViewController {
             selector: #selector(keyboardWillHide(notification:)),
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
+        }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        scrollToRowFetchedObjects()
     }
-
+    
     // MARK: - Public methods
 
     func configure(with channel: Channel) {
 
         title = channel.name
 
-        reference = db.collection("channels").document(channel.identifier).collection("messages")
-        loadData()
+        self.channel = channel
+        
+        if let identifier = channel.identifier {
+            predicate = NSPredicate(format: "channel.identifier = %@", identifier)
+            reference = db.collection("channels").document(identifier).collection("messages")
+            loadData()
+        }
     }
 
     // MARK: - Private methods
 
     private func loadData() {
-
+        
+        guard let context = coreDataStack?.context else { return }
+        
+        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
+        fetchRequest.resultType = .managedObjectResultType
+        
         listener = reference?.addSnapshotListener { [weak self] snapshot, _ in
-
-            self?.messages.removeAll()
-            snapshot?.documents.forEach({ document in
-
-                let message = Message(identifier: document.documentID,
-                                      with: document.data())
-                self?.messages.append(message)
-            })
-
-            self?.messages.sort { $0.created < $1.created }
-
-            self?.tableView.reloadData()
+            
+            snapshot?.documentChanges.forEach { diff in
+                
+                let document = diff.document
+                fetchRequest.predicate = NSPredicate(format: "identifier = %@", document.documentID)
+                guard let fetchResults = try? context.fetch(fetchRequest) else { return }
+                
+                if fetchResults.isEmpty {
+                    let message_db = Message(identifier: document.documentID,
+                                             with: document.data(), in: context)
+                    self?.channel?.addToMessages(message_db)
+                } else {
+                    guard let message = fetchResults.first else { return }
+                    
+                    switch diff.type {
+                    case .modified:
+                        let data = document.data()
+                        if message.content != data["content"] as? String {
+                            let message_db = Message(identifier: document.documentID,
+                                                     with: document.data(), in: context)
+                            self?.channel?.addToMessages(message_db)
+                        }
+                    case .removed:
+                        context.delete(message)
+                    default:
+                        let message_db = Message(identifier: document.documentID,
+                                                 with: document.data(), in: context)
+                        self?.channel?.addToMessages(message_db)
+                    }
+                }
+            }
+            self?.coreDataStack?.saveContext()
         }
     }
-
+    
+    private func scrollToRowFetchedObjects() {
+        
+        if let countFetchedObjects = fetchedResultsController.fetchedObjects?.count,
+           countFetchedObjects != 0 {
+            let lastIndex = IndexPath(item: countFetchedObjects - 1, section: 0)
+            tableView.scrollToRow(at: lastIndex,
+                                  at: UITableView.ScrollPosition.bottom, animated: true)
+        }
+    }
+    
     @objc private func keyboardWillShow(notification: Notification) {
 
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -154,13 +243,19 @@ class ConversationViewController: UIViewController {
 
 extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController.sections?.count ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messages.count
+        guard let sectionInfo = fetchedResultsController.sections?[section] else { return 0 }
+        return sectionInfo.numberOfObjects
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let message = messages[indexPath.row]
+        let message = fetchedResultsController.object(at: indexPath)
+        
         let inbox = message.senderId != deviceID
         let cellIdentifier = inbox ? "ConversationInboxCell" : "ConversationOutboxCell"
 
@@ -176,7 +271,10 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
-        if indexPath.row == messages.count - 1 {
+        guard let countFetchedObjects = fetchedResultsController.fetchedObjects?.count
+        else { return }
+        
+        if indexPath.row == countFetchedObjects - 1 {
             cell.transform = CGAffineTransform(translationX: 0, y: tableView.bounds.size.height)
             UIView.animate(withDuration: 0.7, delay: 0.05,
                            usingSpringWithDamping: 0.8, initialSpringVelocity: 0,
@@ -184,11 +282,27 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
                 cell.transform = CGAffineTransform(translationX: 0, y: 0)
             }, completion: nil)
         }
-
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let message = fetchedResultsController.object(at: indexPath)
+        
+        if editingStyle == .delete {
+                        
+            if let channelIdentifier = message.channel?.identifier,
+               let messageIdentifier = message.identifier {
+                db.collection("channels").document(channelIdentifier).collection("messages").document(messageIdentifier).delete()
+            }
+        }
     }
 }
 
@@ -197,7 +311,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
 extension ConversationViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
+        
         if let text = textField.text, !text.isEmpty, !text.blank {
 
             let messageData: [String: Any] = [
@@ -206,18 +320,10 @@ extension ConversationViewController: UITextFieldDelegate {
                 "senderId": deviceID ?? "",
                 "senderName": profile?.fullname ?? ""
             ]
-
-            let messageRef = reference?.addDocument(data: messageData)
-            if let messageRef = messageRef {
-                messages.append(Message(identifier: messageRef.documentID, with: messageData))
-            }
+            
+            _ = reference?.addDocument(data: messageData)
             
             textField.text = .none
-            tableView.reloadData()
-
-            let lastIndex = IndexPath(item: messages.count - 1, section: 0)
-            tableView.scrollToRow(at: lastIndex,
-                                  at: UITableView.ScrollPosition.bottom, animated: true)
         }
 
         textField.resignFirstResponder()
@@ -225,10 +331,65 @@ extension ConversationViewController: UITextFieldDelegate {
     }
 }
 
-extension String {
+// MARK: - NSFetchedResultsControllerDelegate
 
-    var blank: Bool {
-        let trimmed = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        return trimmed.isEmpty
+extension ConversationViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if tableView.window == nil { return }
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
+        if tableView.window == nil { return }
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            return
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any, at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        if tableView.window == nil { return }
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.insertRows(at: [newIndexPath], with: .fade)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .update:
+            guard let indexPath = indexPath,
+                  let cell = tableView.cellForRow(at: indexPath) as? ConversationCell,
+                  let message = anObject as? Message
+            else { return }
+            let inbox = message.senderId != deviceID
+            cell.configure(with: message, inbox: inbox)
+        case .move:
+            guard let indexPath = indexPath,
+                  let newIndexPath = newIndexPath,
+                  let cell = tableView.cellForRow(at: indexPath) as? ConversationCell,
+                  let message = anObject as? Message
+            else { return }
+            let inbox = message.senderId != deviceID
+            cell.configure(with: message, inbox: inbox)
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+        default:
+            return
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if tableView.window == nil { return }
+        tableView.endUpdates()
+        scrollToRowFetchedObjects()
     }
 }
