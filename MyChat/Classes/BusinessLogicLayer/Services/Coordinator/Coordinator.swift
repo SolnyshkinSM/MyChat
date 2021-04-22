@@ -67,6 +67,7 @@ extension Coordinator: GoToCoordinatorProtocol {
     func goToProfileViewController() {
         
         if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+            controller.coordinator = self
             navigationController.present(controller, animated: true)
         }
     }
@@ -76,6 +77,15 @@ extension Coordinator: GoToCoordinatorProtocol {
         if let controller = storyboard.instantiateViewController(
             withIdentifier: "ThemesViewController") as? ThemesViewController {
             navigationController.pushViewController(controller, animated: true)
+        }
+    }
+    
+    func goToSelectImagesViewController(delegate: SelectImagesDelegateProtocol?) {
+        
+        if let controller = storyboard.instantiateViewController(
+            withIdentifier: "SelectImagesViewController") as? SelectImagesViewController {
+            controller.delegate = delegate
+            navigationController.showDetailViewController(controller, sender: nil)
         }
     }
 }

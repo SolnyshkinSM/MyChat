@@ -40,6 +40,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var closeButoon: UIButton!
 
     @IBOutlet weak var myProfileLabel: UILabel!
+    
+    // MARK: - Public properties
+    
+    public var coordinator: GoToCoordinatorProtocol?
 
     // MARK: - Private properties
 
@@ -318,5 +322,25 @@ class ProfileViewController: UIViewController {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+}
+
+// MARK: - UIViewControllerCoordinatorProtocol
+
+extension ProfileViewController: UIViewControllerCoordinatorProtocol {}
+
+// MARK: - SelectImagesDelegateProtocol
+
+extension ProfileViewController: SelectImagesDelegateProtocol {
+    
+    func imagePickerHandler(image: UIImage) {
+        
+        self.profileImageButton.setBackgroundImage(image, for: .normal)
+        self.profileImageButton.backgroundColor = .clear
+        
+        self.showSavePanel(true)
+        [self.saveGCDButton, self.saveOperationsButton].forEach { $0.isEnabled = true }
+        
+        self.dismiss(animated: true)
     }
 }
