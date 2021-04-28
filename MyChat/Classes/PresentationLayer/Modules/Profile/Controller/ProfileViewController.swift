@@ -91,9 +91,7 @@ class ProfileViewController: UIViewController {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self?.profileImageButton.setBackgroundImage(image, for: .normal)
             self?.profileImageButton.backgroundColor = .clear
-            
             self?.showSavePanel(true)
-            [self?.saveGCDButton, self?.saveOperationsButton].forEach { $0?.isEnabled = true }
         }
         self?.dismiss(animated: true)
     }
@@ -104,6 +102,8 @@ class ProfileViewController: UIViewController {
     lazy private var graphicsImageRenderer: GraphicsImageRendererProtocol = GraphicsImageRenderer()
     
     lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
+    
+    private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
     
     // MARK: - Lifecycle
     
@@ -148,7 +148,11 @@ class ProfileViewController: UIViewController {
 
     @IBAction func editButoonPressing(_ sender: UIButton) {
         
-        showSavePanel(true)
+        if saveGCDButton.isHidden {
+            showSavePanel(true)
+        } else {
+            showSavePanel(false)
+        }
         nameTextField.becomeFirstResponder()
     }
 
@@ -168,6 +172,8 @@ class ProfileViewController: UIViewController {
 
         fileLoaderOperation.cancelAllOperations()
         fileLoader.cancelAllOperations()
+        
+        editButoon.shake()
     }
 
     @IBAction func saveGCDButtonPressing(_ sender: UIButton? = nil) {
@@ -254,6 +260,9 @@ class ProfileViewController: UIViewController {
 
         nameTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
         detailsTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        self.view.addGestureRecognizer(longPressRecognizer)
     }
 
     private func loadProfile() {
@@ -304,9 +313,10 @@ class ProfileViewController: UIViewController {
 
     private func showSavePanel(_ show: Bool) {
 
-        editButoon.isHidden = show
+        editButoon.shake()
         collectionField.forEach { $0.isEnabled = show }
         saveCollectionButtons.forEach { $0.isHidden = !show }
+        [saveGCDButton, saveOperationsButton].forEach { $0?.isEnabled = true }
     }
 
     @objc

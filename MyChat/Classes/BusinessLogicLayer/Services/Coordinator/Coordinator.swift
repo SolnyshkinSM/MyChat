@@ -22,6 +22,8 @@ final class Coordinator: CoordinatorProtocol {
     
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
     
+    private let animatorPresen = AnimatorPresent()
+    
     // MARK: - Initialization
     
     init(navigationController: UINavigationController) {
@@ -68,6 +70,8 @@ extension Coordinator: GoToCoordinatorProtocol {
         
         if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
             controller.coordinator = self
+            controller.modalPresentationStyle = .custom
+            controller.transitioningDelegate = animatorPresen
             navigationController.present(controller, animated: true)
         }
     }

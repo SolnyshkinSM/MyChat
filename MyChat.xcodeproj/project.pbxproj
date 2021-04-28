@@ -53,6 +53,8 @@
 		C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39475A726222677009FB796 /* GraphicsImageRenderer.swift */; };
 		C3973CB72626F4BD00172966 /* ChatsCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3973CB62626F4BD00172966 /* ChatsCoreDataStack.swift */; };
 		C3973CD826270B9200172966 /* ChatsFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3973CD726270B9200172966 /* ChatsFirebaseManager.swift */; };
+		C3974C8E26383F7200434D75 /* GestureRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3974C8D26383F7200434D75 /* GestureRecognizerManager.swift */; };
+		C3A3969726356B9B00546FD4 /* AnimatorPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3969626356B9B00546FD4 /* AnimatorPresent.swift */; };
 		C3A9A7162621C136000682CF /* PickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7152621C136000682CF /* PickerController.swift */; };
 		C3A9A71A2621C9BE000682CF /* ChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7192621C9BE000682CF /* ChannelsManager.swift */; };
 		C3A9A7212621DCB5000682CF /* FetchedResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */; };
@@ -139,6 +141,8 @@
 		C39475A726222677009FB796 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 		C3973CB62626F4BD00172966 /* ChatsCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCoreDataStack.swift; sourceTree = "<group>"; };
 		C3973CD726270B9200172966 /* ChatsFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsFirebaseManager.swift; sourceTree = "<group>"; };
+		C3974C8D26383F7200434D75 /* GestureRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureRecognizerManager.swift; sourceTree = "<group>"; };
+		C3A3969626356B9B00546FD4 /* AnimatorPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorPresent.swift; sourceTree = "<group>"; };
 		C3A9A7152621C136000682CF /* PickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerController.swift; sourceTree = "<group>"; };
 		C3A9A7192621C9BE000682CF /* ChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManager.swift; sourceTree = "<group>"; };
 		C3A9A7202621DCB5000682CF /* FetchedResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsManager.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				C3A9A7142621C124000682CF /* PickerControllerDelegate */,
 				C39475A1262223D2009FB796 /* ImageSelectionManager */,
 				C39475A626222668009FB796 /* GraphicsImageRenderer */,
+				C3974C8826383F5100434D75 /* GestureRecognizerManager */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -448,6 +453,22 @@
 				C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */,
 			);
 			path = FileWorkManager;
+			sourceTree = "<group>";
+		};
+		C3974C8826383F5100434D75 /* GestureRecognizerManager */ = {
+			isa = PBXGroup;
+			children = (
+				C3974C8D26383F7200434D75 /* GestureRecognizerManager.swift */,
+			);
+			path = GestureRecognizerManager;
+			sourceTree = "<group>";
+		};
+		C3A3969526356B7F00546FD4 /* AnimatorPresent */ = {
+			isa = PBXGroup;
+			children = (
+				C3A3969626356B9B00546FD4 /* AnimatorPresent.swift */,
+			);
+			path = AnimatorPresent;
 			sourceTree = "<group>";
 		};
 		C3A9A7142621C124000682CF /* PickerControllerDelegate */ = {
@@ -669,6 +690,7 @@
 				C3E70289262C973200DAD8B7 /* NetworkDataFetcher */,
 				C3E70291262C982600DAD8B7 /* DataFetcherService */,
 				C387A2452631BB3200A33ECF /* ImageLoader */,
+				C3A3969526356B7F00546FD4 /* AnimatorPresent */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -981,6 +1003,7 @@
 				C3B04FC92622FB550044632B /* TableViewDelegateProtocol.swift in Sources */,
 				C39475A3262223F5009FB796 /* ImageSelectionManager.swift in Sources */,
 				C387A2412631B79300A33ECF /* CollectionViewDelegate.swift in Sources */,
+				C3974C8E26383F7200434D75 /* GestureRecognizerManager.swift in Sources */,
 				C3AD54DF261A43ED004CB375 /* String.swift in Sources */,
 				C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */,
 				C3CEF76125EAD8A000C1C933 /* ConversationCell.swift in Sources */,
@@ -1018,6 +1041,7 @@
 				C38DB9642624394F00F602E3 /* MoveTextFieldManager.swift in Sources */,
 				C325085F25F0179100A92D9C /* BubbleView.swift in Sources */,
 				C36EEE9425E2582600A60E66 /* ProfileViewController.swift in Sources */,
+				C3A3969726356B9B00546FD4 /* AnimatorPresent.swift in Sources */,
 				C36EF9AF26208BDF00F1DF87 /* TableViewDataSource.swift in Sources */,
 				C3B04FCD2622FCD10044632B /* ScreenSaverProtocol.swift in Sources */,
 				C3F8DBC32624C5EC00E4C11D /* Message.swift in Sources */,

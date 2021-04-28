@@ -35,7 +35,9 @@ class ThemesViewController: UIViewController {
 
     // MARK: - Private properties
 
-    lazy private var currentTheme = themeManager.currentTheme
+    private lazy var currentTheme = themeManager.currentTheme
+    
+    private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
 
     // MARK: - Lifecycle
 
@@ -85,6 +87,9 @@ class ThemesViewController: UIViewController {
                                         target: self,
                                         action: #selector(themeButoonPressing(_:))))
         }
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        self.view.addGestureRecognizer(longPressRecognizer)
     }
 
     private func updateButtons(theme: Theme? = nil) {
