@@ -41,7 +41,6 @@ class CollectionViewDelegate: NSObject, CollectionViewDelegateProtocol {
         _ = loader.uploadImage(by: imageUrl) { result in
             do {
                 let image = try result.get()
-                //selectImagesDelegate.imagePickerHandler(image: image)
                 DispatchQueue.main.async { selectImagesDelegate.imagePickerHandler(image: image) }
             } catch {
                 print(error)
