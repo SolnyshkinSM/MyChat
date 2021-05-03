@@ -42,9 +42,29 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3C972F3263EAAFD00BAFBB6"
+               BlueprintIdentifier = "C347264526406C7B002B2884"
                BuildableName = "MyChatTests.xctest"
                BlueprintName = "MyChatTests"
+               ReferencedContainer = "container:MyChat.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C347265826406CA2002B2884"
+               BuildableName = "MyChatTests_.xctest"
+               BlueprintName = "MyChatTests_"
+               ReferencedContainer = "container:MyChat.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C347266E26406D02002B2884"
+               BuildableName = "MyChatTestsTwo.xctest"
+               BlueprintName = "MyChatTestsTwo"
                ReferencedContainer = "container:MyChat.xcodeproj">
             </BuildableReference>
          </TestableReference>

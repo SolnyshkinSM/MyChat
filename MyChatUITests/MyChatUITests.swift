@@ -30,8 +30,6 @@ class MyChatUITests: XCTestCase {
         // Assert
         checkExistenceDelayedElement(element: app.textFields["fullName"])
         checkExistenceDelayedElement(element: app.textFields["Detailed information"])
-        
-        XCTAssertTrue(false)
     }
     
     func checkExistenceDelayedElement(element: XCUIElement) {
@@ -39,13 +37,5 @@ class MyChatUITests: XCTestCase {
         let existsPredicate = NSPredicate(format: "exists == true")
         let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: element)
         wait(for: [expectation], timeout: 5)
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
     }
 }

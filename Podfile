@@ -12,7 +12,7 @@ target 'MyChat' do
 
 end
 
-target 'MyChatTests' do
+target 'MyChatTestsTwo' do
   
     pod 'Firebase/Firestore', '7.8'
   

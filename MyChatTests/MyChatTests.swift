@@ -2,50 +2,31 @@
 //  MyChatTests.swift
 //  MyChatTests
 //
-//  Created by Administrator on 02.05.2021.
+//  Created by Administrator on 03.05.2021.
 //
 
-@testable import MyChat
 import XCTest
 
 class MyChatTests: XCTestCase {
 
-    var dataFetcherServiceMock: DataFetcherServiceProtocol?
-    
     override func setUpWithError() throws {
-        dataFetcherServiceMock = DataFetcherServiceMock()
-        try super.setUpWithError()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        dataFetcherServiceMock = nil
-        try super.tearDownWithError()
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testExample() throws {
-        
-        XCTAssertTrue(false)
-        
-        /*// Arrage
-        var images = [Image]()
-        let dataFetcherexpectation = expectation(description: #function)
-        
-        // Act
-        dataFetcherServiceMock?.fetchImages { imagesGroup in
-            guard let hits = imagesGroup?.hits else { return }
-            images = hits
-            dataFetcherexpectation.fulfill()
-        }
-        
-        // Assert
-        waitForExpectations(timeout: 1.0) { error in
-            XCTAssertTrue(false)
-        }*/
-        
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-    
-    func testLaunchPerformance() throws {
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
         measure {
+            // Put the code you want to measure the time of here.
         }
     }
+
 }
