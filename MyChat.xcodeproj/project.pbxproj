@@ -19,6 +19,13 @@
 		C32E748425FE74CF0063AB24 /* GCDFileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */; };
 		C34551DF25E63919004F13ED /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34551DE25E63918004F13ED /* UIButton.swift */; };
 		C34725332640436C002B2884 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725322640436C002B2884 /* NetworkServiceMock.swift */; };
+		C347259726404DA2002B2884 /* DataTaskStackMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347259626404DA2002B2884 /* DataTaskStackMock.swift */; };
+		C347259C26405013002B2884 /* DataFetcherServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347259B26405013002B2884 /* DataFetcherServiceProtocol.swift */; };
+		C34725A4264050D6002B2884 /* DataFetcherServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725A3264050D6002B2884 /* DataFetcherServiceMock.swift */; };
+		C34725AC26405143002B2884 /* NetworkDataFetcherMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725AB26405143002B2884 /* NetworkDataFetcherMock.swift */; };
+		C34725B8264052BF002B2884 /* DecodeStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725B7264052BF002B2884 /* DecodeStackProtocol.swift */; };
+		C34725C0264052C7002B2884 /* DecodeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725BF264052C7002B2884 /* DecodeStack.swift */; };
+		C34725C52640536A002B2884 /* DecodeStackMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725C42640536A002B2884 /* DecodeStackMock.swift */; };
 		C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */; };
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
 		C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */; };
@@ -129,6 +136,13 @@
 		C32E748325FE74CF0063AB24 /* GCDFileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDFileLoader.swift; sourceTree = "<group>"; };
 		C34551DE25E63918004F13ED /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		C34725322640436C002B2884 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		C347259626404DA2002B2884 /* DataTaskStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskStackMock.swift; sourceTree = "<group>"; };
+		C347259B26405013002B2884 /* DataFetcherServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherServiceProtocol.swift; sourceTree = "<group>"; };
+		C34725A3264050D6002B2884 /* DataFetcherServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherServiceMock.swift; sourceTree = "<group>"; };
+		C34725AB26405143002B2884 /* NetworkDataFetcherMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcherMock.swift; sourceTree = "<group>"; };
+		C34725B7264052BF002B2884 /* DecodeStackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeStackProtocol.swift; sourceTree = "<group>"; };
+		C34725BF264052C7002B2884 /* DecodeStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeStack.swift; sourceTree = "<group>"; };
+		C34725C42640536A002B2884 /* DecodeStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeStackMock.swift; sourceTree = "<group>"; };
 		C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManagerProtocol.swift; sourceTree = "<group>"; };
@@ -337,6 +351,15 @@
 				C30A65BB25F6737B00962C9C /* UIWindow.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C34725B626405296002B2884 /* DecodeStack */ = {
+			isa = PBXGroup;
+			children = (
+				C34725B7264052BF002B2884 /* DecodeStackProtocol.swift */,
+				C34725BF264052C7002B2884 /* DecodeStack.swift */,
+			);
+			path = DecodeStack;
 			sourceTree = "<group>";
 		};
 		C355D7D5262353F200028130 /* CoreDataStack */ = {
@@ -638,7 +661,11 @@
 			children = (
 				C3C972F6263EAAFD00BAFBB6 /* MyChatTests.swift */,
 				C3C972F8263EAAFD00BAFBB6 /* Info.plist */,
+				C34725A3264050D6002B2884 /* DataFetcherServiceMock.swift */,
+				C34725AB26405143002B2884 /* NetworkDataFetcherMock.swift */,
 				C34725322640436C002B2884 /* NetworkServiceMock.swift */,
+				C34725C42640536A002B2884 /* DecodeStackMock.swift */,
+				C347259626404DA2002B2884 /* DataTaskStackMock.swift */,
 			);
 			path = MyChatTests;
 			sourceTree = "<group>";
@@ -684,6 +711,7 @@
 		C3E70291262C982600DAD8B7 /* DataFetcherService */ = {
 			isa = PBXGroup;
 			children = (
+				C347259B26405013002B2884 /* DataFetcherServiceProtocol.swift */,
 				C3E70292262C983500DAD8B7 /* DataFetcherService.swift */,
 			);
 			path = DataFetcherService;
@@ -760,6 +788,7 @@
 				C355D7D5262353F200028130 /* CoreDataStack */,
 				C3F15159262189660021CE85 /* FirebaseManager */,
 				C3973CE12627121200172966 /* FileWorkManager */,
+				C34725B626405296002B2884 /* DecodeStack */,
 				C3774499264040EA00794089 /* DataTaskStack */,
 			);
 			path = CoreLayer;
@@ -772,8 +801,8 @@
 				C3973CB52626F47800172966 /* ChatsCoreDataStack */,
 				C3973CD526270B6C00172966 /* ChatsFirebaseManager */,
 				C38DB96D2624427C00F602E3 /* FileLoader */,
-				C3E70289262C973200DAD8B7 /* NetworkDataFetcher */,
 				C3E70291262C982600DAD8B7 /* DataFetcherService */,
+				C3E70289262C973200DAD8B7 /* NetworkDataFetcher */,
 				C387A2452631BB3200A33ECF /* ImageLoader */,
 				C3A3969526356B7F00546FD4 /* AnimatorPresent */,
 				C3E70281262C96A800DAD8B7 /* NetworkService */,
@@ -1184,6 +1213,7 @@
 				C387A23E2631B78800A33ECF /* CollectionViewDelegateProtocol.swift in Sources */,
 				C3A9A7162621C136000682CF /* PickerController.swift in Sources */,
 				C3B2AB1825F4EC06005A4560 /* UITableViewCell.swift in Sources */,
+				C347259C26405013002B2884 /* DataFetcherServiceProtocol.swift in Sources */,
 				C3B04FA82622E5DA0044632B /* PrintManager.swift in Sources */,
 				C3FFDE23260F481400974C5C /* Chats.xcdatamodeld in Sources */,
 				C37744A02640416400794089 /* DataTaskStackProtocol.swift in Sources */,
@@ -1246,8 +1276,10 @@
 				C38DB9602624261300F602E3 /* TextFieldDelegateProtocol.swift in Sources */,
 				C39475A826222677009FB796 /* GraphicsImageRenderer.swift in Sources */,
 				C3E70298262C9B6C00DAD8B7 /* Images.swift in Sources */,
+				C34725B8264052BF002B2884 /* DecodeStackProtocol.swift in Sources */,
 				C3CC03A626203B690003CF0E /* CoordinatorProtocol.swift in Sources */,
 				C387A2382631B2A900A33ECF /* CollectionViewDataSourceProtocol.swift in Sources */,
+				C34725C0264052C7002B2884 /* DecodeStack.swift in Sources */,
 				C34551DF25E63919004F13ED /* UIButton.swift in Sources */,
 				C366505925D93FB600335208 /* SceneDelegate.swift in Sources */,
 				C387A23B2631B2CE00A33ECF /* CollectionViewDataSource.swift in Sources */,
@@ -1270,6 +1302,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C347259726404DA2002B2884 /* DataTaskStackMock.swift in Sources */,
+				C34725A4264050D6002B2884 /* DataFetcherServiceMock.swift in Sources */,
+				C34725C52640536A002B2884 /* DecodeStackMock.swift in Sources */,
+				C34725AC26405143002B2884 /* NetworkDataFetcherMock.swift in Sources */,
 				C34725332640436C002B2884 /* NetworkServiceMock.swift in Sources */,
 				C3C972F7263EAAFD00BAFBB6 /* MyChatTests.swift in Sources */,
 			);
@@ -1408,6 +1444,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

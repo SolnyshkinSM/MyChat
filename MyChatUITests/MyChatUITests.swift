@@ -29,7 +29,9 @@ class MyChatUITests: XCTestCase {
         
         // Assert
         checkExistenceDelayedElement(element: app.textFields["fullName"])
-        checkExistenceDelayedElement(element: app.textFields["Detailed information"])        
+        checkExistenceDelayedElement(element: app.textFields["Detailed information"])
+        
+        XCTAssertTrue(false)
     }
     
     func checkExistenceDelayedElement(element: XCUIElement) {

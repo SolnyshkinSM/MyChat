@@ -1,30 +1,23 @@
 //
-//  NetworkDataFetcher.swift
-//  MyChat
+//  NetworkDataFetcherMock.swift
+//  MyChatTests
 //
-//  Created by Administrator on 18.04.2021.
+//  Created by Administrator on 03.05.2021.
 //
 
+@testable import MyChat
 import Foundation
 
-// MARK: - NetworkDataFetcher
-
-class NetworkDataFetcher: NetworkDataFetcherProtocol {
-    
-    // MARK: - Public properties
+class NetworkDataFetcherMock: NetworkDataFetcherProtocol {
     
     let networking: NetworkServiceProtocol
     let decodeStack: DecodeStackProtocol
-    
-    // MARK: - Initialization
-    
+   
     init(networking: NetworkServiceProtocol = NetworkService(),
          decodeStack: DecodeStackProtocol = DecodeStack()) {
         self.networking = networking
         self.decodeStack = decodeStack
     }
-    
-    // MARK: - Public methods
     
     func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
         networking.request(urlString: urlString) { (data, error) in

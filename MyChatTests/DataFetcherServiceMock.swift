@@ -1,27 +1,20 @@
 //
-//  DataFetcherService.swift
-//  MyChat
+//  DataFetcherServiceMock.swift
+//  MyChatTests
 //
-//  Created by Administrator on 18.04.2021.
+//  Created by Administrator on 03.05.2021.
 //
 
+@testable import MyChat
 import Foundation
 
-// MARK: - DataFetcherService
-
-class DataFetcherService: DataFetcherServiceProtocol {
-    
-    // MARK: - Private properties
-    
+class DataFetcherServiceMock: DataFetcherServiceProtocol {
+        
     private var networkDataFetcher: NetworkDataFetcherProtocol
     
-    // MARK: - Initialization
-    
-    init(networkDataFetcher: NetworkDataFetcherProtocol = NetworkDataFetcher()) {
+    init(networkDataFetcher: NetworkDataFetcherProtocol = NetworkDataFetcherMock()) {
         self.networkDataFetcher = networkDataFetcher
     }
-    
-    // MARK: - Public methods
     
     func fetchImages(completion: @escaping (ImagesGroup?) -> Void) {
         let apiKey = "21218574-f0d32fe5e463e87432665c8e4"

@@ -31,7 +31,7 @@ class SelectImagesViewController: UIViewController {
     
     private var activityIndicator: UIActivityIndicatorView!
     
-    private let dataFetcherService = DataFetcherService()
+    private let dataFetcherService: DataFetcherServiceProtocol = DataFetcherService()
     
     private let loader: ImageLoaderProtocol = ImageLoader()
     
