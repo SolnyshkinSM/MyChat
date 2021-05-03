@@ -5,7 +5,7 @@
 //  Created by Administrator on 09.04.2021.
 //
 
-import Foundation
+import UIKit
 import Firebase
 import CoreData
 

@@ -11,6 +11,8 @@ import UIKit
 
 class AnimatorPresent: NSObject, UIViewControllerAnimatedTransitioning {
     
+    // MARK: - Public methods
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
