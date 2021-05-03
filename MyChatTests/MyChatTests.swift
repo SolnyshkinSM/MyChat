@@ -5,25 +5,45 @@
 //  Created by Administrator on 03.05.2021.
 //
 
+@testable import MyChat
 import XCTest
 
 class MyChatTests: XCTestCase {
-
+    
+    var dataFetcherService: DataFetcherServiceProtocol?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        dataFetcherService = DataFetcherServiceMock()
+        try super.setUpWithError()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        dataFetcherService = nil
+        try super.tearDownWithError()
     }
-
+    
     func testExample() throws {
         
-        XCTAssertTrue(true)
+        // Arrage
+        var images: [Image]?
+        let dataFetcherExpectation = expectation(description: #function)
         
-        XCTAssertTrue(false)
+        // Act
+        dataFetcherService?.fetchImages { imagesGroup in
+            images = imagesGroup?.hits
+            dataFetcherExpectation.fulfill()
+        }
         
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        waitForExpectations(timeout: 5.0) { error in
+            if error != nil {
+                XCTFail(error?.localizedDescription ?? "")
+            }
+            XCTAssertNotNil(images)
+            XCTAssertEqual(images?.count, 100)
+        }
+        
+        // Assert
+        //XCTAssertTrue(true)
+        //XCTAssertTrue(false)
     }
 }

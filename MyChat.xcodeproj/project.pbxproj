@@ -21,6 +21,7 @@
 		C34725B8264052BF002B2884 /* DecodeStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725B7264052BF002B2884 /* DecodeStackProtocol.swift */; };
 		C34725C0264052C7002B2884 /* DecodeStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34725BF264052C7002B2884 /* DecodeStack.swift */; };
 		C34726AA26406DD6002B2884 /* MyChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34726A926406DD6002B2884 /* MyChatTests.swift */; };
+		C34726E226407108002B2884 /* DataFetcherServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34726E126407108002B2884 /* DataFetcherServiceMock.swift */; };
 		C34B08A225F3BDEA00C6D24C /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */; };
 		C34B08A825F3C4F400C6D24C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B08A725F3C4F400C6D24C /* ThemeManager.swift */; };
 		C355D7D22623532B00028130 /* ChannelsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */; };
@@ -119,8 +120,6 @@
 /* Begin PBXFileReference section */
 		072F7C8316EDC263CDBF2648 /* Pods_MyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1482DC5E76B64DB258FD6B5D /* Pods-MyChatTestsTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChatTestsTwo.release.xcconfig"; path = "Target Support Files/Pods-MyChatTestsTwo/Pods-MyChatTestsTwo.release.xcconfig"; sourceTree = "<group>"; };
-		1FAE9BC50B3E7A97ABBCC034 /* Pods-MyChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChatTests.release.xcconfig"; path = "Target Support Files/Pods-MyChatTests/Pods-MyChatTests.release.xcconfig"; sourceTree = "<group>"; };
-		233D99B555A247D8E51EB31E /* Pods-MyChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChatTests.debug.xcconfig"; path = "Target Support Files/Pods-MyChatTests/Pods-MyChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E6CFBA4655463C8209ACCB8 /* libPods-MyChatTestsTwo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyChatTestsTwo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C917B247231479C027042FE /* Pods-MyChatTestsTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChatTestsTwo.debug.xcconfig"; path = "Target Support Files/Pods-MyChatTestsTwo/Pods-MyChatTestsTwo.debug.xcconfig"; sourceTree = "<group>"; };
 		C304FFFB25FCEBAC005A3A14 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		C34726A726406DD6002B2884 /* MyChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34726A926406DD6002B2884 /* MyChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTests.swift; sourceTree = "<group>"; };
 		C34726AB26406DD6002B2884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C34726E126407108002B2884 /* DataFetcherServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherServiceMock.swift; sourceTree = "<group>"; };
 		C34B08A125F3BDEA00C6D24C /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		C34B08A725F3C4F400C6D24C /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C355D7D12623532B00028130 /* ChannelsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManagerProtocol.swift; sourceTree = "<group>"; };
@@ -218,7 +218,6 @@
 		C3F8DBCA2624CA1000E4C11D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C3FFDE22260F481400974C5C /* Chats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chats.xcdatamodel; sourceTree = "<group>"; };
 		C3FFDE48260F580B00974C5C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		E093126DFDC6605B675A46A9 /* libPods-MyChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FAD99437460D777FFB6EA5 /* Pods-MyChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChat.release.xcconfig"; path = "Target Support Files/Pods-MyChat/Pods-MyChat.release.xcconfig"; sourceTree = "<group>"; };
 		E9FF1C9C3E446EA3C9BE3B15 /* Pods-MyChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChat.debug.xcconfig"; path = "Target Support Files/Pods-MyChat/Pods-MyChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				072F7C8316EDC263CDBF2648 /* Pods_MyChat.framework */,
-				E093126DFDC6605B675A46A9 /* libPods-MyChatTests.a */,
 				6E6CFBA4655463C8209ACCB8 /* libPods-MyChatTestsTwo.a */,
 			);
 			name = Frameworks;
@@ -264,8 +262,6 @@
 			children = (
 				E9FF1C9C3E446EA3C9BE3B15 /* Pods-MyChat.debug.xcconfig */,
 				E7FAD99437460D777FFB6EA5 /* Pods-MyChat.release.xcconfig */,
-				233D99B555A247D8E51EB31E /* Pods-MyChatTests.debug.xcconfig */,
-				1FAE9BC50B3E7A97ABBCC034 /* Pods-MyChatTests.release.xcconfig */,
 				8C917B247231479C027042FE /* Pods-MyChatTestsTwo.debug.xcconfig */,
 				1482DC5E76B64DB258FD6B5D /* Pods-MyChatTestsTwo.release.xcconfig */,
 			);
@@ -361,6 +357,7 @@
 			children = (
 				C34726A926406DD6002B2884 /* MyChatTests.swift */,
 				C34726AB26406DD6002B2884 /* Info.plist */,
+				C34726E126407108002B2884 /* DataFetcherServiceMock.swift */,
 			);
 			path = MyChatTests;
 			sourceTree = "<group>";
@@ -1153,6 +1150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C34726AA26406DD6002B2884 /* MyChatTests.swift in Sources */,
+				C34726E226407108002B2884 /* DataFetcherServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1295,6 +1293,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KH833X29S;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = MyChatTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1316,6 +1315,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3KH833X29S;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = MyChatTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1386,6 +1386,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1441,6 +1442,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
