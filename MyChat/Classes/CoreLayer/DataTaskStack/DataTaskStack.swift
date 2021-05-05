@@ -13,7 +13,7 @@ class DataTaskStack: DataTaskStackProtocol {
     
     // MARK: - Public methods
     
-    func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
+    func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask? {
         return URLSession.shared.dataTask(with: requst, completionHandler: { (data, _, error) in
             
             // TODO: sleep

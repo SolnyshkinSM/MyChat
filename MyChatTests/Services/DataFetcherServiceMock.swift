@@ -12,7 +12,7 @@ class DataFetcherServiceMock: DataFetcherServiceProtocol {
     
     private var networkDataFetcher: NetworkDataFetcherProtocol
     
-    init(networkDataFetcher: NetworkDataFetcherProtocol = NetworkDataFetcher()) {
+    init(networkDataFetcher: NetworkDataFetcherProtocol = NetworkDataFetcherMock()) {
         self.networkDataFetcher = networkDataFetcher
     }
     

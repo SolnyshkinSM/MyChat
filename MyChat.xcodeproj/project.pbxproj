@@ -12,6 +12,10 @@
 		C304FFFF25FCFEB9005A3A14 /* FileWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */; };
 		C30A65B925F66F0A00962C9C /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A65B825F66F0A00962C9C /* UIAlertController.swift */; };
 		C30A65BC25F6737B00962C9C /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A65BB25F6737B00962C9C /* UIWindow.swift */; };
+		C30ED11E264146BD004FF376 /* NetworkDataFetcherMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30ED11D264146BD004FF376 /* NetworkDataFetcherMock.swift */; };
+		C30ED19E264149A3004FF376 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30ED19D264149A3004FF376 /* NetworkServiceMock.swift */; };
+		C30ED1A326414A94004FF376 /* DecodeStackMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30ED1A226414A94004FF376 /* DecodeStackMock.swift */; };
+		C30ED1B926417EF5004FF376 /* DataTaskStackMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30ED1B826417EF5004FF376 /* DataTaskStackMock.swift */; };
 		C32247302601F55A00F5F639 /* OperationFileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C322472F2601F55A00F5F639 /* OperationFileLoader.swift */; };
 		C32247332601F59600F5F639 /* FileLoaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32247322601F59600F5F639 /* FileLoaderProtocol.swift */; };
 		C325085F25F0179100A92D9C /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325085E25F0179100A92D9C /* BubbleView.swift */; };
@@ -126,6 +130,10 @@
 		C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWorkManager.swift; sourceTree = "<group>"; };
 		C30A65B825F66F0A00962C9C /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		C30A65BB25F6737B00962C9C /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		C30ED11D264146BD004FF376 /* NetworkDataFetcherMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcherMock.swift; sourceTree = "<group>"; };
+		C30ED19D264149A3004FF376 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		C30ED1A226414A94004FF376 /* DecodeStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeStackMock.swift; sourceTree = "<group>"; };
+		C30ED1B826417EF5004FF376 /* DataTaskStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskStackMock.swift; sourceTree = "<group>"; };
 		C322472F2601F55A00F5F639 /* OperationFileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFileLoader.swift; sourceTree = "<group>"; };
 		C32247322601F59600F5F639 /* FileLoaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoaderProtocol.swift; sourceTree = "<group>"; };
 		C325085E25F0179100A92D9C /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
@@ -343,6 +351,25 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C30ED1AA26417E96004FF376 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C34726E126407108002B2884 /* DataFetcherServiceMock.swift */,
+				C30ED11D264146BD004FF376 /* NetworkDataFetcherMock.swift */,
+				C30ED19D264149A3004FF376 /* NetworkServiceMock.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C30ED1B126417E9D004FF376 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C30ED1A226414A94004FF376 /* DecodeStackMock.swift */,
+				C30ED1B826417EF5004FF376 /* DataTaskStackMock.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		C34725B626405296002B2884 /* DecodeStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,7 +384,8 @@
 			children = (
 				C34726A926406DD6002B2884 /* MyChatTests.swift */,
 				C34726AB26406DD6002B2884 /* Info.plist */,
-				C34726E126407108002B2884 /* DataFetcherServiceMock.swift */,
+				C30ED1AA26417E96004FF376 /* Services */,
+				C30ED1B126417E9D004FF376 /* Core */,
 			);
 			path = MyChatTests;
 			sourceTree = "<group>";
@@ -1149,6 +1177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30ED1A326414A94004FF376 /* DecodeStackMock.swift in Sources */,
+				C30ED19E264149A3004FF376 /* NetworkServiceMock.swift in Sources */,
+				C30ED11E264146BD004FF376 /* NetworkDataFetcherMock.swift in Sources */,
+				C30ED1B926417EF5004FF376 /* DataTaskStackMock.swift in Sources */,
 				C34726AA26406DD6002B2884 /* MyChatTests.swift in Sources */,
 				C34726E226407108002B2884 /* DataFetcherServiceMock.swift in Sources */,
 			);

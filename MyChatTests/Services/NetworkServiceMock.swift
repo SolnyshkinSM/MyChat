@@ -1,21 +1,20 @@
 //
-//  NetworkService.swift
-//  MyChat
+//  NetworkServiceMock.swift
+//  MyChatTests
 //
-//  Created by Administrator on 18.04.2021.
+//  Created by Administrator on 04.05.2021.
 //
 
+@testable import MyChat
 import Foundation
 
-// MARK: - NetworkService
-
-class NetworkService: NetworkServiceProtocol {
+class NetworkServiceMock: NetworkServiceProtocol {
     
-    // MARK: - Private properties
+    private let dataTaskStack: DataTaskStackProtocol
     
-    private let dataTaskStack: DataTaskStackProtocol = DataTaskStack()
-    
-    // MARK: - Public methods
+    init(dataTaskStack: DataTaskStackProtocol = DataTaskStackMock()) {
+        self.dataTaskStack = dataTaskStack
+    }
     
     func request(urlString: String, completion: @escaping (Data?, Error?) -> Void) {
         guard let url = URL(string: urlString) else { return }

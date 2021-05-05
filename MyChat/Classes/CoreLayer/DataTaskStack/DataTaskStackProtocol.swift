@@ -10,5 +10,5 @@ import Foundation
 // MARK: - DataTaskStackProtocol
 
 protocol DataTaskStackProtocol {
-    func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask
+    func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask?
 }
