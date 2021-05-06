@@ -71,6 +71,8 @@ class ConversationsListViewController: UIViewController {
     
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
     
+    private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -86,6 +88,9 @@ class ConversationsListViewController: UIViewController {
 
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        self.view.addGestureRecognizer(longPressRecognizer)
     }
         
     override func viewDidAppear(_ animated: Bool) {

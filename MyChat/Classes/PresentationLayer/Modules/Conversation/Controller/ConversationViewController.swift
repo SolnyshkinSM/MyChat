@@ -86,6 +86,8 @@ class ConversationViewController: UIViewController {
     
     lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
     
+    private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
+    
     // MARK: - Lifecycle
 
     deinit {
@@ -114,6 +116,9 @@ class ConversationViewController: UIViewController {
                 break
             }
         }
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        self.view.addGestureRecognizer(longPressRecognizer)
     }
 
     override func viewDidLayoutSubviews() {
