@@ -70,7 +70,7 @@ class MyChatTests: XCTestCase {
         // Arrage
         var images: [Image]?
         let apiKey = "21218574-f0d32fe5e463e87432665c8e4"
-        let urlImages = "https://pixabay.com/api/?key=\(apiKey)&q=portrait&per_page=150"
+        let urlImages = API.urlLoadImages + "?key=\(API.keyLoadImages)&q=portrait&per_page=150"
         let networkDataFetcherExpectation = expectation(description: #function)
         
         // Act
@@ -117,7 +117,7 @@ class MyChatTests: XCTestCase {
         var images: [Image]?
         let dataTaskStackExpectation = expectation(description: #function)
         let apiKey = "21218574-f0d32fe5e463e87432665c8e4"
-        let urlImages = "https://pixabay.com/api/?key=\(apiKey)&q=portrait&per_page=150"
+        let urlImages = API.urlLoadImages + "?key=\(API.keyLoadImages)&q=portrait&per_page=150"
         
         guard let url = URL(string: urlImages) else {
             XCTFail("Bad URL")

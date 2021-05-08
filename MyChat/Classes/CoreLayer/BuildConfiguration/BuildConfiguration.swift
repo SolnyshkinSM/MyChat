@@ -31,9 +31,17 @@ enum BuildConfiguration {
 
 enum API {
     
-    static var backendURL: String {
+    static var keyLoadImages: String {
         do {
-            return try BuildConfiguration.getValue(for: "BACKEND_URL")
+            return try BuildConfiguration.getValue(for: "API_KEY_LOAD_IMAGES")
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    static var urlLoadImages: String {
+        do {
+            return try BuildConfiguration.getValue(for: "API_URL_LOAD_IMAGES")
         } catch {
             fatalError(error.localizedDescription)
         }

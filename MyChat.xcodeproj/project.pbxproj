@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0F295FD5B8354ED00DCE42 /* Pods_MyChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F943638B1A2C264772C1E619 /* Pods_MyChat.framework */; };
 		C304FFFC25FCEBAC005A3A14 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304FFFB25FCEBAC005A3A14 /* Settings.swift */; };
 		C304FFFF25FCFEB9005A3A14 /* FileWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */; };
 		C30A65B925F66F0A00962C9C /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A65B825F66F0A00962C9C /* UIAlertController.swift */; };
@@ -225,6 +226,7 @@
 		C3FFDE48260F580B00974C5C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E7FAD99437460D777FFB6EA5 /* Pods-MyChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChat.release.xcconfig"; path = "Target Support Files/Pods-MyChat/Pods-MyChat.release.xcconfig"; sourceTree = "<group>"; };
 		E9FF1C9C3E446EA3C9BE3B15 /* Pods-MyChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChat.debug.xcconfig"; path = "Target Support Files/Pods-MyChat/Pods-MyChat.debug.xcconfig"; sourceTree = "<group>"; };
+		F943638B1A2C264772C1E619 /* Pods_MyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0F295FD5B8354ED00DCE42 /* Pods_MyChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +258,7 @@
 		2E1502F728C729F3F889850A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F943638B1A2C264772C1E619 /* Pods_MyChat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
