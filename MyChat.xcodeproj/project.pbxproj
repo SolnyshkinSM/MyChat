@@ -47,6 +47,7 @@
 		C3725D252605D5C000A49989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3725D242605D5C000A49989 /* GoogleService-Info.plist */; };
 		C377449B2640410300794089 /* DataTaskStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C377449A2640410300794089 /* DataTaskStack.swift */; };
 		C37744A02640416400794089 /* DataTaskStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C377449F2640416400794089 /* DataTaskStackProtocol.swift */; };
+		C37E18172646663100396B9C /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37E18162646663100396B9C /* BuildConfiguration.swift */; };
 		C387A2312631AF6200A33ECF /* UIViewControllerCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C387A2302631AF6200A33ECF /* UIViewControllerCoordinatorProtocol.swift */; };
 		C387A2382631B2A900A33ECF /* CollectionViewDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C387A2372631B2A900A33ECF /* CollectionViewDataSourceProtocol.swift */; };
 		C387A23B2631B2CE00A33ECF /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C387A23A2631B2CE00A33ECF /* CollectionViewDataSource.swift */; };
@@ -169,6 +170,7 @@
 		C3725D242605D5C000A49989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C377449A2640410300794089 /* DataTaskStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskStack.swift; sourceTree = "<group>"; };
 		C377449F2640416400794089 /* DataTaskStackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskStackProtocol.swift; sourceTree = "<group>"; };
+		C37E18162646663100396B9C /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
 		C387A2302631AF6200A33ECF /* UIViewControllerCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		C387A2372631B2A900A33ECF /* CollectionViewDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourceProtocol.swift; sourceTree = "<group>"; };
 		C387A23A2631B2CE00A33ECF /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -473,6 +475,14 @@
 				C377449A2640410300794089 /* DataTaskStack.swift */,
 			);
 			path = DataTaskStack;
+			sourceTree = "<group>";
+		};
+		C37E18152646662400396B9C /* BuildConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				C37E18162646663100396B9C /* BuildConfiguration.swift */,
+			);
+			path = BuildConfiguration;
 			sourceTree = "<group>";
 		};
 		C387A2342631B26900A33ECF /* CollectionView */ = {
@@ -804,6 +814,7 @@
 				C3973CE12627121200172966 /* FileWorkManager */,
 				C34725B626405296002B2884 /* DecodeStack */,
 				C3774499264040EA00794089 /* DataTaskStack */,
+				C37E18152646662400396B9C /* BuildConfiguration */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -1269,6 +1280,7 @@
 				C34551DF25E63919004F13ED /* UIButton.swift in Sources */,
 				C366505925D93FB600335208 /* SceneDelegate.swift in Sources */,
 				C387A23B2631B2CE00A33ECF /* CollectionViewDataSource.swift in Sources */,
+				C37E18172646663100396B9C /* BuildConfiguration.swift in Sources */,
 				C355D7FA262371DE00028130 /* FetchedResultsControllerProtocol.swift in Sources */,
 				C3B4167425F4FF3900A486BE /* UITextField.swift in Sources */,
 				C3E7028B262C974300DAD8B7 /* NetworkDataFetcherProtocol.swift in Sources */,
