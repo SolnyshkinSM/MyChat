@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A6EB6700CBB2F6DE096EFDAA /* Pods_MyChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072F7C8316EDC263CDBF2648 /* Pods_MyChat.framework */; };
 		C304FFFC25FCEBAC005A3A14 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304FFFB25FCEBAC005A3A14 /* Settings.swift */; };
 		C304FFFF25FCFEB9005A3A14 /* FileWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */; };
 		C30A65B925F66F0A00962C9C /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A65B825F66F0A00962C9C /* UIAlertController.swift */; };
@@ -123,10 +122,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		072F7C8316EDC263CDBF2648 /* Pods_MyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1482DC5E76B64DB258FD6B5D /* Pods-MyChatTestsTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChatTestsTwo.release.xcconfig"; path = "Target Support Files/Pods-MyChatTestsTwo/Pods-MyChatTestsTwo.release.xcconfig"; sourceTree = "<group>"; };
-		6E6CFBA4655463C8209ACCB8 /* libPods-MyChatTestsTwo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyChatTestsTwo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C917B247231479C027042FE /* Pods-MyChatTestsTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChatTestsTwo.debug.xcconfig"; path = "Target Support Files/Pods-MyChatTestsTwo/Pods-MyChatTestsTwo.debug.xcconfig"; sourceTree = "<group>"; };
 		C304FFFB25FCEBAC005A3A14 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C304FFFE25FCFEB9005A3A14 /* FileWorkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWorkManager.swift; sourceTree = "<group>"; };
 		C30A65B825F66F0A00962C9C /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
@@ -244,7 +239,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6EB6700CBB2F6DE096EFDAA /* Pods_MyChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +255,6 @@
 		2E1502F728C729F3F889850A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				072F7C8316EDC263CDBF2648 /* Pods_MyChat.framework */,
-				6E6CFBA4655463C8209ACCB8 /* libPods-MyChatTestsTwo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -272,8 +264,6 @@
 			children = (
 				E9FF1C9C3E446EA3C9BE3B15 /* Pods-MyChat.debug.xcconfig */,
 				E7FAD99437460D777FFB6EA5 /* Pods-MyChat.release.xcconfig */,
-				8C917B247231479C027042FE /* Pods-MyChatTestsTwo.debug.xcconfig */,
-				1482DC5E76B64DB258FD6B5D /* Pods-MyChatTestsTwo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
