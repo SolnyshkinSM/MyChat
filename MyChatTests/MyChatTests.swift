@@ -69,7 +69,6 @@ class MyChatTests: XCTestCase {
         
         // Arrage
         var images: [Image]?
-        let apiKey = "21218574-f0d32fe5e463e87432665c8e4"
         let urlImages = API.urlLoadImages + "?key=\(API.keyLoadImages)&q=portrait&per_page=150"
         let networkDataFetcherExpectation = expectation(description: #function)
         
@@ -116,7 +115,6 @@ class MyChatTests: XCTestCase {
         
         var images: [Image]?
         let dataTaskStackExpectation = expectation(description: #function)
-        let apiKey = "21218574-f0d32fe5e463e87432665c8e4"
         let urlImages = API.urlLoadImages + "?key=\(API.keyLoadImages)&q=portrait&per_page=150"
         
         guard let url = URL(string: urlImages) else {
