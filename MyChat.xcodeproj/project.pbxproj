@@ -131,6 +131,7 @@
 		C30ED19D264149A3004FF376 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
 		C30ED1A226414A94004FF376 /* DecodeStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeStackMock.swift; sourceTree = "<group>"; };
 		C30ED1B826417EF5004FF376 /* DataTaskStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskStackMock.swift; sourceTree = "<group>"; };
+		C319E6202646BCA20067A4F9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C322472F2601F55A00F5F639 /* OperationFileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFileLoader.swift; sourceTree = "<group>"; };
 		C32247322601F59600F5F639 /* FileLoaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoaderProtocol.swift; sourceTree = "<group>"; };
 		C325085E25F0179100A92D9C /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
@@ -769,6 +770,7 @@
 				C366506125D93FB700335208 /* LaunchScreen.storyboard */,
 				C366506425D93FB700335208 /* Info.plist */,
 				C3725D242605D5C000A49989 /* GoogleService-Info.plist */,
+				C319E6202646BCA20067A4F9 /* Config.xcconfig */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1490,7 +1492,7 @@
 		};
 		C366506825D93FB700335208 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9FF1C9C3E446EA3C9BE3B15 /* Pods-MyChat.debug.xcconfig */;
+			baseConfigurationReference = C319E6202646BCA20067A4F9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1510,7 +1512,7 @@
 		};
 		C366506925D93FB700335208 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7FAD99437460D777FFB6EA5 /* Pods-MyChat.release.xcconfig */;
+			baseConfigurationReference = C319E6202646BCA20067A4F9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
