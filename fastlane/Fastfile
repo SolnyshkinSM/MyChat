@@ -20,7 +20,7 @@ platform :ios do
 desc "Build and run test"
 
 lane :build_for_testing do |options|
-  cocoapods(repo_update: true)
+  cocoapods(clean_install: true)
   scan(
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
