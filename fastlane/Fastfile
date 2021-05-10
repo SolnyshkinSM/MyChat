@@ -26,7 +26,7 @@ lane :build_for_testing do |options|
     scheme: "MyChat",
     build_for_testing: true,
     destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4",
-    # clean: true
+    clean: false
     )
   puts "build_for_testing"
 end 
@@ -36,14 +36,15 @@ lane :run_tests_app do |options|
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
     destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4",
-    test_without_building: true
+    clean: false
+    # test_without_building: true
     )
   puts "run_tests"
 end
 
 lane :build_and_test do |options|
   build_for_testing
-  sleep 15
+  # sleep 15
   run_tests_app
 end
 
