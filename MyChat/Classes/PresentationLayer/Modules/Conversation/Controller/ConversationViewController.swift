@@ -37,7 +37,9 @@ class ConversationViewController: UIViewController {
 
     private weak var textFieldDelegate: TextFieldDelegateProtocol?
 
-    lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getMessageFirebaseManager(coreDataStack: coreDataStack, reference: reference, channel: channel)
+    lazy private var firebaseManager: FirebaseManagerProtocol =
+        ChatsFirebaseManager.getMessageFirebaseManager(
+            coreDataStack: coreDataStack, reference: reference, channel: channel)
 
     private lazy var deviceID = UIDevice.current.identifierForVendor?.uuidString
 
@@ -80,7 +82,9 @@ class ConversationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableViewDelegate = TableViewDelegate(coordinator: nil, coreDataStack: coreDataStack, listener: listener, fetchedResultsController: fetchedResultsController)
+        tableViewDelegate = TableViewDelegate(
+            coordinator: nil, coreDataStack: coreDataStack,
+            listener: listener, fetchedResultsController: fetchedResultsController)
 
         textFieldDelegate = TextFieldDelegate { [weak self] textField in
             if let text = textField.text, !text.isEmpty, !text.blank {
@@ -114,7 +118,9 @@ class ConversationViewController: UIViewController {
             }
         }
 
-        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: gestureRecognizerManager,
+            action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
 
@@ -143,7 +149,8 @@ class ConversationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let fetchedResultsController = fetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> {
+        if let fetchedResultsController = fetchedResultsController
+            as? NSFetchedResultsController<NSFetchRequestResult> {
             fetchedResultsControllerDelegate?.scrollToRowFetchedObjects(controller: fetchedResultsController)
         }
     }

@@ -88,7 +88,9 @@ class ThemesViewController: UIViewController {
                                         action: #selector(themeButoonPressing(_:))))
         }
 
-        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: gestureRecognizerManager,
+            action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
 

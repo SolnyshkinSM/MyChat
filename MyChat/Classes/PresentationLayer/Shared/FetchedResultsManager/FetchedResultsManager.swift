@@ -24,7 +24,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
 
     private let predicate: NSPredicate?
 
-    private var _fetchedResultsController: NSFetchedResultsController<Model>?
+    private var tempFetchedResultsController: NSFetchedResultsController<Model>?
 
     // MARK: - Public properties
 
@@ -32,7 +32,9 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
 
     var fetchedResultsController: NSFetchedResultsController<Model> {
 
-        if let _fetchedResultsController = _fetchedResultsController { return _fetchedResultsController }
+        if let tempFetchedResultsController = tempFetchedResultsController {
+            return tempFetchedResultsController
+        }
 
         guard let context = coreDataStack?.context else { return NSFetchedResultsController<Model>() }
 
@@ -47,16 +49,16 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
             cacheName: nil)
 
         aFetchedResultsController.delegate = fetchedResultsControllerDelegate
-        _fetchedResultsController = aFetchedResultsController
+        tempFetchedResultsController = aFetchedResultsController
 
         do {
-            try _fetchedResultsController?.performFetch()
+            try tempFetchedResultsController?.performFetch()
         } catch {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
 
-        return _fetchedResultsController ?? NSFetchedResultsController<Model>()
+        return tempFetchedResultsController ?? NSFetchedResultsController<Model>()
     }
 
     // MARK: - Initialization

@@ -35,9 +35,12 @@ class ConversationsListViewController: UIViewController {
 
     lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
 
-    lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getChannelFirebaseManager(coreDataStack: coreDataStack, reference: reference)
+    lazy private var firebaseManager: FirebaseManagerProtocol =
+        ChatsFirebaseManager.getChannelFirebaseManager(
+            coreDataStack: coreDataStack, reference: reference)
 
-    lazy private var channelsManager: ChannelsManagerProtocol = ChannelsManager(viewController: self) { [weak self] alert in
+    lazy private var channelsManager: ChannelsManagerProtocol =
+        ChannelsManager(viewController: self) { [weak self] alert in
         if let answer = alert.textFields?.first,
            let name = answer.text, !name.isEmpty {
             self?.reference.addDocument(data: ["name": name])
@@ -87,7 +90,9 @@ class ConversationsListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: gestureRecognizerManager,
+            action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
 

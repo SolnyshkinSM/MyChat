@@ -77,7 +77,8 @@ class ProfileViewController: UIViewController {
 
     private weak var textFieldDelegate: TextFieldDelegateProtocol?
 
-    lazy private var pickerController: PickerControllerProtocol = PickerController(viewController: self) { [weak self] info in
+    lazy private var pickerController: PickerControllerProtocol =
+        PickerController(viewController: self) { [weak self] info in
 
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self?.profileImageButton.setBackgroundImage(image, for: .normal)
@@ -263,7 +264,9 @@ class ProfileViewController: UIViewController {
         nameTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
         detailsTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
 
-        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: gestureRecognizerManager,
+            action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
 
