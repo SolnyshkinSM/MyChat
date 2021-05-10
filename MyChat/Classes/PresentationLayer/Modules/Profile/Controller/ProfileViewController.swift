@@ -40,9 +40,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var closeButoon: UIButton!
 
     @IBOutlet weak var myProfileLabel: UILabel!
-    
+
     // MARK: - Public properties
-    
+
     public var coordinator: GoToCoordinatorProtocol?
 
     // MARK: - Private properties
@@ -74,9 +74,9 @@ class ProfileViewController: UIViewController {
         }
         self?.activityIndicator.stopAnimating()
     }
-    
-    lazy private var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
-        
+
+    lazy private weak var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
+
         if textField == self?.collectionField.last {
             textField.resignFirstResponder()
         } else {
@@ -85,9 +85,9 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
+
     lazy private var pickerController: PickerControllerProtocol = PickerController(viewController: self) { [weak self] info in
-        
+
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self?.profileImageButton.setBackgroundImage(image, for: .normal)
             self?.profileImageButton.backgroundColor = .clear
@@ -95,18 +95,18 @@ class ProfileViewController: UIViewController {
         }
         self?.dismiss(animated: true)
     }
-    
+
     lazy private var imageSelectionManager: ImageSelectionManagerProtocol = ImageSelectionManager(
         viewController: self, pickerController: pickerController)
-    
+
     lazy private var graphicsImageRenderer: GraphicsImageRendererProtocol = GraphicsImageRenderer()
-    
+
     lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
-    
+
     private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
-    
+
     // MARK: - Lifecycle
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -115,7 +115,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureView()
     }
 
@@ -133,7 +133,7 @@ class ProfileViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -147,7 +147,7 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func editButoonPressing(_ sender: UIButton) {
-        
+
         if saveGCDButton.isHidden {
             showSavePanel(true)
         } else {
@@ -172,7 +172,7 @@ class ProfileViewController: UIViewController {
 
         fileLoaderOperation.cancelAllOperations()
         fileLoader.cancelAllOperations()
-        
+
         editButoon.shake()
     }
 
@@ -261,7 +261,7 @@ class ProfileViewController: UIViewController {
 
         nameTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
         detailsTextField.addTarget(self, action: #selector(changedNameField), for: .editingChanged)
-        
+
         let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
@@ -286,7 +286,7 @@ class ProfileViewController: UIViewController {
             profileImageButton.setBackgroundImage(image, for: .normal)
             return
         }
-        
+
         var initialsString = "--"
         if let fullname = profile.fullname {
             initialsString = String(fullname.prefix(1))
@@ -294,7 +294,7 @@ class ProfileViewController: UIViewController {
                 initialsString += String(words[1].prefix(1))
             }
         }
-        
+
         graphicsImageRenderer.drawSymbolsOnButton(button: profileImageButton, of: initialsString)
     }
 
@@ -343,15 +343,15 @@ extension ProfileViewController: UIViewControllerCoordinatorProtocol {}
 // MARK: - SelectImagesDelegateProtocol
 
 extension ProfileViewController: SelectImagesDelegateProtocol {
-    
+
     func imagePickerHandler(image: UIImage) {
-        
+
         self.profileImageButton.setBackgroundImage(image, for: .normal)
         self.profileImageButton.backgroundColor = .clear
-        
+
         self.showSavePanel(true)
         [self.saveGCDButton, self.saveOperationsButton].forEach { $0.isEnabled = true }
-        
+
         self.dismiss(animated: true)
     }
 }

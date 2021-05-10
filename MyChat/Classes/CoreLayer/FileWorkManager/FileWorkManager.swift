@@ -18,7 +18,7 @@ public enum FileWorkManagerError: Error {
 // MARK: - FileWorkManager
 
 class FileWorkManager<T: Codable> {
-    
+
     // MARK: - Private properties
 
     static private var plistURL: URL? {
@@ -26,7 +26,7 @@ class FileWorkManager<T: Codable> {
                 for: .documentDirectory, in: .userDomainMask).first else { return nil }
         return documents.appendingPathComponent(String(describing: T.self) + ".plist")
     }
-    
+
     // MARK: - Public methods
 
     func read(completion: @escaping (Result<T, Error>) -> Void) {

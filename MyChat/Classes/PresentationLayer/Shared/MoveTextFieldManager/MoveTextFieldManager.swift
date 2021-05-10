@@ -10,21 +10,21 @@ import UIKit
 // MARK: - MoveTextFieldManager
 
 class MoveTextFieldManager: MoveTextFieldProtocol {
-    
+
     // MARK: - Private properties
-    
+
     private let view: UIView
-    
+
     private var keyboardHeight: CGFloat = 0
-    
+
     // MARK: - Initialization
-    
+
     init(view: UIView) {
         self.view = view
     }
-    
+
     // MARK: - Public methods
-    
+
     @objc func keyboardWillShow(notification: Notification) {
 
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -42,7 +42,7 @@ class MoveTextFieldManager: MoveTextFieldProtocol {
         moveTextField(moveDistance: keyboardHeight, moveUp: true)
         keyboardHeight = 0
     }
-    
+
     // MARK: - Private methods
 
     private func moveTextField(moveDistance: CGFloat, moveUp: Bool) {

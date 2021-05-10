@@ -10,33 +10,33 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // MARK: - Public properties
-    
+
     var window: UIWindow?
-    
+
     // MARK: - Private properties
-    
+
     private let navigationController = UINavigationController()
 
     // MARK: - Instance Method
-    
+
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-       
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         let coordinator = Coordinator(navigationController: navigationController)
         coordinator.start()
-        
+
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
-        
+
         ThemeManager.shared.applyTheme()
         PrintManager.shared.printLifecycleEvent()
-        
+
         guard (scene as? UIWindowScene) != nil else { return }
     }
 

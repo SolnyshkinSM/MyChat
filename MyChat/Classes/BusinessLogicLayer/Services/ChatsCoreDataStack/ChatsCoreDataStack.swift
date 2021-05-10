@@ -10,13 +10,13 @@ import Foundation
 // MARK: - ChatsCoreDataStack
 
 class ChatsCoreDataStack {
-    
+
     // MARK: - Initialization
-    
+
     init() {}
-    
+
     // MARK: - Static methods
-    
+
     static func getCoreDataStack() -> CoreDataStackProtocol {
         return CoreDataStack(dataBaseName: "Chats")
     }

@@ -11,7 +11,7 @@ import CoreData
 // MARK: - NSManagedObject
 
 public extension NSManagedObject {
-    
+
     convenience init(context: NSManagedObjectContext) {
         let name = String(describing: type(of: self))
         let entity = NSEntityDescription.entity(forEntityName: name, in: context)!

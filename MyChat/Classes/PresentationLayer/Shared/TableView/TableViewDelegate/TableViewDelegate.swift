@@ -12,19 +12,19 @@ import CoreData
 // MARK: - TableViewDelegate
 
 class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, TableViewDelegateProtocol {
-    
+
     // MARK: - Private properties
-    
+
     private let coordinator: GoToCoordinatorProtocol?
-    
+
     private let coreDataStack: CoreDataStackProtocol?
-    
+
     private let listener: ListenerRegistration?
-    
+
     private let fetchedResultsController: NSFetchedResultsController<Model>?
-    
+
     // MARK: - Initialization
-    
+
     init(coordinator: GoToCoordinatorProtocol?,
          coreDataStack: CoreDataStackProtocol?,
          listener: ListenerRegistration?,
@@ -34,27 +34,27 @@ class TableViewDelegate<Model: NSFetchRequestResult>: NSObject, TableViewDelegat
         self.listener = listener
         self.fetchedResultsController = fetchedResultsController
     }
-    
+
     // MARK: - Public methods
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         if let object = fetchedResultsController?.object(at: indexPath),
            let coreDataStack = coreDataStack,
            let channel = object as? Channel {
             coordinator?.goToChannelDetailViewController(coreDataStack: coreDataStack, channel: channel)
             listener?.remove()
         }
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
-        
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+
         guard Model.self == Message.self else { return }
         guard let countFetchedObjects = fetchedResultsController?.fetchedObjects?.count
         else { return }
-        
+
         if indexPath.row == countFetchedObjects - 1 {
             cell.transform = CGAffineTransform(translationX: 0, y: tableView.bounds.size.height)
             UIView.animate(withDuration: 0.7, delay: 0.05,

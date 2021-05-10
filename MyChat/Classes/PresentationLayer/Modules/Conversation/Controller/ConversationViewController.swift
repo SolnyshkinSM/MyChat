@@ -14,17 +14,17 @@ import CoreData
 class ConversationViewController: UIViewController {
 
     // MARK: - IBOutlet properties    
-    
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!
     @IBOutlet weak var vaultView: UIView!
-    
+
     // MARK: - Public properties
-    
+
     var coreDataStack: CoreDataStackProtocol?
-    
+
     // MARK: - Private properties
-        
+
     lazy private var tableViewDataSource: TableViewDataSourceProtocol = {
         let tableViewDataSource = TableViewDataSource(
             database: database,
@@ -32,8 +32,8 @@ class ConversationViewController: UIViewController {
             fetchedResultsController: fetchedResultsController)
         return tableViewDataSource
     }()
-    
-    lazy private var tableViewDelegate: TableViewDelegateProtocol = {
+
+    lazy private weak var tableViewDelegate: TableViewDelegateProtocol = {
         let tableViewDelegate = TableViewDelegate(
             coordinator: nil,
             coreDataStack: coreDataStack,
@@ -41,9 +41,9 @@ class ConversationViewController: UIViewController {
             fetchedResultsController: fetchedResultsController)
         return tableViewDelegate
     }()
-    
-    lazy private var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
-        
+
+    lazy private weak var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
+
         if let text = textField.text, !text.isEmpty, !text.blank {
 
             _ = self?.reference?.addDocument(data: [
@@ -54,7 +54,7 @@ class ConversationViewController: UIViewController {
             textField.text = .none
         }
     }
-    
+
     lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getMessageFirebaseManager(coreDataStack: coreDataStack, reference: reference, channel: channel)
 
     private lazy var deviceID = UIDevice.current.identifierForVendor?.uuidString
@@ -68,26 +68,26 @@ class ConversationViewController: UIViewController {
     private var reference: CollectionReference?
 
     private var listener: ListenerRegistration?
-    
+
     private var channel: Channel?
-    
+
     private var predicate: NSPredicate?
-    
+
     private lazy var fetchedResultsManager = FetchedResultsManager<Message>(
         tableView: tableView,
         sortDescriptors: [NSSortDescriptor(key: "created", ascending: true)],
         fetchRequest: Message.fetchRequest(),
         predicate: predicate,
         coreDataStack: coreDataStack)
-    
+
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
-    
-    lazy private var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol = fetchedResultsManager.fetchedResultsControllerDelegate
-    
+
+    lazy private weak var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol = fetchedResultsManager.fetchedResultsControllerDelegate
+
     lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
-    
+
     private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
-    
+
     // MARK: - Lifecycle
 
     deinit {
@@ -99,7 +99,7 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.largeTitleDisplayMode = .never
-        
+
         tableView.dataSource = tableViewDataSource
         tableView.delegate = tableViewDelegate
         tableView.rowHeight = UITableView.automaticDimension
@@ -116,7 +116,7 @@ class ConversationViewController: UIViewController {
                 break
             }
         }
-        
+
         let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
@@ -142,22 +142,22 @@ class ConversationViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil)
         }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if let fetchedResultsController = fetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> {
             fetchedResultsControllerDelegate.scrollToRowFetchedObjects(controller: fetchedResultsController)
         }
     }
-    
+
     // MARK: - Public methods
 
     func configure(with channel: Channel) {
 
         title = channel.name
         self.channel = channel
-        
+
         if let identifier = channel.identifier {
             predicate = NSPredicate(format: "channel.identifier = %@", identifier)
             reference = database.collection("channels").document(identifier).collection("messages")

@@ -29,7 +29,7 @@ class ConversationCell: UITableViewCell {
         super.layoutSubviews()
 
         [nameLabel, messageLabel].forEach { $0.backgroundColor = .none }
-        
+
         nameLabel.textColor = theme.buttonTintColor
 
         self.removeBottomSeparator()
