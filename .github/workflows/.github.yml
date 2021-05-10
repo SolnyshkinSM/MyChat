@@ -1,5 +1,8 @@
 name: Swift
-on: [push]
+on: 
+  push: 
+    branch: 
+      - '*' 
 jobs:
   build:
     runs-on: macos-latest
