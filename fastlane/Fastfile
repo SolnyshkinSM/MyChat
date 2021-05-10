@@ -20,7 +20,10 @@ platform :ios do
 desc "Build and run test"
 
 lane :build_for_testing do |options|
-  cocoapods(clean_install: true)
+  # cocoapods(clean_install: true)
+  cocoapods(
+    try_repo_update_on_error: true
+  )
   scan(
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
@@ -32,11 +35,14 @@ lane :build_for_testing do |options|
 end 
 
 lane :run_tests_app do |options|
+  cocoapods(
+    try_repo_update_on_error: true
+  )
   run_tests(
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
-    destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4",
-    clean: false
+    destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4"
+    # clean: false
     # test_without_building: true
     )
   puts "run_tests"
