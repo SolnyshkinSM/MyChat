@@ -1,8 +1,5 @@
 name: Swift
-on:
-push:
-    branches:
-      - Continuous-integration
+on: [push]
 jobs:
   build:
     runs-on: macos-latest
