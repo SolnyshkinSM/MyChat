@@ -54,7 +54,7 @@ lane :build_and_test do |options|
     output_file: "swiftlint.result.json", 
     executable: "./Pods/SwiftLint/swiftlint",
     strict: true,
-    config_file: ".rules.swiftlint.yml",
+    config_file: "rules.swiftlint.yml",
   )
   build_for_testing
   # sleep 15
