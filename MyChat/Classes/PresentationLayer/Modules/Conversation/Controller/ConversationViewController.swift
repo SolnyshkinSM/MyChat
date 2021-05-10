@@ -33,9 +33,25 @@ class ConversationViewController: UIViewController {
         return tableViewDataSource
     }()
 
-    private var tableViewDelegate: TableViewDelegateProtocol?
+    private weak var tableViewDelegate: TableViewDelegateProtocol? {
+        return TableViewDelegate(coordinator: nil,
+                                 coreDataStack: coreDataStack,
+                                 listener: listener,
+                                 fetchedResultsController: fetchedResultsController)
+    }
 
-    private var textFieldDelegate: TextFieldDelegateProtocol?
+    private weak var textFieldDelegate: TextFieldDelegateProtocol? {
+        return TextFieldDelegate { [weak self] textField in
+            if let text = textField.text, !text.isEmpty, !text.blank {
+                _ = self?.reference?.addDocument(data: [
+                    "content": text, "created": Date(),
+                    "senderId": self?.deviceID ?? "",
+                    "senderName": self?.profile?.fullname ?? ""
+                ])
+                textField.text = .none
+            }
+        }
+    }
 
     lazy private var firebaseManager: FirebaseManagerProtocol =
         ChatsFirebaseManager.getMessageFirebaseManager(
@@ -81,21 +97,6 @@ class ConversationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableViewDelegate = TableViewDelegate(
-            coordinator: nil, coreDataStack: coreDataStack,
-            listener: listener, fetchedResultsController: fetchedResultsController)
-
-        textFieldDelegate = TextFieldDelegate { [weak self] textField in
-            if let text = textField.text, !text.isEmpty, !text.blank {
-                _ = self?.reference?.addDocument(data: [
-                    "content": text, "created": Date(),
-                    "senderId": self?.deviceID ?? "",
-                    "senderName": self?.profile?.fullname ?? ""
-                ])
-                textField.text = .none
-            }
-        }
 
         fetchedResultsControllerDelegate = fetchedResultsManager.fetchedResultsControllerDelegate
 

@@ -75,7 +75,17 @@ class ProfileViewController: UIViewController {
         self?.activityIndicator.stopAnimating()
     }
 
-    private var textFieldDelegate: TextFieldDelegateProtocol?
+    private weak var textFieldDelegate: TextFieldDelegateProtocol? {
+        return TextFieldDelegate { [weak self] textField in
+            if textField == self?.collectionField.last {
+                textField.resignFirstResponder()
+            } else {
+                if let index = self?.collectionField.firstIndex(of: textField) {
+                    self?.collectionField[index + 1].becomeFirstResponder()
+                }
+            }
+        }
+    }
 
     lazy private var pickerController: PickerControllerProtocol =
         PickerController(viewController: self) { [weak self] info in
@@ -235,16 +245,6 @@ class ProfileViewController: UIViewController {
     // MARK: - Private methods
 
     private func configureView() {
-
-        textFieldDelegate = TextFieldDelegate { [weak self] textField in
-            if textField == self?.collectionField.last {
-                textField.resignFirstResponder()
-            } else {
-                if let index = self?.collectionField.firstIndex(of: textField) {
-                    self?.collectionField[index + 1].becomeFirstResponder()
-                }
-            }
-        }
 
         activityIndicator.color = theme.tintColor
         activityIndicator.hidesWhenStopped = true

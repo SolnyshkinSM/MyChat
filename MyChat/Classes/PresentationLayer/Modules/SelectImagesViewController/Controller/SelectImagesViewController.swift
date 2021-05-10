@@ -38,7 +38,9 @@ class SelectImagesViewController: UIViewController {
     lazy private var collectionViewDataSource: CollectionViewDataSourceProtocol =
         CollectionViewDataSource(delegate: self, loader: loader)
 
-    private var collectionViewDelegate: CollectionViewDelegateProtocol?
+    private weak var collectionViewDelegate: CollectionViewDelegateProtocol? {
+        return CollectionViewDelegate(delegate: self, selectImagesDelegate: delegate, loader: loader)
+    }
 
     // MARK: - Lifecycle
 
@@ -65,8 +67,6 @@ class SelectImagesViewController: UIViewController {
 private extension SelectImagesViewController {
 
     func setupViews() {
-
-        collectionViewDelegate = CollectionViewDelegate(delegate: self, selectImagesDelegate: delegate, loader: loader)
 
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
