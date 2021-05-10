@@ -31,7 +31,7 @@ class ConversationsListViewController: UIViewController {
         return tableViewDataSource
     }()
 
-    private weak var tableViewDelegate: TableViewDelegateProtocol?
+    private var tableViewDelegate: TableViewDelegateProtocol?
 
     lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
 

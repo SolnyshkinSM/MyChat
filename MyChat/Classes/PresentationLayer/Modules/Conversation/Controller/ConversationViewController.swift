@@ -33,9 +33,9 @@ class ConversationViewController: UIViewController {
         return tableViewDataSource
     }()
 
-    private weak var tableViewDelegate: TableViewDelegateProtocol?
+    private var tableViewDelegate: TableViewDelegateProtocol?
 
-    private weak var textFieldDelegate: TextFieldDelegateProtocol?
+    private var textFieldDelegate: TextFieldDelegateProtocol?
 
     lazy private var firebaseManager: FirebaseManagerProtocol =
         ChatsFirebaseManager.getMessageFirebaseManager(
