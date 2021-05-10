@@ -3,6 +3,9 @@ on: [push]
 jobs:
   build:
     runs-on: macos-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=14.4,name=iPhone 11']
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
