@@ -28,8 +28,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
 
     // MARK: - Public properties
 
-    lazy weak var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol =
-        FetchedResultsControllerDelegate<Model>(tableView: tableView)
+    var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol?
 
     var fetchedResultsController: NSFetchedResultsController<Model> {
 
@@ -72,5 +71,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
         self.fetchRequest = fetchRequest
         self.coreDataStack = coreDataStack
         self.predicate = predicate
+
+        fetchedResultsControllerDelegate = FetchedResultsControllerDelegate<Model>(tableView: tableView)
     }
 }

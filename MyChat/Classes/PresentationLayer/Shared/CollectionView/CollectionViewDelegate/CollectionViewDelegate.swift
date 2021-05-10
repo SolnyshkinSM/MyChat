@@ -13,7 +13,7 @@ class CollectionViewDelegate: NSObject, CollectionViewDelegateProtocol {
 
     // MARK: - Private properties
 
-    private weak var delegate: UIViewControllerCollectionViewDataSourceProtocol
+    private weak var delegate: UIViewControllerCollectionViewDataSourceProtocol?
 
     weak var selectImagesDelegate: SelectImagesDelegateProtocol?
 
@@ -33,7 +33,7 @@ class CollectionViewDelegate: NSObject, CollectionViewDelegateProtocol {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        guard let object = delegate.images?[indexPath.row],
+        guard let object = delegate?.images?[indexPath.row],
               let selectImagesDelegate = selectImagesDelegate,
               let previewURL = object.largeImageURL,
               let imageUrl = URL(string: previewURL) else { return }

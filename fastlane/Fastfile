@@ -53,9 +53,9 @@ lane :build_and_test do |options|
     # mode: :lint
     mode: :autocorrect
   )
-  build_for_testing
+  # build_for_testing
   # sleep 15
-  run_tests_app
+  # run_tests_app
 end
 
 end

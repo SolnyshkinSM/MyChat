@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - SelectImagesDelegateProtocol
 
-protocol SelectImagesDelegateProtocol {
+protocol SelectImagesDelegateProtocol: class {
     func imagePickerHandler(image: UIImage)
 }
 
@@ -37,7 +37,7 @@ class SelectImagesViewController: UIViewController {
 
     lazy private var collectionViewDataSource: CollectionViewDataSourceProtocol = CollectionViewDataSource(delegate: self, loader: loader)
 
-    lazy private weak var collectionViewDelegate: CollectionViewDelegateProtocol = CollectionViewDelegate(delegate: self, selectImagesDelegate: delegate, loader: loader)
+    private var collectionViewDelegate: CollectionViewDelegateProtocol?
 
     // MARK: - Lifecycle
 
@@ -64,6 +64,8 @@ class SelectImagesViewController: UIViewController {
 private extension SelectImagesViewController {
 
     func setupViews() {
+
+        collectionViewDelegate = CollectionViewDelegate(delegate: self, selectImagesDelegate: delegate, loader: loader)
 
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical

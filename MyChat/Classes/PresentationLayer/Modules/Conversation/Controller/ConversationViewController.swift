@@ -33,27 +33,9 @@ class ConversationViewController: UIViewController {
         return tableViewDataSource
     }()
 
-    lazy private weak var tableViewDelegate: TableViewDelegateProtocol = {
-        let tableViewDelegate = TableViewDelegate(
-            coordinator: nil,
-            coreDataStack: coreDataStack,
-            listener: listener,
-            fetchedResultsController: fetchedResultsController)
-        return tableViewDelegate
-    }()
+    private var tableViewDelegate: TableViewDelegateProtocol?
 
-    lazy private weak var textFieldDelegate: TextFieldDelegateProtocol = TextFieldDelegate { [weak self] textField in
-
-        if let text = textField.text, !text.isEmpty, !text.blank {
-
-            _ = self?.reference?.addDocument(data: [
-                "content": text, "created": Date(),
-                "senderId": self?.deviceID ?? "",
-                "senderName": self?.profile?.fullname ?? ""
-            ])
-            textField.text = .none
-        }
-    }
+    private var textFieldDelegate: TextFieldDelegateProtocol?
 
     lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getMessageFirebaseManager(coreDataStack: coreDataStack, reference: reference, channel: channel)
 
@@ -82,7 +64,7 @@ class ConversationViewController: UIViewController {
 
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
 
-    lazy private weak var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol = fetchedResultsManager.fetchedResultsControllerDelegate
+    private weak var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol?
 
     lazy private var moveTextFieldManager: MoveTextFieldProtocol = MoveTextFieldManager(view: self.view)
 
@@ -97,6 +79,21 @@ class ConversationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableViewDelegate = TableViewDelegate(coordinator: nil, coreDataStack: coreDataStack, listener: listener, fetchedResultsController: fetchedResultsController)
+
+        textFieldDelegate = TextFieldDelegate { [weak self] textField in
+            if let text = textField.text, !text.isEmpty, !text.blank {
+                _ = self?.reference?.addDocument(data: [
+                    "content": text, "created": Date(),
+                    "senderId": self?.deviceID ?? "",
+                    "senderName": self?.profile?.fullname ?? ""
+                ])
+                textField.text = .none
+            }
+        }
+
+        fetchedResultsControllerDelegate = fetchedResultsManager.fetchedResultsControllerDelegate
 
         navigationItem.largeTitleDisplayMode = .never
 
@@ -147,7 +144,7 @@ class ConversationViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if let fetchedResultsController = fetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> {
-            fetchedResultsControllerDelegate.scrollToRowFetchedObjects(controller: fetchedResultsController)
+            fetchedResultsControllerDelegate?.scrollToRowFetchedObjects(controller: fetchedResultsController)
         }
     }
 

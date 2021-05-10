@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - UIViewControllerCollectionViewDataSourceProtocol
 
-protocol UIViewControllerCollectionViewDataSourceProtocol {
+protocol UIViewControllerCollectionViewDataSourceProtocol: class {
     var images: [Image]? { get set }
 }
 
@@ -19,7 +19,7 @@ class CollectionViewDataSource: NSObject, CollectionViewDataSourceProtocol {
 
     // MARK: - Private properties
 
-    private weak var delegate: UIViewControllerCollectionViewDataSourceProtocol
+    private weak var delegate: UIViewControllerCollectionViewDataSourceProtocol?
 
     private let loader: ImageLoaderProtocol
 
@@ -34,7 +34,7 @@ class CollectionViewDataSource: NSObject, CollectionViewDataSourceProtocol {
     // MARK: - Public methods
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate.images?.count ?? 0
+        return delegate?.images?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -43,7 +43,7 @@ class CollectionViewDataSource: NSObject, CollectionViewDataSourceProtocol {
                 withReuseIdentifier: SelectImagesViewController.Constants.collectionCellIdentifier,
                 for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
 
-        let object = delegate.images?[indexPath.row]
+        let object = delegate?.images?[indexPath.row]
 
         guard let previewURL = object?.largeImageURL,
               let imageUrl = URL(string: previewURL) else { return cell }

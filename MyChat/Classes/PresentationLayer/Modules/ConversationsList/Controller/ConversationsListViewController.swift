@@ -31,14 +31,7 @@ class ConversationsListViewController: UIViewController {
         return tableViewDataSource
     }()
 
-    lazy private weak var tableViewDelegate: TableViewDelegateProtocol = {
-        let tableViewDelegate = TableViewDelegate<Channel>(
-            coordinator: coordinator,
-            coreDataStack: coreDataStack,
-            listener: listener,
-            fetchedResultsController: fetchedResultsController)
-        return tableViewDelegate
-    }()
+    private var tableViewDelegate: TableViewDelegateProtocol?
 
     lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
 
@@ -77,6 +70,11 @@ class ConversationsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableViewDelegate = TableViewDelegate<Channel>(coordinator: coordinator,
+                                                       coreDataStack: coreDataStack,
+                                                       listener: listener,
+                                                       fetchedResultsController: fetchedResultsController)
 
         screenSaver.loadScreenSaver(by: "logo")
 
