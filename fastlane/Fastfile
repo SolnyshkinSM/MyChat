@@ -49,10 +49,10 @@ lane :run_tests_app do |options|
 end
 
 lane :build_and_test do |options|
-  # swiftlint(
+  swiftlint(
     # mode: :lint
-    # mode: :autocorrect
-  # )
+    mode: :autocorrect
+  )
   build_for_testing
   # sleep 15
   run_tests_app
