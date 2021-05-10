@@ -28,7 +28,7 @@ class FetchedResultsManager<Model: NSFetchRequestResult> {
 
     // MARK: - Public properties
 
-    var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol?
+    weak var fetchedResultsControllerDelegate: FetchedResultsControllerProtocol?
 
     var fetchedResultsController: NSFetchedResultsController<Model> {
 

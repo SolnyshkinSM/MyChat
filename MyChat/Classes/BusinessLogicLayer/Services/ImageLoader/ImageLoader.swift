@@ -18,7 +18,7 @@ class ImageLoader: ImageLoaderProtocol {
 
     // MARK: - Public methods
 
-    func uploadImage(by url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
+    func uploadImage(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
 
         if let image = uploadedImages[url] {
             completion(.success(image))

@@ -164,7 +164,6 @@ class FileWriteOperation<T: Codable>: AsyncOperation, FileWriteOperationProtocol
 
     override func main() {
 
-        // TODO: sleep
         // sleep(20)
 
         if isCancelled {
@@ -198,7 +197,6 @@ class FileReadOperation<T: Codable>: AsyncOperation, FileReadOperationProtocol {
 
     override func main() {
 
-        // TODO: sleep
         // sleep(3)
 
         if isCancelled {

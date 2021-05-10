@@ -31,7 +31,8 @@ class AnimatorPresent: NSObject, UIViewControllerAnimatedTransitioning {
         let oldTransform = toView.transform
         toView.transform = CGAffineTransform(rotationAngle: .pi)
 
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseOut) {
+        UIView.animate(withDuration: 1, delay: 0,
+                       usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseOut) {
             toView.transform = oldTransform
         } completion: { _ in
             transitionContext.completeTransition(true)
@@ -43,7 +44,9 @@ class AnimatorPresent: NSObject, UIViewControllerAnimatedTransitioning {
 
 extension AnimatorPresent: UIViewControllerTransitioningDelegate {
 
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AnimatorPresent()
     }
 

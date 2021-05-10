@@ -38,7 +38,7 @@ class CollectionViewDelegate: NSObject, CollectionViewDelegateProtocol {
               let previewURL = object.largeImageURL,
               let imageUrl = URL(string: previewURL) else { return }
 
-        _ = loader.uploadImage(by: imageUrl) { result in
+        _ = loader.uploadImage(for: imageUrl) { result in
             do {
                 let image = try result.get()
                 DispatchQueue.main.async { selectImagesDelegate.imagePickerHandler(image: image) }

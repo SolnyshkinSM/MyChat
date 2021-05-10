@@ -16,7 +16,6 @@ class DataTaskStack: DataTaskStackProtocol {
     func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask? {
         return URLSession.shared.dataTask(with: requst, completionHandler: { (data, _, error) in
 
-            // TODO: sleep
             sleep(1)
 
             DispatchQueue.main.async {

@@ -37,7 +37,8 @@ class CollectionViewDataSource: NSObject, CollectionViewDataSourceProtocol {
         return delegate?.images?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: SelectImagesViewController.Constants.collectionCellIdentifier,
@@ -48,17 +49,21 @@ class CollectionViewDataSource: NSObject, CollectionViewDataSourceProtocol {
         guard let previewURL = object?.largeImageURL,
               let imageUrl = URL(string: previewURL) else { return cell }
 
-        let token = loader.uploadImage(by: imageUrl) { result in
+        let token = loader.uploadImage(for: imageUrl) { result in
             do {
                 let image = try result.get()
-                DispatchQueue.main.async { cell.configure(with: image) }
+                DispatchQueue.main.async {
+                    cell.configure(with: image)
+                }
             } catch {
                 print(error.localizedDescription)
             }
         }
 
         cell.reuseCellHandler = {
-            if let token = token { self.loader.cancelRunningQueries(for: token) }
+            if let token = token {
+                self.loader.cancelRunningQueries(for: token)
+            }
         }
 
         return cell

@@ -75,7 +75,7 @@ class ProfileViewController: UIViewController {
         self?.activityIndicator.stopAnimating()
     }
 
-    private var textFieldDelegate: TextFieldDelegateProtocol?
+    private weak var textFieldDelegate: TextFieldDelegateProtocol?
 
     lazy private var pickerController: PickerControllerProtocol = PickerController(viewController: self) { [weak self] info in
 

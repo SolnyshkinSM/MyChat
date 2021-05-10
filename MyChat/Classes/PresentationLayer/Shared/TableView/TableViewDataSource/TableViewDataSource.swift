@@ -77,7 +77,9 @@ class TableViewDataSource<Model: NSFetchRequestResult>: NSObject, TableViewDataS
         return true
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
 
         let object = fetchedResultsController?.object(at: indexPath)
 
@@ -89,7 +91,8 @@ class TableViewDataSource<Model: NSFetchRequestResult>: NSObject, TableViewDataS
             } else if let message = object as? Message,
                       let channelIdentifier = message.channel?.identifier,
                       let messageIdentifier = message.identifier {
-                database.collection("channels").document(channelIdentifier).collection("messages").document(messageIdentifier).delete()
+                let document = database.collection("channels").document(channelIdentifier)
+                document.collection("messages").document(messageIdentifier).delete()
             }
         }
     }

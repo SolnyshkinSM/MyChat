@@ -100,8 +100,8 @@ class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
     }
 
     private func addNewMessage(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
-        let message_db = Message(identifier: document.documentID,
+        let message = Message(identifier: document.documentID,
                                  with: document.data(), in: context)
-        channel?.addToMessages(message_db)
+        channel?.addToMessages(message)
     }
 }

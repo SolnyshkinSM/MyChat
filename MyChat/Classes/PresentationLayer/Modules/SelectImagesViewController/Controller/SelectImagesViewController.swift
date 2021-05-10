@@ -37,7 +37,7 @@ class SelectImagesViewController: UIViewController {
 
     lazy private var collectionViewDataSource: CollectionViewDataSourceProtocol = CollectionViewDataSource(delegate: self, loader: loader)
 
-    private var collectionViewDelegate: CollectionViewDelegateProtocol?
+    private weak var collectionViewDelegate: CollectionViewDelegateProtocol?
 
     // MARK: - Lifecycle
 

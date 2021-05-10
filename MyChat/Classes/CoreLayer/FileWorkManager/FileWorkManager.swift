@@ -31,7 +31,6 @@ class FileWorkManager<T: Codable> {
 
     func read(completion: @escaping (Result<T, Error>) -> Void) {
 
-        // TODO: sleep
         // sleep(3)
 
         let decoder = PropertyListDecoder()
@@ -47,7 +46,6 @@ class FileWorkManager<T: Codable> {
               let object = try? decoder.decode(T.self, from: data)
         else { return completion(.failure(FileWorkManagerError.readError)) }
 
-        // TODO: test failure
         /*if Int.random(in: 0...1) != 0 {
             return completion(.failure(FileWorkManagerError.readError))
         }*/
@@ -57,7 +55,6 @@ class FileWorkManager<T: Codable> {
 
     func write(object: T, loader: FileLoaderProtocol, completion: @escaping (Result<Bool, Error>) -> Void) {
 
-        // TODO: sleep
         // sleep(3)
 
         let encoder = PropertyListEncoder()
@@ -66,7 +63,6 @@ class FileWorkManager<T: Codable> {
               let plistURL = FileWorkManager.plistURL
         else { return completion(.failure(FileWorkManagerError.writeError)) }
 
-        // TODO: test failure
         /*if Int.random(in: 0...1) != 0 {
             return completion(.failure(FileWorkManagerError.writeError))
         }*/

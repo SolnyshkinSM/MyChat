@@ -12,7 +12,6 @@ class DataTaskStackMock: DataTaskStackProtocol {
 
     func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask? {
 
-        // TODO: sleep
         sleep(1)
 
         let data = Data("""

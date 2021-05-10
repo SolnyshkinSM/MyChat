@@ -68,7 +68,8 @@ extension Coordinator: GoToCoordinatorProtocol {
 
     func goToProfileViewController() {
 
-        if let controller = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+        if let controller = storyboard.instantiateViewController(
+            withIdentifier: "ProfileViewController") as? ProfileViewController {
             controller.coordinator = self
             controller.modalPresentationStyle = .custom
             controller.transitioningDelegate = animatorPresen

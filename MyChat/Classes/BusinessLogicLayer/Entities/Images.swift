@@ -18,7 +18,11 @@ struct ImagesGroup: Decodable {
 // MARK: - Image
 
 struct Image: Decodable {
-    let id: Int?
+    let uuid: Int?
     let previewURL: String?
     let largeImageURL: String?
+
+    enum CodingKeys: String, CodingKey {
+      case uuid = "id", previewURL, largeImageURL
+    }
 }
