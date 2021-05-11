@@ -55,6 +55,8 @@ lane :build_and_test do |options|
     executable: "./Pods/SwiftLint/swiftlint",
     strict: true,
     config_file: "rules.swiftlint.yml",
+    raise_if_swiftlint_error: true,
+    ignore_exit_status: true
   )
   build_for_testing
   # sleep 15
