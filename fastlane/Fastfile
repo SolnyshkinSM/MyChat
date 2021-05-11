@@ -66,7 +66,8 @@ lane :build_and_test do |options|
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
     destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4",
-    clean: false
+    clean: false,
+    open_report: true
     )
 end
 
