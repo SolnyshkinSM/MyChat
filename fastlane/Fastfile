@@ -58,9 +58,16 @@ lane :build_and_test do |options|
   #   raise_if_swiftlint_error: true,
   #   ignore_exit_status: true
   # )
-  build_for_testing
+  # build_for_testing
   # sleep 15
   # run_tests_app
+
+  scan(
+    workspace: "MyChat.xcworkspace",
+    scheme: "MyChat",
+    destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4",
+    clean: false
+    )
 end
 
 end
