@@ -55,7 +55,7 @@ webhook_url = ENV["WEBHOOK_URL"].freeze
 
 client = Discordrb::Webhooks::Client.new(url: webhook_url)
 client.execute do |builder|
-  builder.username = 'SolnyshkinSM'
+  builder.username = 'Солнышкин Сергей'
   builder.content = 'Build result'
 
   builder.add_embed do |embed|

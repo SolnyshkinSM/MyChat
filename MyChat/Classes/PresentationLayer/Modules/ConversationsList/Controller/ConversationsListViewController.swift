@@ -12,17 +12,17 @@ import CoreData
 // MARK: - ConversationsListViewController
 
 class ConversationsListViewController: UIViewController {
-
+    
     // MARK: - IBOutlet properties
 
     @IBOutlet weak var tableView: UITableView!
-
+    
     // MARK: - Public properties
-
+    
     public var coordinator: GoToCoordinatorProtocol?
 
     // MARK: - Private properties
-
+    
     lazy private var tableViewDataSource: TableViewDataSourceProtocol = {
         let tableViewDataSource = TableViewDataSource(
             database: database,
@@ -30,29 +30,27 @@ class ConversationsListViewController: UIViewController {
             fetchedResultsController: fetchedResultsController)
         return tableViewDataSource
     }()
-
-    private weak var tableViewDelegate: TableViewDelegateProtocol? {
-        return TableViewDelegate<Channel>(
+    
+    lazy private var tableViewDelegate: TableViewDelegateProtocol = {
+        let tableViewDelegate = TableViewDelegate<Channel>(
             coordinator: coordinator,
             coreDataStack: coreDataStack,
             listener: listener,
             fetchedResultsController: fetchedResultsController)
-    }
-
+        return tableViewDelegate
+    }()
+    
     lazy private var screenSaver: ScreenSaverProtocol = ScreenSaver(viewController: self)
-
-    lazy private var firebaseManager: FirebaseManagerProtocol =
-        ChatsFirebaseManager.getChannelFirebaseManager(
-            coreDataStack: coreDataStack, reference: reference)
-
-    lazy private var channelsManager: ChannelsManagerProtocol =
-        ChannelsManager(viewController: self) { [weak self] alert in
+   
+    lazy private var firebaseManager: FirebaseManagerProtocol = ChatsFirebaseManager.getChannelFirebaseManager(coreDataStack: coreDataStack, reference: reference)
+        
+    lazy private var channelsManager: ChannelsManagerProtocol = ChannelsManager(viewController: self) { [weak self] alert in
         if let answer = alert.textFields?.first,
            let name = answer.text, !name.isEmpty {
             self?.reference.addDocument(data: ["name": name])
         }
     }
-
+    
     private let refreshControl = UIRefreshControl()
 
     private let theme = ThemeManager.shared.currentTheme
@@ -62,53 +60,51 @@ class ConversationsListViewController: UIViewController {
     private lazy var reference = database.collection("channels")
 
     private var listener: ListenerRegistration?
-
+        
     private lazy var coreDataStack: CoreDataStackProtocol = ChatsCoreDataStack.getCoreDataStack()
-
+    
     private lazy var fetchedResultsManager = FetchedResultsManager<Channel>(
         tableView: tableView,
         sortDescriptors: [NSSortDescriptor(key: "name", ascending: false)],
         fetchRequest: Channel.fetchRequest(),
         coreDataStack: coreDataStack)
-
+    
     private lazy var fetchedResultsController = fetchedResultsManager.fetchedResultsController
-
+    
     private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
-
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         screenSaver.loadScreenSaver(by: "logo")
 
         navigationItem.largeTitleDisplayMode = .always
-
+        
         tableView.dataSource = tableViewDataSource
         tableView.delegate = tableViewDelegate
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.addSubview(refreshControl)
-
-        let longPressRecognizer = UILongPressGestureRecognizer(
-            target: gestureRecognizerManager,
-            action: #selector(gestureRecognizerManager.longPressed))
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
-
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         listener = firebaseManager.addSnapshotListener()
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         tableView.rowHeight = tableView.bounds.height * 0.3
     }
-
+    
     deinit { listener?.remove() }
 
     // MARK: - Public methods

@@ -11,24 +11,24 @@ import CoreData
 // MARK: - FetchedResultsControllerDelegate
 
 class FetchedResultsControllerDelegate<Model: NSFetchRequestResult>: NSObject, FetchedResultsControllerProtocol {
-
+    
     // MARK: - Private properties
-
+    
     private let tableView: UITableView
-
+    
     // MARK: - Initialization
-
+    
     init(tableView: UITableView) {
         self.tableView = tableView
     }
-
+    
     // MARK: - Public methods
-
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if tableView.window == nil { return }
         tableView.beginUpdates()
     }
-
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
@@ -43,7 +43,7 @@ class FetchedResultsControllerDelegate<Model: NSFetchRequestResult>: NSObject, F
             return
         }
     }
-
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange anObject: Any, at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -73,16 +73,16 @@ class FetchedResultsControllerDelegate<Model: NSFetchRequestResult>: NSObject, F
             return
         }
     }
-
+    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if tableView.window == nil { return }
         tableView.endUpdates()
-
+        
         if Model.self == Message.self { scrollToRowFetchedObjects(controller: controller) }
     }
-
+    
     func scrollToRowFetchedObjects(controller: NSFetchedResultsController<NSFetchRequestResult>) {
-
+        
         if let countFetchedObjects = controller.fetchedObjects?.count,
            countFetchedObjects != 0 {
             let lastIndex = IndexPath(item: countFetchedObjects - 1, section: 0)
