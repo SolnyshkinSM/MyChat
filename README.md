@@ -6,13 +6,13 @@ MyChat - Messaging app
 
 ![alt text](1.png "Core Data")
 
-![alt text](2.gif "Tests")
+![alt text](2.png "Tests")
 
-![alt text](3.gif "CI-CD")
+![alt text](3.png "CI-CD")
 
-![alt text](4.gif "Notification")
+![alt text](4.png "Notification")
 
-https://youtu.be/AutfI1ee7xM
+https://youtu.be/5HvS1OcKrtc
 
 Used:
 - Swift
