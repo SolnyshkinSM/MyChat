@@ -28,7 +28,7 @@ class ThemesViewController: UIViewController {
     @IBOutlet weak var dayLabel: UILabel!
 
     @IBOutlet weak var nightLabel: UILabel!
-    
+
     // MARK: - Public properties
 
     var themeManager: ThemeManagerProtocol = ThemeManager()
@@ -36,7 +36,7 @@ class ThemesViewController: UIViewController {
     // MARK: - Private properties
 
     private lazy var currentTheme = themeManager.currentTheme
-    
+
     private lazy var gestureRecognizerManager = GestureRecognizerManager(view: view)
 
     // MARK: - Lifecycle
@@ -66,7 +66,7 @@ class ThemesViewController: UIViewController {
             themeManager.applyTheme(selectedTheme)
             updateButtons(theme: selectedTheme)
         }
-        
+
         reloadView()
     }
 
@@ -87,8 +87,10 @@ class ThemesViewController: UIViewController {
                                         target: self,
                                         action: #selector(themeButoonPressing(_:))))
         }
-        
-        let longPressRecognizer = UILongPressGestureRecognizer(target: gestureRecognizerManager, action: #selector(gestureRecognizerManager.longPressed))
+
+        let longPressRecognizer = UILongPressGestureRecognizer(
+            target: gestureRecognizerManager,
+            action: #selector(gestureRecognizerManager.longPressed))
         self.view.addGestureRecognizer(longPressRecognizer)
     }
 

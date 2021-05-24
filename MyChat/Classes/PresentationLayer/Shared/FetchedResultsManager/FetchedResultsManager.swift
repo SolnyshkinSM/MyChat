@@ -10,7 +10,7 @@ import CoreData
 
 // MARK: - FetchedResultsManager
 
-class FetchedResultsManager<Model: NSFetchRequestResult> {    
+class FetchedResultsManager<Model: NSFetchRequestResult> {
     
     // MARK: - Private properties
     

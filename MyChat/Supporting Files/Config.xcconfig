@@ -1,0 +1,15 @@
+//
+//  Config.xcconfig
+//  MyChat
+//
+//  Created by Administrator on 08.05.2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-MyChat/Pods-MyChat.debug.xcconfig"
+#include "Pods/Target Support Files/Pods-MyChat/Pods-MyChat.release.xcconfig"
+
+API_KEY_LOAD_IMAGES = 21218574-f0d32fe5e463e87432665c8e4
+API_URL_LOAD_IMAGES = https:/$()/pixabay.com/api/

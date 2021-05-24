@@ -9,47 +9,47 @@ import UIKit
 
 // MARK: - SelectImagesDelegateProtocol
 
-protocol SelectImagesDelegateProtocol {
+protocol SelectImagesDelegateProtocol: class {
     func imagePickerHandler(image: UIImage)
 }
 
 // MARK: - SelectImagesViewController
 
 class SelectImagesViewController: UIViewController {
-    
+
     // MARK: - Public properties
-    
+
     var images: [Image]?
-    
-    var delegate: SelectImagesDelegateProtocol?
-    
+
+    weak var delegate: SelectImagesDelegateProtocol?
+
     // MARK: - Private properties
-    
+
     private let theme = ThemeManager.shared.currentTheme
-    
+
     private var collectionView: UICollectionView!
-    
+
     private var activityIndicator: UIActivityIndicatorView!
-    
+
     private let dataFetcherService: DataFetcherServiceProtocol = DataFetcherService()
-    
+
     private let loader: ImageLoaderProtocol = ImageLoader()
-    
+
     lazy private var collectionViewDataSource: CollectionViewDataSourceProtocol = CollectionViewDataSource(delegate: self, loader: loader)
-    
-    lazy private var collectionViewDelegate: CollectionViewDelegateProtocol = CollectionViewDelegate(delegate: self, selectImagesDelegate: delegate, loader: loader)
-    
+
+    private var collectionViewDelegate: CollectionViewDelegateProtocol?
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         loadData()
         layout()
     }
-    
+
     // MARK: - Private methods
-    
+
     private func loadData() {
         dataFetcherService.fetchImages { [weak self] imagesGroup in
             self?.images = imagesGroup?.hits
@@ -62,22 +62,24 @@ class SelectImagesViewController: UIViewController {
 // MARK: - Setupes
 
 private extension SelectImagesViewController {
-    
+
     func setupViews() {
-        
+
+        collectionViewDelegate = CollectionViewDelegate(delegate: self, selectImagesDelegate: delegate, loader: loader)
+
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        
+
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = collectionViewDataSource
         collectionView.delegate = collectionViewDelegate
-        
+
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: Constants.collectionCellIdentifier)
-        
+
         view.addSubview(collectionView)
-        
+
         activityIndicator = UIActivityIndicatorView(frame: view.bounds)
         activityIndicator.backgroundColor = theme.backgroundColor
         activityIndicator.color = theme.textColor
@@ -89,11 +91,11 @@ private extension SelectImagesViewController {
 // MARK: - Layout
 
 private extension SelectImagesViewController {
-    
+
     func layout() {
-        
+
         var overviewConstraint = [NSLayoutConstraint]()
-        
+
         overviewConstraint += [
             collectionView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -104,18 +106,18 @@ private extension SelectImagesViewController {
             collectionView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
-        
+
         overviewConstraint += [
             activityIndicator.centerXAnchor.constraint(
                 equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(
                 equalTo: view.centerYAnchor)
         ]
-        
+
         NSLayoutConstraint.activate(overviewConstraint)
-        
+
         let collectionViews: [UIView?] = [collectionView, activityIndicator]
-        
+
         collectionViews.forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -129,7 +131,7 @@ extension SelectImagesViewController: UIViewControllerCollectionViewDataSourcePr
 // MARK: - Constants
 
 extension SelectImagesViewController {
-    
+
     enum Constants {
         static let collectionCellIdentifier = "CellCollection"
     }

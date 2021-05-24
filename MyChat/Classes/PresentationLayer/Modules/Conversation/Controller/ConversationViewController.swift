@@ -13,7 +13,7 @@ import CoreData
 
 class ConversationViewController: UIViewController {
 
-    // MARK: - IBOutlet properties    
+    // MARK: - IBOutlet properties
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!

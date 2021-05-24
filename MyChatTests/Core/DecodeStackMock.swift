@@ -9,7 +9,7 @@
 import Foundation
 
 class DecodeStackMock: DecodeStackProtocol {
-    
+
     func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
         guard let data = from else { return nil }
@@ -19,6 +19,6 @@ class DecodeStackMock: DecodeStackProtocol {
         } catch let jsonError {
             print("Failed to decode JSON", jsonError)
             return nil
-        }        
+        }
     }
 }

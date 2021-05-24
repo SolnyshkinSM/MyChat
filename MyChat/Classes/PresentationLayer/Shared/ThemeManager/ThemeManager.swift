@@ -10,13 +10,13 @@ import UIKit
 // MARK: - ThemeManager
 
 class ThemeManager: ThemeManagerProtocol {
-    
+
     // MARK: - Static properties
 
     static let shared = ThemeManager()
-    
+
     // MARK: - Public properties
-    
+
     var currentTheme: Theme {
 
         // UserDefaults
@@ -35,11 +35,11 @@ class ThemeManager: ThemeManagerProtocol {
         }
         return theme
     }
-    
+
     // MARK: - Public methods
 
     func applyTheme(_ theme: Theme = shared.currentTheme) {
-        
+
         // UserDefaults
         // UserDefaults.standard.set(theme.rawValue, forKey: "SelectedTheme")
         // UserDefaults.standard.synchronize()

@@ -9,12 +9,11 @@
 import Foundation
 
 class DataTaskStackMock: DataTaskStackProtocol {
-    
+
     func createDataTask(from requst: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask? {
-        
-        // TODO: sleep
+
         sleep(1)
-        
+
         let data = Data("""
                 {
                   "total": 1,
@@ -22,8 +21,8 @@ class DataTaskStackMock: DataTaskStackProtocol {
                   "hits":[ {"id": 1000100, "previewURL": "https://tinkoff.ru"} ]
                 }
                 """.utf8)
-        
-        completion(data, nil)        
+
+        completion(data, nil)
         return nil
     }
 }

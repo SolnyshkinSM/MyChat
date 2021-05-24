@@ -10,6 +10,6 @@ import UIKit
 // MARK: - ImageLoaderProtocol
 
 protocol ImageLoaderProtocol {
-    func uploadImage(by: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?
+    func uploadImage(for: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?
     func cancelRunningQueries(for: UUID)
 }

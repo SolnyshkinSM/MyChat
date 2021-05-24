@@ -13,6 +13,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+
 default_platform(:ios)
 
 platform :ios do
@@ -20,29 +21,63 @@ platform :ios do
 desc "Build and run test"
 
 lane :build_for_testing do |options|
-  cocoapods(repo_update: true)
+  cocoapods(
+    try_repo_update_on_error: true
+  )
   scan(
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
     build_for_testing: true,
     destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4",
-    clean: true
+    clean: false
     )
-  puts "build_for_testing"
 end 
 
 lane :run_tests_app do |options|
+  cocoapods(
+    try_repo_update_on_error: true
+  )
   run_tests(
     workspace: "MyChat.xcworkspace",
     scheme: "MyChat",
     destination: "platform=iOS Simulator,name=iPhone 11,OS=14.4"
     )
-  puts "run_tests"
+end
+
+lane :discord_notifier do |options|
+
+  color = (options[:success] ? 0xd0ec36 : 0x3449df)
+  result = (options[:success] ? "Success" : "Fail")
+
+require 'discordrb/webhooks'
+
+webhook_url = ENV["WEBHOOK_URL"].freeze
+
+client = Discordrb::Webhooks::Client.new(url: webhook_url)
+client.execute do |builder|
+  builder.username = 'Солнышкин Сергей'
+  builder.content = 'Build result'
+
+  builder.add_embed do |embed|
+
+    embed.title = result
+    embed.colour = color
+    embed.description = '[Repositories](https://github.com/SolnyshkinSM/MyChat)'
+    embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://img.ibxk.com.br/2016/06/13/13193755864575.jpg')
+    embed.add_field(name: "Platform name", value: ENV["FASTLANE_PLATFORM_NAME"], inline: true)
+    embed.timestamp = Time.now
+  end
+end
 end
 
 lane :build_and_test do |options|
   build_for_testing
   run_tests_app
+  error do |ex|
+    discord_notifier(success: false)
+    next
+  end  
+  discord_notifier(success: true)
 end
 
 end

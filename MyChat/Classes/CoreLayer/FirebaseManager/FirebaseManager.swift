@@ -12,19 +12,19 @@ import CoreData
 // MARK: - FirebaseManager
 
 class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
-    
+
     // MARK: - Private properties
-    
+
     private let coreDataStack: CoreDataStackProtocol?
-    
+
     private let reference: CollectionReference?
-    
+
     private let fetchRequest: NSFetchRequest<Model>
-    
+
     private let channel: Channel?
-    
+
     // MARK: - Initialization
-    
+
     init(coreDataStack: CoreDataStackProtocol?,
          reference: CollectionReference?,
          fetchRequest: NSFetchRequest<Model>,
@@ -34,11 +34,11 @@ class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
         self.fetchRequest = fetchRequest
         self.channel = channel
     }
-    
+
     // MARK: - Public methods
-    
+
     func addSnapshotListener() -> ListenerRegistration? {
-       
+
         guard let context = coreDataStack?.context else { return nil }
 
         fetchRequest.resultType = .managedObjectResultType
@@ -83,25 +83,25 @@ class FirebaseManager<Model: NSFetchRequestResult>: FirebaseManagerProtocol {
         }
         return listener
     }
-    
+
     // MARK: - Private methods
-    
+
     private func addNewObject(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
-        
+
         if Model.self == Channel.self {
             addNewChannel(document, in: context)
         } else if Model.self == Message.self {
             addNewMessage(document, in: context)
         }
     }
-    
+
     private func addNewChannel(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
         _ = Channel(identifier: document.documentID, with: document.data(), in: context)
     }
-    
+
     private func addNewMessage(_ document: QueryDocumentSnapshot, in context: NSManagedObjectContext) {
-        let message_db = Message(identifier: document.documentID,
+        let message = Message(identifier: document.documentID,
                                  with: document.data(), in: context)
-        channel?.addToMessages(message_db)
+        channel?.addToMessages(message)
     }
 }

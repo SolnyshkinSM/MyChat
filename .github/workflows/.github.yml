@@ -1,0 +1,19 @@
+name: Swift
+on: 
+  push: 
+    branch: 
+      - '*' 
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=14.4,name=iPhone 11']
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+        bundler-cache: true
+    - name: Run
+      run: bundle exec fastlane build_and_test

@@ -9,16 +9,16 @@
 import Foundation
 
 class NetworkDataFetcherMock: NetworkDataFetcherProtocol {
-    
+
     private let networking: NetworkServiceProtocol
     private let decodeStack: DecodeStackProtocol
-    
+
     init(networking: NetworkServiceProtocol = NetworkServiceMock(),
          decodeStack: DecodeStackProtocol = DecodeStackMock()) {
         self.networking = networking
         self.decodeStack = decodeStack
     }
-    
+
     func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
         networking.request(urlString: urlString) { (data, error) in
             if let error = error {
