@@ -31,8 +31,6 @@ extension UIButton {
             
             let animation = CABasicAnimation(keyPath: "transform")
             animation.duration = 2.0
-            animation.fromValue = self.layer.presentation()?.transform
-            animation.toValue = self.layer
             self.layer.add(animation, forKey: "transform")
                         
             return

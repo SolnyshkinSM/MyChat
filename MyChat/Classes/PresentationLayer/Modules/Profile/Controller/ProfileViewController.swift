@@ -254,6 +254,7 @@ class ProfileViewController: UIViewController {
         [closeButoon, myProfileLabel].forEach { $0.backgroundColor = .clear }
 
         nameTextField.setPlaceholder("Full name")
+        nameTextField.accessibilityIdentifier = "fullName"
         detailsTextField.setPlaceholder("Detailed information")
 
         collectionField.forEach { $0.delegate = textFieldDelegate; $0.isEnabled = false }
