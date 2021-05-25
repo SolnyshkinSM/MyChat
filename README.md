@@ -2,6 +2,8 @@
 
 MyChat - Messaging app
 
+![alt text](MyChat.gif "Overview")
+
 ![alt text](0.png "Main screen")
 
 ![alt text](1.png "Core Data")
@@ -19,9 +21,7 @@ Used:
 - CocoaPods
 - Protocols
 - Extension
-- MapKit
-- WebKit
-- CoreLocation
+- Firebase
 - Core Data
 - DispatchQueue
 - Autolayout
@@ -29,8 +29,6 @@ Used:
 - Interface Builder
 - Storyboard/Xib
 - JSON
-- Localizable
-- MFMailComposeViewController
 
 UIKit:
 - UITabBarController
@@ -42,8 +40,8 @@ UIKit:
 - UITableViewCell
 - UICollectionView
 - UIRefreshControl
-- Basic UIView Animation
-- UIBlurEffect
+- UIView Animation
+- Core Animation
 - UIToolbar
 - UISearchController
 - UIAlertController
@@ -57,7 +55,5 @@ Foundation:
 - DateFormatter
 - NumberFormatter
 - UserDefaults
-- NSCache
-- Timer
 
 GitHub Actions ![example workflow](https://github.com/SolnyshkinSM/MyChat/actions/workflows/.github.yml/badge.svg)
